@@ -1,0 +1,139 @@
+{
+  "business_date": "2026-09-09",
+  "items": {
+    "FC-CAKE-001": {
+      "events": [
+        {
+          "event_type": "usage",
+          "quantity": 2,
+          "unit": "piece"
+        },
+        {
+          "event_type": "usage",
+          "quantity": 1,
+          "unit": "piece"
+        }
+      ],
+      "data_status": "VERIFIED"
+    },
+    "FC-CAKE-005": {
+      "events": [
+        {
+          "event_type": "usage",
+          "quantity": 2,
+          "unit": "piece"
+        }
+      ],
+      "data_status": "VERIFIED"
+    },
+    "FC-CAKE-003": {
+      "events": [
+        {
+          "event_type": "usage",
+          "quantity": 2,
+          "unit": "piece"
+        },
+        {
+          "event_type": "usage",
+          "quantity": 2,
+          "unit": "piece"
+        }
+      ],
+      "data_status": "VERIFIED"
+    },
+    "FC-CAKE-008": {
+      "events": [
+        {
+          "event_type": "usage",
+          "quantity": 1,
+          "unit": "piece"
+        }
+      ],
+      "data_status": "VERIFIED"
+    }
+  },
+  "event_count": 6,
+  "reconciliation_status": "INCOMPLETE",
+  "reconciliation_issues": [
+    {
+      "business_unit": "filling_cafe",
+      "status": "INCOMPLETE",
+      "variance": null,
+      "details": {
+        "item_code": "FC-CAKE-001",
+        "unit": "piece",
+        "opening": null,
+        "purchase": null,
+        "transfer_in": null,
+        "usage": 3,
+        "waste": null,
+        "transfer_out": null,
+        "missing_closing": true,
+        "closing_actual": null
+      }
+    },
+    {
+      "business_unit": "filling_cafe",
+      "status": "INCOMPLETE",
+      "variance": null,
+      "details": {
+        "item_code": "FC-CAKE-005",
+        "unit": "piece",
+        "opening": null,
+        "purchase": null,
+        "transfer_in": null,
+        "usage": 2,
+        "waste": null,
+        "transfer_out": null,
+        "missing_closing": true,
+        "closing_actual": null
+      }
+    },
+    {
+      "business_unit": "filling_cafe",
+      "status": "INCOMPLETE",
+      "variance": null,
+      "details": {
+        "item_code": "FC-CAKE-003",
+        "unit": "piece",
+        "opening": null,
+        "purchase": null,
+        "transfer_in": null,
+        "usage": 4,
+        "waste": null,
+        "transfer_out": null,
+        "missing_closing": true,
+        "closing_actual": null
+      }
+    },
+    {
+      "business_unit": "filling_cafe",
+      "status": "INCOMPLETE",
+      "variance": null,
+      "details": {
+        "item_code": "FC-CAKE-008",
+        "unit": "piece",
+        "opening": null,
+        "purchase": null,
+        "transfer_in": null,
+        "usage": 1,
+        "waste": null,
+        "transfer_out": null,
+        "missing_closing": true,
+        "closing_actual": null
+      }
+    }
+  ],
+  "data_status": "INCOMPLETE",
+  "source": "Stock System + GPOS BOM + Expense Control",
+  "date_range": null,
+  "status": "INCOMPLETE",
+  "freshness": {
+    "status": "STALE",
+    "age_days": 5,
+    "max_age_days": 1,
+    "as_of_business_date": "2026-09-14"
+  },
+  "generated_at": "2026-09-15T15:01:24.638Z",
+  "pipeline_run": "20260915150124-publish-brief-25cb5193"
+}

@@ -1,0 +1,34 @@
+{
+  "business_date": "2026-09-09",
+  "total_sales": 11518.02,
+  "order_count": 62,
+  "average_bill": 185.77,
+  "by_business_unit": {
+    "filling_cafe": 5643.21,
+    "filling_steak": 5874.81
+  },
+  "by_channel": {
+    "ONLINE COFFEE": 1640,
+    "-": 0,
+    "Cash": 785.01,
+    "โอน": 4772,
+    "Online STEAK": 4321.01
+  },
+  "by_hour": {
+    "unknown": 11518.02
+  },
+  "vs_previous_day_pct": -27.8,
+  "vs_7_day_average_pct": -27.8,
+  "data_status": "VERIFIED",
+  "source": "GPOS",
+  "date_range": null,
+  "status": "VERIFIED",
+  "freshness": {
+    "status": "STALE",
+    "age_days": 5,
+    "max_age_days": 1,
+    "as_of_business_date": "2026-09-14"
+  },
+  "generated_at": "2026-09-15T15:01:24.638Z",
+  "pipeline_run": "20260915150124-publish-brief-25cb5193"
+}

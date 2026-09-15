@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-09-15T15:01:24.638Z",
+  "pipeline_run": "20260915150124-publish-brief-25cb5193",
+  "publication_status": "PROVISIONAL",
+  "data_quality_score": 75,
+  "freshness": {
+    "status": "STALE",
+    "age_days": 5,
+    "max_age_days": 1,
+    "as_of_business_date": "2026-09-14"
+  },
+  "datasets": {
+    "sales": {
+      "artifact": "sales.json",
+      "source": "GPOS",
+      "business_date": "2026-09-09",
+      "date_range": null,
+      "last_sync": "2026-09-14T15:26:16.086Z",
+      "status": "VERIFIED"
+    },
+    "expenses": {
+      "artifact": "expenses.json",
+      "source": "Expense Control",
+      "business_date": "2026-08-30",
+      "date_range": null,
+      "last_sync": "2026-09-15T04:35:54.845Z",
+      "status": "VERIFIED"
+    },
+    "inventory": {
+      "artifact": "inventory.json",
+      "source": "Stock System + GPOS BOM + Expense Control",
+      "business_date": "2026-09-09",
+      "date_range": null,
+      "last_sync": "2026-09-15T14:10:04.741Z",
+      "status": "INCOMPLETE"
+    },
+    "marketing": {
+      "artifact": "marketing.json",
+      "source": "Meta Ads",
+      "business_date": "2026-09-13",
+      "date_range": {
+        "start": "2026-08-15",
+        "end": "2026-09-13"
+      },
+      "last_sync": "2026-09-14T15:30:08.108Z",
+      "status": "INCOMPLETE"
+    },
+    "calendar": {
+      "artifact": "latest.json#calendar",
+      "source": "Google Calendar",
+      "business_date": "2026-09-15",
+      "date_range": null,
+      "last_sync": null,
+      "status": "UNKNOWN"
+    }
+  },
+  "source_health": "source_health.json"
+}

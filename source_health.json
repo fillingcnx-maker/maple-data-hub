@@ -1,0 +1,134 @@
+{
+  "generated_at": "2026-09-15T15:01:24.638Z",
+  "pipeline_run": "20260915150124-publish-brief-25cb5193",
+  "sources": {
+    "GPOS": {
+      "source": "GPOS",
+      "adapter": "gpos",
+      "connection_mode": "LOCAL_FILE_EXPORT",
+      "status": "HEALTHY",
+      "data_status": "VERIFIED",
+      "business_date": "2026-09-09",
+      "last_sync": "2026-09-14T15:26:16.086Z",
+      "checked_at": "2026-09-14T15:26:16.086Z",
+      "details": [
+        {
+          "source": "gpos",
+          "status": "HEALTHY",
+          "reason": null
+        }
+      ]
+    },
+    "Expense Control": {
+      "source": "Expense Control",
+      "adapter": "expenses",
+      "connection_mode": "LOCAL_FILE_EXPORT",
+      "status": "HEALTHY",
+      "data_status": "VERIFIED",
+      "business_date": "2026-08-30",
+      "last_sync": "2026-09-15T04:35:54.845Z",
+      "checked_at": "2026-09-15T04:35:54.845Z",
+      "details": [
+        {
+          "source": "expenses",
+          "status": "HEALTHY",
+          "reason": null
+        }
+      ]
+    },
+    "Stock": {
+      "source": "Stock System",
+      "adapter": [
+        "stock",
+        "stock_auto"
+      ],
+      "connection_mode": "LOCAL_FILE_EXPORT_AND_GPOS_BRIDGE",
+      "status": "HEALTHY",
+      "data_status": "INCOMPLETE",
+      "business_date": "2026-09-09",
+      "last_sync": "2026-09-15T14:10:04.741Z",
+      "checked_at": "2026-09-15T14:10:04.741Z",
+      "details": [
+        {
+          "source": "stock",
+          "adapter": "stock",
+          "connection_mode": "LOCAL_FILE_EXPORT",
+          "status": "HEALTHY",
+          "data_status": "UNKNOWN",
+          "business_date": null,
+          "last_sync": "2026-09-15T04:35:55.344Z",
+          "checked_at": "2026-09-15T04:35:55.344Z",
+          "details": [
+            {
+              "source": "stock",
+              "status": "HEALTHY",
+              "reason": null
+            }
+          ]
+        },
+        {
+          "source": "stock_auto",
+          "adapter": "stock_auto",
+          "connection_mode": "LOCAL_FILE_EXPORT",
+          "status": "HEALTHY",
+          "data_status": "UNKNOWN",
+          "business_date": null,
+          "last_sync": "2026-09-15T14:10:04.741Z",
+          "checked_at": "2026-09-15T14:10:04.741Z",
+          "details": [
+            {
+              "source": "stock_auto",
+              "status": "HEALTHY",
+              "reason": null
+            }
+          ]
+        }
+      ]
+    },
+    "Meta": {
+      "source": "Meta Ads",
+      "adapter": "meta",
+      "connection_mode": "LOCAL_FILE_EXPORT",
+      "status": "HEALTHY",
+      "data_status": "INCOMPLETE",
+      "business_date": "2026-09-13",
+      "last_sync": "2026-09-14T15:30:08.108Z",
+      "checked_at": "2026-09-14T15:30:08.108Z",
+      "details": [
+        {
+          "source": "meta",
+          "status": "HEALTHY",
+          "reason": null
+        }
+      ]
+    },
+    "Calendar": {
+      "source": "Google Calendar",
+      "adapter": "calendar",
+      "connection_mode": "NOT_CONFIGURED",
+      "status": "UNKNOWN",
+      "data_status": "UNKNOWN",
+      "business_date": "2026-09-15",
+      "last_sync": null,
+      "checked_at": null,
+      "reason": "Google Calendar adapter is not configured; local schedules are not calendar events",
+      "local_schedule": {
+        "source": "Local schedules",
+        "adapter": "schedules",
+        "connection_mode": "LOCAL_FILE_EXPORT",
+        "status": "HEALTHY",
+        "data_status": "UNKNOWN",
+        "business_date": "2026-09-15",
+        "last_sync": "2026-09-14T15:30:08.580Z",
+        "checked_at": "2026-09-14T15:30:08.580Z",
+        "details": [
+          {
+            "source": "schedules",
+            "status": "HEALTHY",
+            "reason": null
+          }
+        ]
+      }
+    }
+  }
+}

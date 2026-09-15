@@ -1,0 +1,19 @@
+{
+  "business_date": "2026-08-30",
+  "total_expenses": 400,
+  "by_category": {
+    "วัตถุดิบอาหาร/เครื่องดื่ม": 400
+  },
+  "data_status": "VERIFIED",
+  "source": "Expense Control",
+  "date_range": null,
+  "status": "VERIFIED",
+  "freshness": {
+    "status": "STALE",
+    "age_days": 15,
+    "max_age_days": 1,
+    "as_of_business_date": "2026-09-14"
+  },
+  "generated_at": "2026-09-15T15:01:24.638Z",
+  "pipeline_run": "20260915150124-publish-brief-25cb5193"
+}
