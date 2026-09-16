@@ -25,10 +25,10 @@
   "status": "VERIFIED",
   "freshness": {
     "status": "STALE",
-    "age_days": 5,
+    "age_days": 7,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-14"
+    "as_of_business_date": "2026-09-16"
   },
-  "generated_at": "2026-09-15T15:01:24.638Z",
-  "pipeline_run": "20260915150124-publish-brief-25cb5193"
+  "generated_at": "2026-09-16T04:12:11.176Z",
+  "pipeline_run": "20260916041211-publish-brief-e0f605c4"
 }

@@ -1,9 +1,9 @@
 # MAPLE EXECUTIVE BRIEF
 
-Generated: 2026-09-15T15:01:24.638Z
+Generated: 2026-09-16T04:12:11.176Z
 Publication Status: PROVISIONAL
 Data Quality: 75 — INCOMPLETE
-Overall Freshness: STALE (5 day(s) old; as of 2026-09-14)
+Overall Freshness: STALE (7 day(s) old; as of 2026-09-16)
 
 ## Sales
 Source: GPOS
@@ -41,6 +41,7 @@ Attributed revenue: null
 - WARNING INVENTORY_MISSING_CLOSING (Stock System)
 - WARNING SOURCE_STALE (Expenses)
 - WARNING SOURCE_STALE (Inventory)
+- WARNING SOURCE_STALE (Marketing)
 - INFO MARKETING_ATTRIBUTION_MISSING (Meta Ads)
 - INFO CALENDAR_SOURCE_UNKNOWN (Google Calendar)
 
@@ -53,10 +54,10 @@ Attributed revenue: null
 - Stock System 2026-09-09: closing_actual — No actual closing count was found in the stock source
 - Stock System 2026-09-09: closing_actual — No actual closing count was found in the stock source
 - Meta Ads 2026-09-13: attributed_revenue — The current Meta export does not contain attributable revenue
-- Google Calendar 2026-09-15: events — No Google Calendar adapter is configured
+- Google Calendar 2026-09-16: events — No Google Calendar adapter is configured
 
 ## Next Actions
 - read_actual_closing_stock from Stock System (2026-09-09)
 - refresh_source from Expense Control (2026-08-30)
 - refresh_source from Meta Ads (2026-09-13)
-- connect_source from Google Calendar (2026-09-15)
+- connect_source from Google Calendar (2026-09-16)

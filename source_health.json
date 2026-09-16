@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-15T15:01:24.638Z",
-  "pipeline_run": "20260915150124-publish-brief-25cb5193",
+  "generated_at": "2026-09-16T04:12:11.176Z",
+  "pipeline_run": "20260916041211-publish-brief-e0f605c4",
   "sources": {
     "GPOS": {
       "source": "GPOS",
@@ -108,7 +108,7 @@
       "connection_mode": "NOT_CONFIGURED",
       "status": "UNKNOWN",
       "data_status": "UNKNOWN",
-      "business_date": "2026-09-15",
+      "business_date": "2026-09-16",
       "last_sync": null,
       "checked_at": null,
       "reason": "Google Calendar adapter is not configured; local schedules are not calendar events",
@@ -118,7 +118,7 @@
         "connection_mode": "LOCAL_FILE_EXPORT",
         "status": "HEALTHY",
         "data_status": "UNKNOWN",
-        "business_date": "2026-09-15",
+        "business_date": "2026-09-16",
         "last_sync": "2026-09-14T15:30:08.580Z",
         "checked_at": "2026-09-14T15:30:08.580Z",
         "details": [

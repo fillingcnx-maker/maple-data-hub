@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "system_version": "0.1.0",
-  "generated_at": "2026-09-15T15:01:24.638Z",
-  "pipeline_run": "20260915150124-publish-brief-25cb5193",
+  "generated_at": "2026-09-16T04:12:11.176Z",
+  "pipeline_run": "20260916041211-publish-brief-e0f605c4",
   "business_date": "2026-09-09",
   "publication_status": "PROVISIONAL",
   "data_quality_score": 75,
@@ -10,34 +10,34 @@
     "score": 75,
     "status": "INCOMPLETE",
     "blocking_issues": 1,
-    "checked_run": "20260915150124-publish-brief-25cb5193",
+    "checked_run": "20260916041211-publish-brief-e0f605c4",
     "source": "Maple validation",
     "business_date": "2026-09-09"
   },
   "freshness": {
     "status": "STALE",
-    "age_days": 5,
+    "age_days": 7,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-14"
+    "as_of_business_date": "2026-09-16"
   },
   "domain_freshness": {
     "expenses": {
       "status": "STALE",
-      "age_days": 15,
+      "age_days": 17,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-14"
+      "as_of_business_date": "2026-09-16"
     },
     "inventory": {
       "status": "STALE",
-      "age_days": 5,
+      "age_days": 7,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-14"
+      "as_of_business_date": "2026-09-16"
     },
     "marketing": {
-      "status": "CURRENT",
-      "age_days": 1,
+      "status": "STALE",
+      "age_days": 3,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-14"
+      "as_of_business_date": "2026-09-16"
     }
   },
   "sales": {
@@ -67,9 +67,9 @@
     "status": "VERIFIED",
     "freshness": {
       "status": "STALE",
-      "age_days": 5,
+      "age_days": 7,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-14"
+      "as_of_business_date": "2026-09-16"
     }
   },
   "expenses": {
@@ -84,9 +84,9 @@
     "status": "VERIFIED",
     "freshness": {
       "status": "STALE",
-      "age_days": 15,
+      "age_days": 17,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-14"
+      "as_of_business_date": "2026-09-16"
     }
   },
   "inventory": {
@@ -221,9 +221,9 @@
     "status": "INCOMPLETE",
     "freshness": {
       "status": "STALE",
-      "age_days": 5,
+      "age_days": 7,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-14"
+      "as_of_business_date": "2026-09-16"
     }
   },
   "marketing": {
@@ -243,18 +243,18 @@
     },
     "status": "INCOMPLETE",
     "freshness": {
-      "status": "CURRENT",
-      "age_days": 1,
+      "status": "STALE",
+      "age_days": 3,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-14"
+      "as_of_business_date": "2026-09-16"
     }
   },
   "calendar": {
     "source": "config/schedules.json",
-    "business_date": "2026-09-15",
-    "store_status": "CLOSED",
-    "sales_expected": false,
-    "gpos_required": false,
+    "business_date": "2026-09-16",
+    "store_status": "OPEN",
+    "sales_expected": true,
+    "gpos_required": true,
     "status": "VERIFIED",
     "events_source": "Google Calendar",
     "events_status": "UNKNOWN",
@@ -382,12 +382,12 @@
       "source": "Expenses",
       "business_date": "2026-08-30",
       "status": "STALE",
-      "age_days": 15,
+      "age_days": 17,
       "details": {
         "status": "STALE",
-        "age_days": 15,
+        "age_days": 17,
         "max_age_days": 1,
-        "as_of_business_date": "2026-09-14"
+        "as_of_business_date": "2026-09-16"
       }
     },
     {
@@ -396,12 +396,26 @@
       "source": "Inventory",
       "business_date": "2026-09-09",
       "status": "STALE",
-      "age_days": 5,
+      "age_days": 7,
       "details": {
         "status": "STALE",
-        "age_days": 5,
+        "age_days": 7,
         "max_age_days": 1,
-        "as_of_business_date": "2026-09-14"
+        "as_of_business_date": "2026-09-16"
+      }
+    },
+    {
+      "code": "SOURCE_STALE",
+      "severity": "WARNING",
+      "source": "Marketing",
+      "business_date": "2026-09-13",
+      "status": "STALE",
+      "age_days": 3,
+      "details": {
+        "status": "STALE",
+        "age_days": 3,
+        "max_age_days": 1,
+        "as_of_business_date": "2026-09-16"
       }
     },
     {
@@ -418,7 +432,7 @@
       "code": "CALENDAR_SOURCE_UNKNOWN",
       "severity": "INFO",
       "source": "Google Calendar",
-      "business_date": "2026-09-15",
+      "business_date": "2026-09-16",
       "status": "UNKNOWN",
       "missing_fields": [
         "events"
@@ -472,7 +486,7 @@
     },
     {
       "source": "Google Calendar",
-      "business_date": "2026-09-15",
+      "business_date": "2026-09-16",
       "fields": [
         "events"
       ],
@@ -510,7 +524,7 @@
     {
       "action": "connect_source",
       "source": "Google Calendar",
-      "business_date": "2026-09-15",
+      "business_date": "2026-09-16",
       "blocking": false
     }
   ],
