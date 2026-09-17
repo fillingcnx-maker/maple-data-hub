@@ -1,0 +1,712 @@
+{
+  "schema_version": 1,
+  "report_type": "costing_missing_data_audit",
+  "generated_at": "2026-09-17T01:41:16.933Z",
+  "repository": "https://github.com/fillingcnx-maker/maple-executive-os",
+  "branch": "main",
+  "source_revision": "e5a0eb6d6cda957b19848501c4c913df15ee18f4",
+  "scope": {
+    "stores": [
+      "Filling Cafe",
+      "Filling Steak"
+    ],
+    "source_scope": "private repo only",
+    "external_repositories_used": []
+  },
+  "method": {
+    "rule": "missing stays null/missing; no zero-fill; no inferred menu, SKU, quantity, conversion, or unit cost",
+    "cost_per_serving_formula": "sum(recipe_quantity converted to ingredient base unit × ingredient_unit_cost) + sum(packaging_quantity × packaging_unit_cost)",
+    "data_grain_required": "one menu SKU with complete recipe component and packaging rows"
+  },
+  "counts": {
+    "total_menus": null,
+    "costing_complete": null,
+    "costing_missing": null,
+    "owner_action_count": 4
+  },
+  "dataset_audit": [
+    {
+      "dataset": "Ingredient Master",
+      "key": "ingredient_master",
+      "status": "MISSING",
+      "candidate_paths": [],
+      "field_matches": [],
+      "evidence_paths": [],
+      "missing_fields": [
+        "ingredient_sku",
+        "ingredient_name",
+        "base_unit",
+        "unit_cost",
+        "currency",
+        "source"
+      ]
+    },
+    {
+      "dataset": "Recipe/BOM Master",
+      "key": "recipe_bom_master",
+      "status": "MISSING",
+      "candidate_paths": [],
+      "field_matches": [],
+      "evidence_paths": [],
+      "missing_fields": [
+        "menu_sku",
+        "menu_name",
+        "business_unit",
+        "ingredient_sku",
+        "quantity",
+        "unit"
+      ]
+    },
+    {
+      "dataset": "Packaging SKU",
+      "key": "packaging_sku",
+      "status": "MISSING",
+      "candidate_paths": [],
+      "field_matches": [],
+      "evidence_paths": [],
+      "missing_fields": [
+        "packaging_sku",
+        "packaging_name",
+        "unit_cost",
+        "unit",
+        "quantity_per_serving"
+      ]
+    },
+    {
+      "dataset": "Costing",
+      "key": "costing",
+      "status": "MISSING",
+      "candidate_paths": [],
+      "field_matches": [],
+      "evidence_paths": [],
+      "missing_fields": [
+        "menu_sku",
+        "cost_per_serving",
+        "cost_components",
+        "calculated_at",
+        "source"
+      ]
+    },
+    {
+      "dataset": "Stock Mapping",
+      "key": "stock_mapping",
+      "status": "MISSING",
+      "candidate_paths": [],
+      "field_matches": [],
+      "evidence_paths": [],
+      "missing_fields": [
+        "menu_sku",
+        "ingredient_sku",
+        "source_unit",
+        "target_unit",
+        "conversion_factor"
+      ]
+    },
+    {
+      "dataset": "Menu Catalog",
+      "key": "menu_catalog",
+      "status": "MISSING",
+      "candidate_paths": [],
+      "field_matches": [],
+      "evidence_paths": [],
+      "missing_fields": [
+        "menu_sku",
+        "menu_name",
+        "business_unit",
+        "active"
+      ]
+    }
+  ],
+  "observed_source_facts": {
+    "sales": {
+      "path": "reports/maple/sales.json",
+      "business_date": "2026-09-09",
+      "source": "GPOS",
+      "business_units": [
+        "filling_cafe",
+        "filling_steak"
+      ],
+      "menu_catalog_present": false,
+      "fields_observed": [
+        "business_date",
+        "total_sales",
+        "order_count",
+        "average_bill",
+        "by_business_unit",
+        "by_channel",
+        "by_hour",
+        "vs_previous_day_pct",
+        "vs_7_day_average_pct",
+        "data_status",
+        "source",
+        "date_range",
+        "status",
+        "freshness",
+        "generated_at",
+        "pipeline_run"
+      ]
+    },
+    "inventory": {
+      "path": "reports/maple/inventory.json",
+      "business_date": "2026-09-09",
+      "source": "Stock System + GPOS BOM + Expense Control",
+      "item_codes": [
+        "FC-CAKE-001",
+        "FC-CAKE-005",
+        "FC-CAKE-003",
+        "FC-CAKE-008"
+      ],
+      "has_unit_cost": false,
+      "has_recipe_quantities": false,
+      "fields_observed": [
+        "business_date",
+        "items",
+        "event_count",
+        "reconciliation_status",
+        "reconciliation_issues",
+        "data_status",
+        "source",
+        "date_range",
+        "status",
+        "freshness",
+        "generated_at",
+        "pipeline_run"
+      ]
+    }
+  },
+  "stores": [
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_catalog": {
+        "status": "MISSING",
+        "menu_count": null,
+        "missing_fields": [
+          "menu_sku",
+          "menu_name",
+          "business_unit"
+        ],
+        "source_should_have_data": "Menu Catalog / GPOS menu-level export"
+      },
+      "calculable_menus": [],
+      "not_calculable_menus": [],
+      "audit_status": "NOT_AUDITABLE_WITH_REPO_DATA_ONLY",
+      "reason": "ไม่มีเมนูของร้านนี้ใน private repo จึงไม่สร้างชื่อหรือ SKU ขึ้นเอง"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_catalog": {
+        "status": "MISSING",
+        "menu_count": null,
+        "missing_fields": [
+          "menu_sku",
+          "menu_name",
+          "business_unit"
+        ],
+        "source_should_have_data": "Menu Catalog / GPOS menu-level export"
+      },
+      "calculable_menus": [],
+      "not_calculable_menus": [],
+      "audit_status": "NOT_AUDITABLE_WITH_REPO_DATA_ONLY",
+      "reason": "ไม่มีเมนูของร้านนี้ใน private repo จึงไม่สร้างชื่อหรือ SKU ขึ้นเอง"
+    }
+  ],
+  "menus_calculable": [],
+  "menus_not_calculable": [],
+  "missing": [
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Ingredient Master",
+      "missing_field": "ingredient_sku",
+      "source_should_have_data": "private repo source for Ingredient Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Ingredient Master",
+      "missing_field": "ingredient_name",
+      "source_should_have_data": "private repo source for Ingredient Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Ingredient Master",
+      "missing_field": "base_unit",
+      "source_should_have_data": "private repo source for Ingredient Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน base_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Ingredient Master",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "private repo source for Ingredient Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit_cost ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Ingredient Master",
+      "missing_field": "currency",
+      "source_should_have_data": "private repo source for Ingredient Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน currency ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Ingredient Master",
+      "missing_field": "source",
+      "source_should_have_data": "private repo source for Ingredient Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน source ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "menu_sku",
+      "source_should_have_data": "private repo source for Recipe/BOM Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "menu_name",
+      "source_should_have_data": "private repo source for Recipe/BOM Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "business_unit",
+      "source_should_have_data": "private repo source for Recipe/BOM Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน business_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "ingredient_sku",
+      "source_should_have_data": "private repo source for Recipe/BOM Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "quantity",
+      "source_should_have_data": "private repo source for Recipe/BOM Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน quantity ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "unit",
+      "source_should_have_data": "private repo source for Recipe/BOM Master",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Packaging SKU",
+      "missing_field": "packaging_sku",
+      "source_should_have_data": "private repo source for Packaging SKU",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน packaging_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Packaging SKU",
+      "missing_field": "packaging_name",
+      "source_should_have_data": "private repo source for Packaging SKU",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน packaging_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Packaging SKU",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "private repo source for Packaging SKU",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit_cost ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Packaging SKU",
+      "missing_field": "unit",
+      "source_should_have_data": "private repo source for Packaging SKU",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Packaging SKU",
+      "missing_field": "quantity_per_serving",
+      "source_should_have_data": "private repo source for Packaging SKU",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน quantity_per_serving ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Costing",
+      "missing_field": "menu_sku",
+      "source_should_have_data": "private repo source for Costing",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Costing",
+      "missing_field": "cost_per_serving",
+      "source_should_have_data": "private repo source for Costing",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน cost_per_serving ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Costing",
+      "missing_field": "cost_components",
+      "source_should_have_data": "private repo source for Costing",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน cost_components ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Costing",
+      "missing_field": "calculated_at",
+      "source_should_have_data": "private repo source for Costing",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน calculated_at ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Costing",
+      "missing_field": "source",
+      "source_should_have_data": "private repo source for Costing",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน source ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Stock Mapping",
+      "missing_field": "menu_sku",
+      "source_should_have_data": "private repo source for Stock Mapping",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Stock Mapping",
+      "missing_field": "ingredient_sku",
+      "source_should_have_data": "private repo source for Stock Mapping",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Stock Mapping",
+      "missing_field": "source_unit",
+      "source_should_have_data": "private repo source for Stock Mapping",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน source_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Stock Mapping",
+      "missing_field": "target_unit",
+      "source_should_have_data": "private repo source for Stock Mapping",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน target_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Stock Mapping",
+      "missing_field": "conversion_factor",
+      "source_should_have_data": "private repo source for Stock Mapping",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน conversion_factor ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Menu Catalog",
+      "missing_field": "menu_sku",
+      "source_should_have_data": "private repo source for Menu Catalog",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Menu Catalog",
+      "missing_field": "menu_name",
+      "source_should_have_data": "private repo source for Menu Catalog",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Menu Catalog",
+      "missing_field": "business_unit",
+      "source_should_have_data": "private repo source for Menu Catalog",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน business_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    },
+    {
+      "store": null,
+      "business_unit": null,
+      "menu_sku": null,
+      "ingredient_sku": null,
+      "dataset": "Menu Catalog",
+      "missing_field": "active",
+      "source_should_have_data": "private repo source for Menu Catalog",
+      "reason": "ไม่พบ source record/file/table ที่ยืนยัน active ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
+      "status": "OWNER_REQUIRED",
+      "evidence_paths": []
+    }
+  ],
+  "pipeline_findings": [
+    {
+      "id": "PIPELINE_NO_COSTING_DOMAIN",
+      "severity": "HIGH",
+      "status": "PIPELINE_GAP",
+      "system_can_fix": true,
+      "reason": "ไม่มี canonical kind/table/schema สำหรับ Ingredient Master, Recipe/BOM, Packaging หรือ Costing",
+      "evidence_paths": [
+        "packages/core/src/pipeline.mjs",
+        "packages/core/src/canonical.mjs",
+        "db/sqlite/schema.sql"
+      ],
+      "remediation": "เพิ่ม source adapter, canonical records, validation และ storage สำหรับ costing ก่อนนำตัวเลขมาใช้"
+    },
+    {
+      "id": "PIPELINE_RECIPE_AS_INVENTORY",
+      "severity": "HIGH",
+      "status": "PIPELINE_GAP",
+      "system_can_fix": true,
+      "reason": "Obsidian ที่อยู่ในโฟลเดอร์ recipes ถูก route เป็น inventory และ normalize เป็น stock event; สูตรจึงไม่กลายเป็น BOM/cost component",
+      "evidence_paths": [
+        "packages/core/src/pipeline.mjs",
+        "packages/core/src/canonical.mjs",
+        "packages/core/src/adapters.mjs"
+      ],
+      "remediation": "แยก recipe/BOM normalizer และตรวจ quantity/unit/ingredient SKU แทนการตีความเป็น inventory"
+    },
+    {
+      "id": "PIPELINE_REPORTS_ARE_AGGREGATES",
+      "severity": "HIGH",
+      "status": "SOURCE_GRAIN_GAP",
+      "system_can_fix": true,
+      "reason": "sales.json มีเพียงยอดรวมตามร้าน/ช่องทาง และ inventory.json มีเพียง movement item code; ไม่มี menu SKU กับส่วนประกอบสูตร",
+      "evidence_paths": [
+        "reports/maple/sales.json",
+        "reports/maple/inventory.json"
+      ],
+      "remediation": "ดึงและเก็บ menu-level source ก่อนทำ costing; ไม่แตกยอดรวมเป็นเมนูโดยการเดา"
+    },
+    {
+      "id": "PIPELINE_NO_COSTING_PUBLIC_ARTIFACT",
+      "severity": "MEDIUM",
+      "status": "FIXED_IN_THIS_CHANGE",
+      "system_can_fix": true,
+      "reason": "publisher ไม่ได้ allowlist รายงาน audit costing",
+      "evidence_paths": [
+        "scripts/publish-maple-data-hub.mjs"
+      ],
+      "remediation": "เพิ่ม costing_missing_data.json/md ใน public allowlist หลังผ่าน security validation"
+    }
+  ],
+  "fixes_applied": [
+    {
+      "id": "FIX_AUDIT_REPORT",
+      "status": "APPLIED",
+      "detail": "เพิ่ม deterministic audit ที่รายงาน missing เป็น null/missing และแยก pipeline gap ออกจาก Owner action"
+    },
+    {
+      "id": "FIX_PUBLIC_ALLOWLIST",
+      "status": "APPLIED",
+      "detail": "เพิ่มรายงาน costing audit เข้า allowlist ของ data-hub โดยไม่ใส่ secret หรือข้อมูลส่วนบุคคล"
+    }
+  ],
+  "owner_actions": [
+    {
+      "id": "OWNER_INGREDIENT_MASTER",
+      "action": "จัดให้มี Ingredient Master ใน source ที่ repo นี้อ่านได้",
+      "required_fields": [
+        "ingredient_sku",
+        "ingredient_name",
+        "base_unit",
+        "unit_cost",
+        "currency",
+        "source"
+      ],
+      "excludes_system_fix": true
+    },
+    {
+      "id": "OWNER_RECIPE_BOM_MASTER",
+      "action": "จัดให้มี Recipe/BOM Master พร้อมรายการเมนูของทั้งสองร้าน",
+      "required_fields": [
+        "menu_sku",
+        "menu_name",
+        "business_unit",
+        "ingredient_sku",
+        "quantity",
+        "unit"
+      ],
+      "excludes_system_fix": true
+    },
+    {
+      "id": "OWNER_PACKAGING_SKU",
+      "action": "จัดให้มี Packaging SKU และจำนวนใช้ต่อ serving",
+      "required_fields": [
+        "packaging_sku",
+        "packaging_name",
+        "unit_cost",
+        "unit",
+        "quantity_per_serving"
+      ],
+      "excludes_system_fix": true
+    },
+    {
+      "id": "OWNER_STOCK_MAPPING",
+      "action": "ยืนยัน Stock Mapping และ unit conversion เฉพาะรายการที่ไม่มีใน source",
+      "required_fields": [
+        "menu_sku",
+        "ingredient_sku",
+        "source_unit",
+        "target_unit",
+        "conversion_factor"
+      ],
+      "excludes_system_fix": true
+    }
+  ],
+  "limitations": [
+    "repo นี้ไม่มี Ingredient Master, Recipe/BOM Master, Packaging SKU หรือ menu-level costing records",
+    "รายงาน sales/inventory ที่มีอยู่เป็น aggregate/movement evidence ไม่ใช่ costing source",
+    "จึงยังระบุจำนวนเมนูทั้งหมดและจำนวนเมนูที่ costing ครบ/ขาดเป็น null ได้เท่านั้น"
+  ],
+  "status": "BLOCKED_BY_MISSING_COSTING_SOURCES"
+}
