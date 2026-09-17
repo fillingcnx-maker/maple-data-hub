@@ -3,7 +3,7 @@
 - Generated: `2026-09-17T04:46:27.836Z`
 - Scope: Filling Cafe and Filling Steak
 - Period: `2026-09-10` to `2026-09-17`
-- Source revision used for the capture: `58f7ee85f118a279203b37accaa33f67a8d4c647`
+- Source revision used for the capture: `cd35b36ebd9d7c4527cce314c32be0748738c142`
 - Status: **BLOCKED for Cloud reconciliation and BOM movement**
 
 ## What was retrieved

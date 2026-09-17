@@ -3,7 +3,7 @@
   "report_type": "backfill_current_business_data",
   "generated_at": "2026-09-17T04:46:27.836Z",
   "pulled_at": "2026-09-17T04:46:27.836Z",
-  "source_revision": "58f7ee85f118a279203b37accaa33f67a8d4c647",
+  "source_revision": "cd35b36ebd9d7c4527cce314c32be0748738c142",
   "scope": {
     "stores": ["Filling Cafe", "Filling Steak"],
     "business_dates": ["2026-09-10", "2026-09-11", "2026-09-12", "2026-09-13", "2026-09-14", "2026-09-16", "2026-09-17"],
