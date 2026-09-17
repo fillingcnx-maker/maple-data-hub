@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "report_type": "backfill_current_business_data",
+  "generated_at": "2026-09-17T04:46:27.836Z",
+  "pulled_at": "2026-09-17T04:46:27.836Z",
+  "source_revision": "58f7ee85f118a279203b37accaa33f67a8d4c647",
+  "scope": {
+    "stores": ["Filling Cafe", "Filling Steak"],
+    "business_dates": ["2026-09-10", "2026-09-11", "2026-09-12", "2026-09-13", "2026-09-14", "2026-09-16", "2026-09-17"],
+    "closed_dates": ["2026-09-15"],
+    "source_scope": "GPOS and Merchant backoffice capture; sanitized aggregate evidence only"
+  },
+  "daily_gpos": [
+    {
+      "business_date": "2026-09-10",
+      "period": {"start": "2026-09-10", "end": "2026-09-10"},
+      "source": "GPOS Sales Statistics backoffice",
+      "source_ref": "https://gpos-web-1pq8t2.th.biot-apps.com/branch/reports_business_overview",
+      "status": "INCOMPLETE",
+      "capture_status": "CAPTURED",
+      "gross_sales": 9880.0,
+      "discounts": 789.0,
+      "net_sales": 9091.0,
+      "order_count": 44,
+      "payment_mix": {"Online STEAK": 4386.0, "โอน": 2742.0, "ONLINE COFFEE": 1963.0},
+      "menu_line_item_report": {"status": "CAPTURED", "pages": 6},
+      "store_totals": null,
+      "missing_fields": ["store_mapping"],
+      "reason": "GPOS header is Filling cafe but the item report contains both cafe and steak menu names; private repo has no current menu-to-store master."
+    },
+    {
+      "business_date": "2026-09-11",
+      "period": {"start": "2026-09-11", "end": "2026-09-11"},
+      "source": "GPOS Sales Statistics backoffice",
+      "source_ref": "https://gpos-web-1pq8t2.th.biot-apps.com/branch/reports_business_overview",
+      "status": "INCOMPLETE",
+      "capture_status": "CAPTURED",
+      "gross_sales": 11761.0,
+      "discounts": 1369.0,
+      "net_sales": 10392.0,
+      "order_count": 50,
+      "payment_mix": {"Online STEAK": 4266.0, "ONLINE COFFEE": 2074.0, "โอน": 3572.0, "Cash": 480.0},
+      "menu_line_item_report": {"status": "CAPTURED", "pages": 6},
+      "store_totals": null,
+      "missing_fields": ["store_mapping"],
+      "reason": "Store allocation must use the full menu mapping, not the branch header."
+    },
+    {
+      "business_date": "2026-09-12",
+      "period": {"start": "2026-09-12", "end": "2026-09-12"},
+      "source": "GPOS Sales Statistics backoffice",
+      "source_ref": "https://gpos-web-1pq8t2.th.biot-apps.com/branch/reports_business_overview",
+      "status": "INCOMPLETE",
+      "capture_status": "CAPTURED",
+      "gross_sales": 15290.0,
+      "discounts": 1012.0,
+      "net_sales": 14278.0,
+      "order_count": 74,
+      "payment_mix": {"Online STEAK": 7894.0, "ONLINE COFFEE": 2168.0, "Cash": 1202.0, "โอน": 3014.0},
+      "menu_line_item_report": {"status": "CAPTURED", "pages": 7},
+      "store_totals": null,
+      "missing_fields": ["store_mapping"],
+      "reason": "Menu report is available, but the current Maple costing domain has no menu-to-store master."
+    },
+    {
+      "business_date": "2026-09-13",
+      "period": {"start": "2026-09-13", "end": "2026-09-13"},
+      "source": "GPOS Sales Statistics backoffice",
+      "source_ref": "https://gpos-web-1pq8t2.th.biot-apps.com/branch/reports_business_overview",
+      "status": "INCOMPLETE",
+      "capture_status": "CAPTURED",
+      "gross_sales": 13890.0,
+      "discounts": 1693.5,
+      "net_sales": 12196.5,
+      "order_count": 71,
+      "payment_mix": {"Online STEAK": 5927.5, "ONLINE COFFEE": 1399.0, "โอน": 3780.0, "Cash": 1090.0},
+      "menu_line_item_report": {"status": "CAPTURED", "pages": 9},
+      "store_totals": null,
+      "missing_fields": ["store_mapping"],
+      "reason": "Store totals were not fabricated from payment methods because ONLINE COFFEE/ONLINE STEAK are source payment labels, not a complete menu mapping."
+    },
+    {
+      "business_date": "2026-09-14",
+      "period": {"start": "2026-09-14", "end": "2026-09-14"},
+      "source": "GPOS Sales Statistics backoffice",
+      "source_ref": "https://gpos-web-1pq8t2.th.biot-apps.com/branch/reports_business_overview",
+      "status": "INCOMPLETE",
+      "capture_status": "CAPTURED",
+      "gross_sales": 11435.0,
+      "discounts": 1114.0,
+      "net_sales": 10321.0,
+      "order_count": 51,
+      "payment_mix": {"Online STEAK": 3798.0, "ONLINE COFFEE": 1277.0, "โอน": 3275.0, "Cash": 1971.0},
+      "menu_line_item_report": {"status": "CAPTURED", "pages": 7},
+      "store_totals": null,
+      "missing_fields": ["store_mapping"],
+      "reason": "The live item report was captured, but it is not safe to allocate store totals until the Maple menu master is bound."
+    },
+    {
+      "business_date": "2026-09-16",
+      "period": {"start": "2026-09-16", "end": "2026-09-16"},
+      "source": "GPOS Sales Statistics backoffice",
+      "source_ref": "https://gpos-web-1pq8t2.th.biot-apps.com/branch/reports_business_overview",
+      "status": "INCOMPLETE",
+      "capture_status": "CAPTURED",
+      "gross_sales": 12154.0,
+      "discounts": 1002.0,
+      "net_sales": 11152.0,
+      "order_count": 53,
+      "payment_mix": {"Online STEAK": 6174.0, "โอน": 3403.0, "Cash": 579.0, "ONLINE COFFEE": 996.0},
+      "menu_line_item_report": {"status": "CAPTURED", "pages": 7},
+      "store_totals": null,
+      "missing_fields": ["store_mapping"],
+      "reason": "GPOS data is present in backoffice; Cloud import and BOM deduction are still blocked by the missing menu mapping/costing pipeline."
+    },
+    {
+      "business_date": "2026-09-17",
+      "period": {"start": "2026-09-17", "end": "2026-09-17"},
+      "source": "GPOS Sales Statistics backoffice",
+      "source_ref": "https://gpos-web-1pq8t2.th.biot-apps.com/branch/reports_business_overview",
+      "status": "INCOMPLETE",
+      "capture_status": "CAPTURED",
+      "gross_sales": 1823.0,
+      "discounts": 195.0,
+      "net_sales": 1628.0,
+      "order_count": 12,
+      "payment_mix": {"ONLINE COFFEE": 1309.0, "โอน": 234.0, "Cash": 85.0},
+      "menu_line_item_report": {"status": "CAPTURED", "pages": 2},
+      "store_totals": null,
+      "missing_fields": ["store_mapping"],
+      "reason": "The full menu report is present, but source rows do not expose a complete store field and no current Maple menu master is configured."
+    }
+  ],
+  "closed_days": [
+    {
+      "business_date": "2026-09-15",
+      "source": "config/schedules.json",
+      "period": {"start": "2026-09-15", "end": "2026-09-15"},
+      "status": "CLOSED",
+      "reason": "Tuesday is configured as a closed weekday; no business zero row was created."
+    }
+  ],
+  "merchant_daily": {
+    "Filling Cafe": {
+      "Grab": [
+        {"business_date": "2026-09-10", "period": {"start": "2026-09-10", "end": "2026-09-10"}, "source": "Gmail Grab daily statement", "reported_order_value": 0.0, "statement_net_income": 0.0, "government_program_net": 1309.0, "confirmed_payout": null, "status": "INCOMPLETE", "notes": "Statement shows 10 orders under Thaiช่วยไทยพลัส; government payment is separate from Grab payout."},
+        {"business_date": "2026-09-11", "period": {"start": "2026-09-11", "end": "2026-09-11"}, "source": "Gmail Grab daily statement", "reported_order_value": 928.0, "statement_net_income": 63.44, "government_program_net": 789.0, "confirmed_payout": null, "status": "INCOMPLETE", "notes": "Statement net income is not a bank confirmation; Thaiช่วยไทยพลัส is separate."},
+        {"business_date": "2026-09-12", "period": {"start": "2026-09-12", "end": "2026-09-12"}, "source": "Gmail Grab daily statement", "reported_order_value": 385.0, "statement_net_income": 0.0, "government_program_net": 1055.0, "confirmed_payout": null, "status": "INCOMPLETE", "notes": "Statement shows Grab arrears; do not replace missing bank settlement with zero."},
+        {"business_date": "2026-09-13", "period": {"start": "2026-09-13", "end": "2026-09-13"}, "source": "Gmail Grab daily statement", "reported_order_value": 290.0, "statement_net_income": 0.0, "government_program_net": 785.0, "confirmed_payout": null, "status": "INCOMPLETE", "notes": "Statement shows an amount due/arrears state; payout confirmation is not present."},
+        {"business_date": "2026-09-14", "period": {"start": "2026-09-14", "end": "2026-09-14"}, "source": "Gmail Grab daily statement", "reported_order_value": 928.0, "statement_net_income": 365.63, "government_program_net": 290.0, "confirmed_payout": null, "status": "INCOMPLETE", "notes": "Grab statement net income and Thaiช่วยไทยพลัส are kept as separate fields."},
+        {"business_date": "2026-09-16", "period": {"start": "2026-09-16", "end": "2026-09-16"}, "source": "Gmail Merchant search", "reported_order_value": null, "statement_net_income": null, "government_program_net": null, "confirmed_payout": null, "status": "MISSING", "notes": "No Grab daily statement for this business date was found in the current mailbox capture."},
+        {"business_date": "2026-09-17", "period": {"start": "2026-09-17", "end": "2026-09-17"}, "source": "Gmail Merchant search", "reported_order_value": null, "statement_net_income": null, "government_program_net": null, "confirmed_payout": null, "status": "MISSING", "notes": "No daily Grab statement for this business date was found in the current mailbox capture."}
+      ],
+      "LINE MAN": [
+        {"business_date": "2026-09-10", "period": {"start": "2026-09-10", "end": "2026-09-10"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 719.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-11", "period": {"start": "2026-09-11", "end": "2026-09-11"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 520.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-12", "period": {"start": "2026-09-12", "end": "2026-09-12"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 593.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-13", "period": {"start": "2026-09-13", "end": "2026-09-13"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 264.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-14", "period": {"start": "2026-09-14", "end": "2026-09-14"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 130.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-16", "period": {"start": "2026-09-16", "end": "2026-09-16"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 254.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-17", "period": {"start": "2026-09-17", "end": "2026-09-17"}, "source": "Gmail Merchant search", "reported_net_income": null, "confirmed_payout": null, "status": "MISSING"}
+      ],
+      "ShopeeFood": [
+        {"business_date": "2026-09-10", "period": {"start": "2026-09-10", "end": "2026-09-10"}, "source": "Gmail ShopeeFood daily attachment", "reported_net_income": 42.74, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-11", "period": {"start": "2026-09-11", "end": "2026-09-12"}, "source": "Gmail ShopeeFood daily attachment", "reported_net_income": 0.0, "confirmed_payout": null, "status": "DERIVED_FROM_ATTACHMENT", "notes": "The bounded attachment contains only 2026-09-12 rows."},
+        {"business_date": "2026-09-12", "period": {"start": "2026-09-11", "end": "2026-09-12"}, "source": "Gmail ShopeeFood daily attachment", "reported_net_income": 128.23, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-13", "period": {"start": "2026-09-13", "end": "2026-09-13"}, "source": "Gmail ShopeeFood daily attachment", "reported_net_income": 42.74, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-14", "period": {"start": "2026-09-14", "end": "2026-09-16"}, "source": "Gmail ShopeeFood daily attachment", "reported_net_income": 0.0, "confirmed_payout": null, "status": "DERIVED_FROM_ATTACHMENT", "notes": "The bounded attachment contains only a 2026-09-16 row."},
+        {"business_date": "2026-09-16", "period": {"start": "2026-09-14", "end": "2026-09-16"}, "source": "Gmail ShopeeFood daily attachment", "reported_net_income": 49.32, "confirmed_payout": null, "status": "REPORTED_NO_WITHDRAWAL", "notes": "ShopeeFood carried the balance forward; no withdrawal was shown."},
+        {"business_date": "2026-09-17", "period": {"start": "2026-09-17", "end": "2026-09-17"}, "source": "Gmail Merchant search", "reported_net_income": null, "confirmed_payout": null, "status": "MISSING"}
+      ]
+    },
+    "Filling Steak": {
+      "Grab": [
+        {"business_date": "2026-09-10", "period": {"start": "2026-09-10", "end": "2026-09-10"}, "source": "Gmail Grab daily statement", "reported_order_value": 1592.0, "statement_net_income": 672.55, "government_program_net": 1720.0, "confirmed_payout": null, "status": "INCOMPLETE", "notes": "Grab net income and Thaiช่วยไทยพลัส are separate source buckets."},
+        {"business_date": "2026-09-11", "period": {"start": "2026-09-11", "end": "2026-09-11"}, "source": "Gmail Grab daily statement", "reported_order_value": 179.0, "statement_net_income": 0.0, "government_program_net": 1721.0, "confirmed_payout": null, "status": "INCOMPLETE", "notes": "Statement exposes arrears/settlement state; do not treat zero as a missing bank payout."},
+        {"business_date": "2026-09-12", "period": {"start": "2026-09-12", "end": "2026-09-12"}, "source": "Gmail Grab daily statement", "reported_order_value": 2987.0, "statement_net_income": 1385.5, "government_program_net": 2980.0, "confirmed_payout": null, "status": "INCOMPLETE"},
+        {"business_date": "2026-09-13", "period": {"start": "2026-09-13", "end": "2026-09-13"}, "source": "Gmail Grab daily statement", "reported_order_value": 2471.0, "statement_net_income": 1214.15, "government_program_net": 1064.0, "confirmed_payout": null, "status": "INCOMPLETE"},
+        {"business_date": "2026-09-14", "period": {"start": "2026-09-14", "end": "2026-09-14"}, "source": "Gmail Grab daily statement", "reported_order_value": 1094.0, "statement_net_income": 326.9, "government_program_net": 1843.0, "confirmed_payout": null, "status": "INCOMPLETE"},
+        {"business_date": "2026-09-16", "period": {"start": "2026-09-16", "end": "2026-09-16"}, "source": "Gmail Merchant search", "reported_order_value": null, "statement_net_income": null, "government_program_net": null, "confirmed_payout": null, "status": "MISSING"},
+        {"business_date": "2026-09-17", "period": {"start": "2026-09-17", "end": "2026-09-17"}, "source": "Gmail Merchant search", "reported_order_value": null, "statement_net_income": null, "government_program_net": null, "confirmed_payout": null, "status": "MISSING"}
+      ],
+      "LINE MAN": [
+        {"business_date": "2026-09-10", "period": {"start": "2026-09-10", "end": "2026-09-10"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 627.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-11", "period": {"start": "2026-09-11", "end": "2026-09-11"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 1026.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-12", "period": {"start": "2026-09-12", "end": "2026-09-12"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 761.5, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-13", "period": {"start": "2026-09-13", "end": "2026-09-13"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 781.5, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-14", "period": {"start": "2026-09-14", "end": "2026-09-14"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 0.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-16", "period": {"start": "2026-09-16", "end": "2026-09-16"}, "source": "Gmail LINE MAN Wongnai daily report", "reported_net_income": 0.0, "confirmed_payout": null, "status": "REPORTED_NO_PAYOUT"},
+        {"business_date": "2026-09-17", "period": {"start": "2026-09-17", "end": "2026-09-17"}, "source": "Gmail Merchant search", "reported_net_income": null, "confirmed_payout": null, "status": "MISSING"}
+      ],
+      "ShopeeFood": [
+        {"business_date": "2026-09-10", "period": {"start": "2026-09-10", "end": "2026-09-10"}, "source": "Gmail ShopeeFood transfer statement", "reported_net_income": 359.38, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-11", "period": {"start": "2026-09-11", "end": "2026-09-11"}, "source": "Gmail ShopeeFood transfer statement", "reported_net_income": 849.48, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-12", "period": {"start": "2026-09-12", "end": "2026-09-12"}, "source": "Gmail ShopeeFood transfer statement", "reported_net_income": 719.6, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-13", "period": {"start": "2026-09-13", "end": "2026-09-13"}, "source": "Gmail ShopeeFood transfer statement", "reported_net_income": 1220.64, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-14", "period": {"start": "2026-09-14", "end": "2026-09-14"}, "source": "Gmail ShopeeFood transfer statement", "reported_net_income": 817.42, "confirmed_payout": null, "status": "REPORTED_PAYOUT_UNCONFIRMED"},
+        {"business_date": "2026-09-16", "period": {"start": "2026-09-15", "end": "2026-09-16"}, "source": "Gmail ShopeeFood transfer statement", "reported_net_income": null, "confirmed_payout": null, "status": "COMBINED_PERIOD_ONLY", "notes": "The source report covers 2026-09-15 to 2026-09-16 with net income 1122.37; it was not allocated to a single date."},
+        {"business_date": "2026-09-17", "period": {"start": "2026-09-17", "end": "2026-09-17"}, "source": "Gmail Merchant search", "reported_net_income": null, "confirmed_payout": null, "status": "MISSING"}
+      ]
+    }
+  },
+  "unallocated_period_reports": [
+    {"store": "Filling Steak", "platform": "ShopeeFood", "period": {"start": "2026-09-15", "end": "2026-09-16"}, "reported_net_income": 1122.37, "confirmed_payout": null, "source": "Gmail ShopeeFood transfer statement", "status": "COMBINED_PERIOD_ONLY", "reason": "Source period spans a closed day and an open day; no daily allocation was made."},
+    {"store": "Filling Cafe", "platform": "ShopeeFood", "period": {"start": "2026-09-14", "end": "2026-09-16"}, "reported_net_income": 49.32, "confirmed_payout": null, "source": "Gmail ShopeeFood daily attachment", "status": "ALLOCATED_BY_ATTACHMENT_DATE", "reason": "The attachment contained one row dated 2026-09-16; the daily value is retained on that date."}
+  ],
+  "source_health": [
+    {"source": "GPOS", "period": {"start": "2026-09-10", "end": "2026-09-17"}, "business_date": "2026-09-17", "status": "CAPTURED_BUT_NOT_INGESTED", "reason": "Live backoffice pages were readable; Maple has no configured GPOS input path for this capture."},
+    {"source": "Gmail Grab", "period": {"start": "2026-09-10", "end": "2026-09-14"}, "business_date": "2026-09-14", "status": "PARTIAL", "reason": "Daily statements found through 2026-09-14; later dates are missing from the mailbox capture."},
+    {"source": "Gmail LINE MAN Wongnai", "period": {"start": "2026-09-10", "end": "2026-09-16"}, "business_date": "2026-09-16", "status": "PARTIAL", "reason": "Daily reports found through 2026-09-16; payout confirmation is not in the report body."},
+    {"source": "Gmail ShopeeFood", "period": {"start": "2026-09-10", "end": "2026-09-16"}, "business_date": "2026-09-16", "status": "PARTIAL", "reason": "Daily or bounded-period reports found; several carry-forward/no-withdrawal states remain."},
+    {"source": "Expense Control", "period": null, "business_date": null, "status": "MISSING", "reason": "No current-dated expense export was available in this backoffice capture."},
+    {"source": "Stock and BOM", "period": null, "business_date": null, "status": "BLOCKED", "reason": "No current movement/BOM source was written; menu-to-store and costing masters are not configured in Maple."},
+    {"source": "Meta Ads", "period": null, "business_date": null, "status": "MISSING", "reason": "No current Meta source was retrieved in this backoffice capture."}
+  ],
+  "reconciliation": {
+    "status": "BLOCKED",
+    "cloud_comparison": null,
+    "reason": "The live GPOS menu report is captured, but Cloud cannot be reconciled at receipt/order grain because the current Maple input path and menu/store master are missing.",
+    "movement_created": null,
+    "profit_loss_finalized": null
+  },
+  "costing_and_stock": {
+    "status": "BLOCKED",
+    "cost_per_menu": null,
+    "movement": null,
+    "reason": "No BOM movement or cost was created from an unverified store mapping. Missing data remains null rather than zero."
+  },
+  "owner_actions": [],
+  "system_actions_required": [
+    "Bind the captured GPOS export/API response to the private Maple source adapter without using the branch header as store mapping.",
+    "Add the current menu catalog/store mapping to the private Maple costing domain or connect the existing source through an adapter.",
+    "Keep Merchant statement net income, government-program income, and confirmed payout as separate fields.",
+    "Do not create BOM movement until menu SKU, recipe, unit conversion, packaging, and source identifiers are present."
+  ]
+}
