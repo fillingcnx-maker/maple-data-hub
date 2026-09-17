@@ -1,34 +1,41 @@
 {
-  "business_date": "2026-09-09",
-  "total_sales": 11518.02,
-  "order_count": 62,
-  "average_bill": 185.77,
+  "business_date": "2026-09-17",
+  "total_sales": 6680,
+  "order_count": 28,
+  "average_bill": 238.57,
   "by_business_unit": {
-    "filling_cafe": 5643.21,
-    "filling_steak": 5874.81
+    "filling_cafe": 2611.44,
+    "filling_steak": 3263.04,
+    "unknown": 805.52
   },
   "by_channel": {
-    "ONLINE COFFEE": 1640,
-    "-": 0,
-    "Cash": 785.01,
-    "โอน": 4772,
-    "Online STEAK": 4321.01
+    "DINEIN": 1829,
+    "TAKEOUT": 4851
   },
   "by_hour": {
-    "unknown": 11518.02
+    "10": 145,
+    "11": 245,
+    "12": 1249,
+    "13": 540,
+    "14": 75,
+    "15": 2827,
+    "16": 361,
+    "09": 435,
+    "08": 639,
+    "07": 164
   },
-  "vs_previous_day_pct": -27.8,
-  "vs_7_day_average_pct": -27.8,
-  "data_status": "VERIFIED",
+  "vs_previous_day_pct": -40.1,
+  "vs_7_day_average_pct": -40.56,
+  "data_status": "INCOMPLETE",
   "source": "GPOS",
   "date_range": null,
-  "status": "VERIFIED",
+  "status": "INCOMPLETE",
   "freshness": {
-    "status": "STALE",
-    "age_days": 7,
+    "status": "CURRENT",
+    "age_days": 0,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-16"
+    "as_of_business_date": "2026-09-17"
   },
-  "generated_at": "2026-09-16T04:12:11.176Z",
-  "pipeline_run": "20260916041211-publish-brief-e0f605c4"
+  "generated_at": "2026-09-17T09:48:09.205Z",
+  "pipeline_run": "20260917094809-publish-brief-c0c82acf"
 }

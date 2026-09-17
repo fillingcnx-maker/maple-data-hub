@@ -1,19 +1,17 @@
 {
-  "business_date": "2026-08-30",
-  "total_expenses": 400,
-  "by_category": {
-    "วัตถุดิบอาหาร/เครื่องดื่ม": 400
-  },
-  "data_status": "VERIFIED",
+  "business_date": "2026-09-17",
+  "total_expenses": null,
+  "by_category": {},
+  "data_status": "INCOMPLETE",
   "source": "Expense Control",
   "date_range": null,
-  "status": "VERIFIED",
+  "status": "INCOMPLETE",
   "freshness": {
-    "status": "STALE",
-    "age_days": 17,
+    "status": "CURRENT",
+    "age_days": 0,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-16"
+    "as_of_business_date": "2026-09-17"
   },
-  "generated_at": "2026-09-16T04:12:11.176Z",
-  "pipeline_run": "20260916041211-publish-brief-e0f605c4"
+  "generated_at": "2026-09-17T09:48:09.205Z",
+  "pipeline_run": "20260917094809-publish-brief-c0c82acf"
 }

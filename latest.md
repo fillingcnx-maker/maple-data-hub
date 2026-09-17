@@ -1,63 +1,63 @@
 # MAPLE EXECUTIVE BRIEF
 
-Generated: 2026-09-16T04:12:11.176Z
+Generated: 2026-09-17T09:48:09.205Z
 Publication Status: PROVISIONAL
-Data Quality: 75 — INCOMPLETE
-Overall Freshness: STALE (7 day(s) old; as of 2026-09-16)
+Data Quality: 100 — VERIFIED
+Overall Freshness: CURRENT (0 day(s) old; as of 2026-09-17)
 
 ## Sales
 Source: GPOS
-Business date: 2026-09-09
-Status: VERIFIED
-Total: ฿11518.02
-Orders: 62
+Business date: 2026-09-17
+Status: INCOMPLETE
+Total: ฿6680.00
+Orders: 28
 
 ## Expenses
 Source: Expense Control
-Business date: 2026-08-30
-Status: VERIFIED
-Total: ฿400.00
-Freshness: STALE
+Business date: 2026-09-17
+Status: INCOMPLETE
+Total: null
+Freshness: CURRENT
 
 ## Inventory
 Source: Stock System + GPOS BOM + Expense Control
-Business date: 2026-09-09
+Business date: 2026-09-17
 Status: INCOMPLETE
-Events: 6
+Events: null
 Reconciliation: INCOMPLETE
-Issues: 4
+Issues: 0
 
 ## Marketing
 Source: Meta Ads
-Reporting period: 2026-08-15 to 2026-09-13
+Reporting period: 2026-09-17 to 2026-09-17
 Status: INCOMPLETE
-Spend: ฿2628.34
+Spend: null
 Attributed revenue: null
 
+## Costing
+Source: Canonical Costing Master
+Effective date: 2026-09-17
+Status: INCOMPLETE
+Menus: 111
+Complete: 83
+Incomplete: 28
+
 ## Alerts
-- WARNING INVENTORY_MISSING_CLOSING (Stock System)
-- WARNING INVENTORY_MISSING_CLOSING (Stock System)
-- WARNING INVENTORY_MISSING_CLOSING (Stock System)
-- WARNING INVENTORY_MISSING_CLOSING (Stock System)
-- WARNING SOURCE_STALE (Expenses)
-- WARNING SOURCE_STALE (Inventory)
-- WARNING SOURCE_STALE (Marketing)
 - INFO MARKETING_ATTRIBUTION_MISSING (Meta Ads)
+- WARNING SALES_DATA_INCOMPLETE (GPOS)
 - INFO CALENDAR_SOURCE_UNKNOWN (Google Calendar)
+- WARNING COSTING_INCOMPLETE (Canonical Costing Master)
 
 ## Blockers
 - none (publication is not blocked)
 
 ## Missing Data
-- Stock System 2026-09-09: closing_actual — No actual closing count was found in the stock source
-- Stock System 2026-09-09: closing_actual — No actual closing count was found in the stock source
-- Stock System 2026-09-09: closing_actual — No actual closing count was found in the stock source
-- Stock System 2026-09-09: closing_actual — No actual closing count was found in the stock source
-- Meta Ads 2026-09-13: attributed_revenue — The current Meta export does not contain attributable revenue
-- Google Calendar 2026-09-16: events — No Google Calendar adapter is configured
+- Meta Ads 2026-09-17: attributed_revenue — The current Meta export does not contain attributable revenue
+- GPOS 2026-09-17: verified_store_mapping — Some receipt lines could not be mapped to a verified store; totals are retained as provisional and not used as final store profit
+- Google Calendar 2026-09-17: events — No Google Calendar adapter is configured
+- Canonical Costing Master 2026-09-17: cost_per_serving — 28 menu(s) remain incomplete; financial cost stays null for those menus
 
 ## Next Actions
-- read_actual_closing_stock from Stock System (2026-09-09)
-- refresh_source from Expense Control (2026-08-30)
-- refresh_source from Meta Ads (2026-09-13)
-- connect_source from Google Calendar (2026-09-16)
+- refresh_source from Meta Ads (2026-09-17)
+- connect_source from Google Calendar (2026-09-17)
+- resolve_costing_missing_data from Canonical Costing Master (2026-09-17)

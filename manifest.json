@@ -1,54 +1,64 @@
 {
-  "generated_at": "2026-09-16T04:12:11.176Z",
-  "pipeline_run": "20260916041211-publish-brief-e0f605c4",
+  "generated_at": "2026-09-17T09:48:09.205Z",
+  "pipeline_run": "20260917094809-publish-brief-c0c82acf",
   "publication_status": "PROVISIONAL",
-  "data_quality_score": 75,
+  "data_quality_score": 100,
   "freshness": {
-    "status": "STALE",
-    "age_days": 7,
+    "status": "CURRENT",
+    "age_days": 0,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-16"
+    "as_of_business_date": "2026-09-17"
   },
   "datasets": {
     "sales": {
       "artifact": "sales.json",
       "source": "GPOS",
-      "business_date": "2026-09-09",
+      "business_date": "2026-09-17",
       "date_range": null,
-      "last_sync": "2026-09-14T15:26:16.086Z",
-      "status": "VERIFIED"
+      "last_sync": "2026-09-17T09:43:03.187Z",
+      "status": "INCOMPLETE"
     },
     "expenses": {
       "artifact": "expenses.json",
       "source": "Expense Control",
-      "business_date": "2026-08-30",
+      "business_date": "2026-09-17",
       "date_range": null,
-      "last_sync": "2026-09-15T04:35:54.845Z",
-      "status": "VERIFIED"
+      "last_sync": null,
+      "status": "INCOMPLETE"
     },
     "inventory": {
       "artifact": "inventory.json",
       "source": "Stock System + GPOS BOM + Expense Control",
-      "business_date": "2026-09-09",
+      "business_date": "2026-09-17",
       "date_range": null,
-      "last_sync": "2026-09-15T14:10:04.741Z",
+      "last_sync": null,
       "status": "INCOMPLETE"
     },
     "marketing": {
       "artifact": "marketing.json",
       "source": "Meta Ads",
-      "business_date": "2026-09-13",
+      "business_date": "2026-09-17",
       "date_range": {
-        "start": "2026-08-15",
-        "end": "2026-09-13"
+        "start": "2026-09-17",
+        "end": "2026-09-17"
       },
-      "last_sync": "2026-09-14T15:30:08.108Z",
+      "last_sync": null,
       "status": "INCOMPLETE"
+    },
+    "costing": {
+      "artifact": "costing_master.json",
+      "source": "Canonical Costing Master",
+      "business_date": "2026-09-17",
+      "date_range": null,
+      "last_sync": "2026-09-17T08:30:55.236Z",
+      "status": "INCOMPLETE",
+      "costing_complete": 83,
+      "costing_incomplete": 28
     },
     "calendar": {
       "artifact": "latest.json#calendar",
       "source": "Google Calendar",
-      "business_date": "2026-09-16",
+      "business_date": "2026-09-17",
       "date_range": null,
       "last_sync": null,
       "status": "UNKNOWN"

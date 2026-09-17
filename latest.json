@@ -1,257 +1,152 @@
 {
   "schema_version": 1,
   "system_version": "0.1.0",
-  "generated_at": "2026-09-16T04:12:11.176Z",
-  "pipeline_run": "20260916041211-publish-brief-e0f605c4",
-  "business_date": "2026-09-09",
+  "generated_at": "2026-09-17T09:48:09.205Z",
+  "pipeline_run": "20260917094809-publish-brief-c0c82acf",
+  "business_date": "2026-09-17",
   "publication_status": "PROVISIONAL",
-  "data_quality_score": 75,
+  "data_quality_score": 100,
   "data_quality": {
-    "score": 75,
-    "status": "INCOMPLETE",
-    "blocking_issues": 1,
-    "checked_run": "20260916041211-publish-brief-e0f605c4",
+    "score": 100,
+    "status": "VERIFIED",
+    "blocking_issues": 0,
+    "checked_run": "20260917094809-publish-brief-c0c82acf",
     "source": "Maple validation",
-    "business_date": "2026-09-09"
+    "business_date": "2026-09-17"
   },
   "freshness": {
-    "status": "STALE",
-    "age_days": 7,
+    "status": "CURRENT",
+    "age_days": 0,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-16"
+    "as_of_business_date": "2026-09-17"
   },
   "domain_freshness": {
     "expenses": {
-      "status": "STALE",
-      "age_days": 17,
+      "status": "CURRENT",
+      "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-16"
+      "as_of_business_date": "2026-09-17"
     },
     "inventory": {
-      "status": "STALE",
-      "age_days": 7,
+      "status": "CURRENT",
+      "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-16"
+      "as_of_business_date": "2026-09-17"
     },
     "marketing": {
-      "status": "STALE",
-      "age_days": 3,
+      "status": "CURRENT",
+      "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-16"
+      "as_of_business_date": "2026-09-17"
     }
   },
   "sales": {
-    "business_date": "2026-09-09",
-    "total_sales": 11518.02,
-    "order_count": 62,
-    "average_bill": 185.77,
+    "business_date": "2026-09-17",
+    "total_sales": 6680,
+    "order_count": 28,
+    "average_bill": 238.57,
     "by_business_unit": {
-      "filling_cafe": 5643.21,
-      "filling_steak": 5874.81
+      "filling_cafe": 2611.44,
+      "filling_steak": 3263.04,
+      "unknown": 805.52
     },
     "by_channel": {
-      "ONLINE COFFEE": 1640,
-      "-": 0,
-      "Cash": 785.01,
-      "โอน": 4772,
-      "Online STEAK": 4321.01
+      "DINEIN": 1829,
+      "TAKEOUT": 4851
     },
     "by_hour": {
-      "unknown": 11518.02
+      "10": 145,
+      "11": 245,
+      "12": 1249,
+      "13": 540,
+      "14": 75,
+      "15": 2827,
+      "16": 361,
+      "09": 435,
+      "08": 639,
+      "07": 164
     },
-    "vs_previous_day_pct": -27.8,
-    "vs_7_day_average_pct": -27.8,
-    "data_status": "VERIFIED",
+    "vs_previous_day_pct": -40.1,
+    "vs_7_day_average_pct": -40.56,
+    "data_status": "INCOMPLETE",
     "source": "GPOS",
     "date_range": null,
-    "status": "VERIFIED",
+    "status": "INCOMPLETE",
     "freshness": {
-      "status": "STALE",
-      "age_days": 7,
+      "status": "CURRENT",
+      "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-16"
+      "as_of_business_date": "2026-09-17"
     }
   },
   "expenses": {
-    "business_date": "2026-08-30",
-    "total_expenses": 400,
-    "by_category": {
-      "วัตถุดิบอาหาร/เครื่องดื่ม": 400
-    },
-    "data_status": "VERIFIED",
+    "business_date": "2026-09-17",
+    "total_expenses": null,
+    "by_category": {},
+    "data_status": "INCOMPLETE",
     "source": "Expense Control",
     "date_range": null,
-    "status": "VERIFIED",
+    "status": "INCOMPLETE",
     "freshness": {
-      "status": "STALE",
-      "age_days": 17,
+      "status": "CURRENT",
+      "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-16"
+      "as_of_business_date": "2026-09-17"
     }
   },
   "inventory": {
-    "business_date": "2026-09-09",
-    "items": {
-      "FC-CAKE-001": {
-        "events": [
-          {
-            "event_type": "usage",
-            "quantity": 2,
-            "unit": "piece"
-          },
-          {
-            "event_type": "usage",
-            "quantity": 1,
-            "unit": "piece"
-          }
-        ],
-        "data_status": "VERIFIED"
-      },
-      "FC-CAKE-005": {
-        "events": [
-          {
-            "event_type": "usage",
-            "quantity": 2,
-            "unit": "piece"
-          }
-        ],
-        "data_status": "VERIFIED"
-      },
-      "FC-CAKE-003": {
-        "events": [
-          {
-            "event_type": "usage",
-            "quantity": 2,
-            "unit": "piece"
-          },
-          {
-            "event_type": "usage",
-            "quantity": 2,
-            "unit": "piece"
-          }
-        ],
-        "data_status": "VERIFIED"
-      },
-      "FC-CAKE-008": {
-        "events": [
-          {
-            "event_type": "usage",
-            "quantity": 1,
-            "unit": "piece"
-          }
-        ],
-        "data_status": "VERIFIED"
-      }
-    },
-    "event_count": 6,
+    "business_date": "2026-09-17",
+    "items": {},
+    "event_count": null,
     "reconciliation_status": "INCOMPLETE",
-    "reconciliation_issues": [
-      {
-        "business_unit": "filling_cafe",
-        "status": "INCOMPLETE",
-        "variance": null,
-        "details": {
-          "item_code": "FC-CAKE-001",
-          "unit": "piece",
-          "opening": null,
-          "purchase": null,
-          "transfer_in": null,
-          "usage": 3,
-          "waste": null,
-          "transfer_out": null,
-          "missing_closing": true,
-          "closing_actual": null
-        }
-      },
-      {
-        "business_unit": "filling_cafe",
-        "status": "INCOMPLETE",
-        "variance": null,
-        "details": {
-          "item_code": "FC-CAKE-005",
-          "unit": "piece",
-          "opening": null,
-          "purchase": null,
-          "transfer_in": null,
-          "usage": 2,
-          "waste": null,
-          "transfer_out": null,
-          "missing_closing": true,
-          "closing_actual": null
-        }
-      },
-      {
-        "business_unit": "filling_cafe",
-        "status": "INCOMPLETE",
-        "variance": null,
-        "details": {
-          "item_code": "FC-CAKE-003",
-          "unit": "piece",
-          "opening": null,
-          "purchase": null,
-          "transfer_in": null,
-          "usage": 4,
-          "waste": null,
-          "transfer_out": null,
-          "missing_closing": true,
-          "closing_actual": null
-        }
-      },
-      {
-        "business_unit": "filling_cafe",
-        "status": "INCOMPLETE",
-        "variance": null,
-        "details": {
-          "item_code": "FC-CAKE-008",
-          "unit": "piece",
-          "opening": null,
-          "purchase": null,
-          "transfer_in": null,
-          "usage": 1,
-          "waste": null,
-          "transfer_out": null,
-          "missing_closing": true,
-          "closing_actual": null
-        }
-      }
-    ],
+    "reconciliation_issues": [],
     "data_status": "INCOMPLETE",
     "source": "Stock System + GPOS BOM + Expense Control",
     "date_range": null,
     "status": "INCOMPLETE",
     "freshness": {
-      "status": "STALE",
-      "age_days": 7,
+      "status": "CURRENT",
+      "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-16"
+      "as_of_business_date": "2026-09-17"
     }
   },
   "marketing": {
-    "business_date": "2026-09-13",
-    "reporting_start": "2026-08-15",
-    "reporting_end": "2026-09-13",
-    "spend": 2628.34,
+    "business_date": "2026-09-17",
+    "reporting_start": "2026-09-17",
+    "reporting_end": "2026-09-17",
+    "spend": null,
     "attributed_revenue": null,
     "roas": null,
-    "campaigns_total": 10,
-    "active_campaigns": 3,
+    "campaigns_total": 0,
+    "active_campaigns": 0,
     "data_status": "INCOMPLETE",
     "source": "Meta Ads",
     "date_range": {
-      "start": "2026-08-15",
-      "end": "2026-09-13"
+      "start": "2026-09-17",
+      "end": "2026-09-17"
     },
     "status": "INCOMPLETE",
     "freshness": {
-      "status": "STALE",
-      "age_days": 3,
+      "status": "CURRENT",
+      "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-16"
+      "as_of_business_date": "2026-09-17"
     }
+  },
+  "costing": {
+    "source": "Canonical Costing Master",
+    "business_date": "2026-09-17",
+    "status": "INCOMPLETE",
+    "total_menus": 111,
+    "costing_complete": 83,
+    "costing_incomplete": 28,
+    "recipe_version": "2026-09-17",
+    "source_revision": null
   },
   "calendar": {
     "source": "config/schedules.json",
-    "business_date": "2026-09-16",
+    "business_date": "2026-09-17",
     "store_status": "OPEN",
     "sales_expected": true,
     "gpos_required": true,
@@ -275,6 +170,11 @@
         "business_unit": "filling_steak",
         "status": "RECONCILED",
         "variance": 0
+      },
+      {
+        "business_unit": "unknown",
+        "status": "RECONCILED",
+        "variance": 0
       }
     ]
   },
@@ -285,246 +185,103 @@
   },
   "alerts": [
     {
-      "code": "INVENTORY_MISSING_CLOSING",
-      "severity": "WARNING",
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "status": "INCOMPLETE",
-      "item_code": "FC-CAKE-001",
-      "missing_fields": [
-        "closing_actual"
-      ],
-      "details": {
-        "item_code": "FC-CAKE-001",
-        "unit": "piece",
-        "opening": null,
-        "purchase": null,
-        "transfer_in": null,
-        "usage": 3,
-        "waste": null,
-        "transfer_out": null,
-        "missing_closing": true,
-        "closing_actual": null
-      }
-    },
-    {
-      "code": "INVENTORY_MISSING_CLOSING",
-      "severity": "WARNING",
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "status": "INCOMPLETE",
-      "item_code": "FC-CAKE-005",
-      "missing_fields": [
-        "closing_actual"
-      ],
-      "details": {
-        "item_code": "FC-CAKE-005",
-        "unit": "piece",
-        "opening": null,
-        "purchase": null,
-        "transfer_in": null,
-        "usage": 2,
-        "waste": null,
-        "transfer_out": null,
-        "missing_closing": true,
-        "closing_actual": null
-      }
-    },
-    {
-      "code": "INVENTORY_MISSING_CLOSING",
-      "severity": "WARNING",
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "status": "INCOMPLETE",
-      "item_code": "FC-CAKE-003",
-      "missing_fields": [
-        "closing_actual"
-      ],
-      "details": {
-        "item_code": "FC-CAKE-003",
-        "unit": "piece",
-        "opening": null,
-        "purchase": null,
-        "transfer_in": null,
-        "usage": 4,
-        "waste": null,
-        "transfer_out": null,
-        "missing_closing": true,
-        "closing_actual": null
-      }
-    },
-    {
-      "code": "INVENTORY_MISSING_CLOSING",
-      "severity": "WARNING",
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "status": "INCOMPLETE",
-      "item_code": "FC-CAKE-008",
-      "missing_fields": [
-        "closing_actual"
-      ],
-      "details": {
-        "item_code": "FC-CAKE-008",
-        "unit": "piece",
-        "opening": null,
-        "purchase": null,
-        "transfer_in": null,
-        "usage": 1,
-        "waste": null,
-        "transfer_out": null,
-        "missing_closing": true,
-        "closing_actual": null
-      }
-    },
-    {
-      "code": "SOURCE_STALE",
-      "severity": "WARNING",
-      "source": "Expenses",
-      "business_date": "2026-08-30",
-      "status": "STALE",
-      "age_days": 17,
-      "details": {
-        "status": "STALE",
-        "age_days": 17,
-        "max_age_days": 1,
-        "as_of_business_date": "2026-09-16"
-      }
-    },
-    {
-      "code": "SOURCE_STALE",
-      "severity": "WARNING",
-      "source": "Inventory",
-      "business_date": "2026-09-09",
-      "status": "STALE",
-      "age_days": 7,
-      "details": {
-        "status": "STALE",
-        "age_days": 7,
-        "max_age_days": 1,
-        "as_of_business_date": "2026-09-16"
-      }
-    },
-    {
-      "code": "SOURCE_STALE",
-      "severity": "WARNING",
-      "source": "Marketing",
-      "business_date": "2026-09-13",
-      "status": "STALE",
-      "age_days": 3,
-      "details": {
-        "status": "STALE",
-        "age_days": 3,
-        "max_age_days": 1,
-        "as_of_business_date": "2026-09-16"
-      }
-    },
-    {
       "code": "MARKETING_ATTRIBUTION_MISSING",
       "severity": "INFO",
       "source": "Meta Ads",
-      "business_date": "2026-09-13",
+      "business_date": "2026-09-17",
       "status": "INCOMPLETE",
       "missing_fields": [
         "attributed_revenue"
       ]
     },
     {
+      "code": "SALES_DATA_INCOMPLETE",
+      "severity": "WARNING",
+      "source": "GPOS",
+      "business_date": "2026-09-17",
+      "status": "INCOMPLETE",
+      "missing_fields": [
+        "verified_store_mapping"
+      ],
+      "details": {
+        "reason": "Some receipt lines remain unknown until an exact menu/store mapping is confirmed"
+      }
+    },
+    {
       "code": "CALENDAR_SOURCE_UNKNOWN",
       "severity": "INFO",
       "source": "Google Calendar",
-      "business_date": "2026-09-16",
+      "business_date": "2026-09-17",
       "status": "UNKNOWN",
       "missing_fields": [
         "events"
       ]
+    },
+    {
+      "code": "COSTING_INCOMPLETE",
+      "severity": "WARNING",
+      "source": "Canonical Costing Master",
+      "business_date": "2026-09-17",
+      "status": "INCOMPLETE",
+      "missing_fields": [
+        "cost_per_serving"
+      ],
+      "details": {
+        "costing_incomplete": 28
+      }
     }
   ],
   "missing_data": [
     {
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "item_code": "FC-CAKE-001",
-      "fields": [
-        "closing_actual"
-      ],
-      "reason": "No actual closing count was found in the stock source"
-    },
-    {
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "item_code": "FC-CAKE-005",
-      "fields": [
-        "closing_actual"
-      ],
-      "reason": "No actual closing count was found in the stock source"
-    },
-    {
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "item_code": "FC-CAKE-003",
-      "fields": [
-        "closing_actual"
-      ],
-      "reason": "No actual closing count was found in the stock source"
-    },
-    {
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "item_code": "FC-CAKE-008",
-      "fields": [
-        "closing_actual"
-      ],
-      "reason": "No actual closing count was found in the stock source"
-    },
-    {
       "source": "Meta Ads",
-      "business_date": "2026-09-13",
+      "business_date": "2026-09-17",
       "fields": [
         "attributed_revenue"
       ],
       "reason": "The current Meta export does not contain attributable revenue"
     },
     {
+      "source": "GPOS",
+      "business_date": "2026-09-17",
+      "fields": [
+        "verified_store_mapping"
+      ],
+      "reason": "Some receipt lines could not be mapped to a verified store; totals are retained as provisional and not used as final store profit"
+    },
+    {
       "source": "Google Calendar",
-      "business_date": "2026-09-16",
+      "business_date": "2026-09-17",
       "fields": [
         "events"
       ],
       "reason": "No Google Calendar adapter is configured"
+    },
+    {
+      "source": "Canonical Costing Master",
+      "business_date": "2026-09-17",
+      "fields": [
+        "cost_per_serving"
+      ],
+      "reason": "28 menu(s) remain incomplete; financial cost stays null for those menus"
     }
   ],
   "next_actions": [
     {
-      "action": "read_actual_closing_stock",
-      "source": "Stock System",
-      "business_date": "2026-09-09",
-      "items": [
-        "FC-CAKE-001",
-        "FC-CAKE-005",
-        "FC-CAKE-003",
-        "FC-CAKE-008"
-      ],
-      "fields": [
-        "closing_actual"
-      ],
-      "blocking": false
-    },
-    {
-      "action": "refresh_source",
-      "source": "Expense Control",
-      "business_date": "2026-08-30",
-      "blocking": false
-    },
-    {
       "action": "refresh_source",
       "source": "Meta Ads",
-      "business_date": "2026-09-13",
+      "business_date": "2026-09-17",
       "blocking": false
     },
     {
       "action": "connect_source",
       "source": "Google Calendar",
-      "business_date": "2026-09-16",
+      "business_date": "2026-09-17",
+      "blocking": false
+    },
+    {
+      "action": "resolve_costing_missing_data",
+      "source": "Canonical Costing Master",
+      "business_date": "2026-09-17",
       "blocking": false
     }
   ],

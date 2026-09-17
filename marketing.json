@@ -1,25 +1,25 @@
 {
-  "business_date": "2026-09-13",
-  "reporting_start": "2026-08-15",
-  "reporting_end": "2026-09-13",
-  "spend": 2628.34,
+  "business_date": "2026-09-17",
+  "reporting_start": "2026-09-17",
+  "reporting_end": "2026-09-17",
+  "spend": null,
   "attributed_revenue": null,
   "roas": null,
-  "campaigns_total": 10,
-  "active_campaigns": 3,
+  "campaigns_total": 0,
+  "active_campaigns": 0,
   "data_status": "INCOMPLETE",
   "source": "Meta Ads",
   "date_range": {
-    "start": "2026-08-15",
-    "end": "2026-09-13"
+    "start": "2026-09-17",
+    "end": "2026-09-17"
   },
   "status": "INCOMPLETE",
   "freshness": {
-    "status": "STALE",
-    "age_days": 3,
+    "status": "CURRENT",
+    "age_days": 0,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-16"
+    "as_of_business_date": "2026-09-17"
   },
-  "generated_at": "2026-09-16T04:12:11.176Z",
-  "pipeline_run": "20260916041211-publish-brief-e0f605c4"
+  "generated_at": "2026-09-17T09:48:09.205Z",
+  "pipeline_run": "20260917094809-publish-brief-c0c82acf"
 }
