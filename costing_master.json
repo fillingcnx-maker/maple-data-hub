@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_type": "costing_master",
-  "generated_at": "2026-09-17T08:28:59.683Z",
+  "generated_at": "2026-09-17T08:30:55.236Z",
   "effective_from": "2026-09-17",
   "recipe_version": "2026-09-17",
   "source_revision": null,
@@ -23836,7 +23836,22 @@
           "note": "สินค้าใหม่; ยังไม่มีราคาซื้อและบรรจุภัณฑ์ที่ยืนยัน"
         }
       ],
-      "delivery_components": [],
+      "delivery_components": [
+        {
+          "sku": null,
+          "name": "บรรจุภัณฑ์ Muffin chocolate",
+          "quantity": null,
+          "unit": null,
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "missing_field": "packaging_sku",
+          "source_status": "MISSING",
+          "note": "ยังไม่ได้ระบุชนิด/จำนวน/ต้นทุนบรรจุภัณฑ์"
+        }
+      ],
       "order_components": [],
       "sweetness": null,
       "defaults": {
@@ -42397,6 +42412,13 @@
           "ingredient": "Muffin chocolate",
           "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
           "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "packaging_sku",
+          "ingredient_sku": null,
+          "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
+          "reason": "Component SKU is missing",
+          "status": "MAPPING_ERROR"
         }
       ],
       "components": [
@@ -42416,6 +42438,23 @@
           "unit_cost": null,
           "status": "SOURCE_MISSING",
           "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+        },
+        {
+          "sku": null,
+          "name": "บรรจุภัณฑ์ Muffin chocolate",
+          "quantity": null,
+          "unit": null,
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "missing_field": "packaging_sku",
+          "source_status": "MISSING",
+          "note": "ยังไม่ได้ระบุชนิด/จำนวน/ต้นทุนบรรจุภัณฑ์",
+          "line_cost": null,
+          "status": "MAPPING_ERROR",
+          "reason": "Component SKU is missing"
         }
       ],
       "recipe_version": "2026-09-17",

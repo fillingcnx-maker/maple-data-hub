@@ -2,8 +2,8 @@
 
 - Repository: https://github.com/fillingcnx-maker/maple-executive-os
 - Branch: main
-- Source revision: c5d7b2d7ad3ec9cf430cc6912f703afcc327428e
-- Generated: 2026-09-17T08:28:59.846Z
+- Source revision: aae97a3afb7a5dd7b78eae2c7e374bcc0e8fc014
+- Generated: 2026-09-17T08:30:55.398Z
 - Status: **AUDIT_COMPLETE_WITH_MISSING_DATA**
 
 > `null`/missing หมายถึงไม่มีหลักฐานที่คำนวณได้ ไม่ใช่ศูนย์ และไม่มีการเดาสูตร ปริมาณ หน่วย หรือราคา
@@ -157,6 +157,7 @@
 | Filling Steak | CMB-007 | สเต็กไก่ + ไส้กรอกรวม | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
 | Filling Cafe | CAFE-CAKE-010 | เค้กหมี | FC-CAKE-010 | unit_cost | Owner requested the menu/SKU but no purchase unit cost was supplied | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
 | Filling Cafe | CAFE-BAKERY-002 | Muffin chocolate | FC-BAKERY-002 | unit_cost | Owner requested the menu/SKU but no purchase unit cost was supplied | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
+| Filling Cafe | CAFE-BAKERY-002 | Muffin chocolate | — | packaging_sku | Component SKU is missing | Recipe/BOM Master and canonical costing pipeline | MAPPING_ERROR | ไม่ใช่ |
 | Filling Cafe | CAFE-SODA-STRAWBERRY | Strawberry Soda | FC-ING-037 | unit_cost | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
 | Filling Cafe | CAFE-SODA-BLUEBERRY | Blueberry Soda | FC-ING-037 | unit_cost | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
 | Filling Cafe | CAFE-SODA-LYCHEE | Lychee Soda | FC-ING-019-L | unit_cost | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |

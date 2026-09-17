@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "report_type": "costing_missing_data_audit",
-  "generated_at": "2026-09-17T08:28:59.846Z",
+  "generated_at": "2026-09-17T08:30:55.398Z",
   "repository": "https://github.com/fillingcnx-maker/maple-executive-os",
   "branch": "main",
-  "source_revision": "c5d7b2d7ad3ec9cf430cc6912f703afcc327428e",
+  "source_revision": "aae97a3afb7a5dd7b78eae2c7e374bcc0e8fc014",
   "scope": {
     "stores": [
       "Filling Cafe",
@@ -797,6 +797,25 @@
               "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
               "status": "SOURCE_MISSING",
               "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-BAKERY-002",
+              "menu": "Muffin chocolate",
+              "ingredient_sku": null,
+              "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "packaging_sku",
+              "source_should_have_data": "Recipe/BOM Master and canonical costing pipeline",
+              "reason": "Component SKU is missing",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": false,
               "evidence": {
                 "recipe_source": "Owner instruction 2026-09-17",
                 "recipe_version": "2026-09-17",
@@ -4005,6 +4024,25 @@
             "recipe_version": "2026-09-17",
             "costing_status": "COSTING_INCOMPLETE"
           }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-BAKERY-002",
+          "menu": "Muffin chocolate",
+          "ingredient_sku": null,
+          "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "packaging_sku",
+          "source_should_have_data": "Recipe/BOM Master and canonical costing pipeline",
+          "reason": "Component SKU is missing",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": false,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
         }
       ],
       "source": "Owner instruction 2026-09-17"
@@ -4730,6 +4768,25 @@
       "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
       "status": "SOURCE_MISSING",
       "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-BAKERY-002",
+      "menu": "Muffin chocolate",
+      "ingredient_sku": null,
+      "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "packaging_sku",
+      "source_should_have_data": "Recipe/BOM Master and canonical costing pipeline",
+      "reason": "Component SKU is missing",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": false,
       "evidence": {
         "recipe_source": "Owner instruction 2026-09-17",
         "recipe_version": "2026-09-17",
