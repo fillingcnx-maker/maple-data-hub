@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T09:48:09.205Z",
-  "pipeline_run": "20260917094809-publish-brief-c0c82acf",
+  "generated_at": "2026-09-17T09:55:56.675Z",
+  "pipeline_run": "20260917095556-publish-brief-2ab7d844",
   "sources": {
     "GPOS": {
       "source": "GPOS",
@@ -90,7 +90,7 @@
       "adapter": "reports/maple/costing_master.json",
       "connection_mode": "CANONICAL_MASTER",
       "last_sync": "2026-09-17T08:30:55.236Z",
-      "checked_at": "2026-09-17T09:48:09.205Z",
+      "checked_at": "2026-09-17T09:55:56.675Z",
       "details": []
     },
     "Calendar": {

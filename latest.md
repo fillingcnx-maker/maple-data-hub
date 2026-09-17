@@ -1,6 +1,6 @@
 # MAPLE EXECUTIVE BRIEF
 
-Generated: 2026-09-17T09:48:09.205Z
+Generated: 2026-09-17T09:55:56.675Z
 Publication Status: PROVISIONAL
 Data Quality: 100 — VERIFIED
 Overall Freshness: CURRENT (0 day(s) old; as of 2026-09-17)

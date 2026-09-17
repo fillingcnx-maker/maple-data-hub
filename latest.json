@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "system_version": "0.1.0",
-  "generated_at": "2026-09-17T09:48:09.205Z",
-  "pipeline_run": "20260917094809-publish-brief-c0c82acf",
+  "generated_at": "2026-09-17T09:55:56.675Z",
+  "pipeline_run": "20260917095556-publish-brief-2ab7d844",
   "business_date": "2026-09-17",
   "publication_status": "PROVISIONAL",
   "data_quality_score": 100,
@@ -10,7 +10,7 @@
     "score": 100,
     "status": "VERIFIED",
     "blocking_issues": 0,
-    "checked_run": "20260917094809-publish-brief-c0c82acf",
+    "checked_run": "20260917095556-publish-brief-2ab7d844",
     "source": "Maple validation",
     "business_date": "2026-09-17"
   },
