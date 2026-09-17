@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "report_type": "maple_sync_gap_audit",
+  "generated_at": "2026-09-17T08:46:03.105Z",
+  "source": "Maple runtime configuration + private repo backfill evidence",
+  "business_date": "2026-09-17",
+  "status": "BLOCKED_NO_TRANSACTION_SOURCE",
+  "repository": "https://github.com/fillingcnx-maker/maple-executive-os",
+  "root_cause": [
+    {
+      "id": "ROOT_NO_INPUT_PATH",
+      "finding": "Current runtime has no GPOS_INPUT_PATH, STOCK_INPUT_PATH, or STOCK_AUTO_INPUT_PATH configured.",
+      "evidence": [
+        "apps/worker/src/config.mjs",
+        ".env.example"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "ROOT_NO_RUNTIME_RECORDS",
+      "finding": "Current staging database contains no raw records, sales, inventory events, or checkpoints; recent runs are publish-brief only and failed at the data gate.",
+      "evidence": [
+        "staging runtime database",
+        "apps/worker/src/cli.mjs"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "ROOT_HEALTH_EXISTENCE_ONLY",
+      "finding": "The historical GPOS health check recorded HEALTHY/last_sync while the latest business date remained 2026-09-09 because it checked source availability, not source business-date freshness.",
+      "evidence": [
+        "reports/maple/source_health.json",
+        "packages/core/src/adapters.mjs"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "ROOT_SCHEDULER_NOT_IN_REPO",
+      "finding": "config/schedules.json defines recurring jobs, but this private repo contains no executable scheduler or job-executor entry that proves sync jobs ran after 2026-09-09.",
+      "evidence": [
+        "config/schedules.json",
+        "apps/worker/src/cli.mjs"
+      ],
+      "status": "CONFIRMED"
+    },
+    {
+      "id": "ROOT_REPORT_NOT_REGENERATED",
+      "finding": "The tracked report bundle is still business_date 2026-09-09; publish copied that bundle and therefore public data stayed stale. This is not a CDN-only issue.",
+      "evidence": [
+        "reports/maple/latest.json",
+        "reports/maple/sales.json",
+        "reports/maple/manifest.json"
+      ],
+      "status": "CONFIRMED"
+    }
+  ],
+  "source_verification": [
+    {
+      "date": "2026-09-10",
+      "store_status": "OPEN",
+      "source_data_exists": true,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": 44,
+      "inventory_events_found": null,
+      "sync_required": true,
+      "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+      "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+    },
+    {
+      "date": "2026-09-11",
+      "store_status": "OPEN",
+      "source_data_exists": true,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": 50,
+      "inventory_events_found": null,
+      "sync_required": true,
+      "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+      "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+    },
+    {
+      "date": "2026-09-12",
+      "store_status": "OPEN",
+      "source_data_exists": true,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": 74,
+      "inventory_events_found": null,
+      "sync_required": true,
+      "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+      "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+    },
+    {
+      "date": "2026-09-13",
+      "store_status": "OPEN",
+      "source_data_exists": true,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": 71,
+      "inventory_events_found": null,
+      "sync_required": true,
+      "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+      "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+    },
+    {
+      "date": "2026-09-14",
+      "store_status": "OPEN",
+      "source_data_exists": true,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": 51,
+      "inventory_events_found": null,
+      "sync_required": true,
+      "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+      "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+    },
+    {
+      "date": "2026-09-15",
+      "store_status": "CLOSED",
+      "source_data_exists": false,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": null,
+      "inventory_events_found": null,
+      "sync_required": false,
+      "reason": "Tuesday is configured as a closed weekday; no sales=0 row is created."
+    },
+    {
+      "date": "2026-09-16",
+      "store_status": "OPEN",
+      "source_data_exists": true,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": 53,
+      "inventory_events_found": null,
+      "sync_required": true,
+      "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+      "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+    },
+    {
+      "date": "2026-09-17",
+      "store_status": "OPEN",
+      "source_data_exists": true,
+      "transaction_level_source_exists": false,
+      "sales_orders_found": 12,
+      "inventory_events_found": null,
+      "sync_required": true,
+      "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+      "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+    }
+  ],
+  "checkpoint_before_fix": {
+    "last_successful_sync": null,
+    "checkpoints": [],
+    "database_counts": {
+      "source_records": 0,
+      "sales_records": 0,
+      "inventory_events": 0
+    },
+    "published_gpos_health": {
+      "source": "GPOS",
+      "adapter": "gpos",
+      "connection_mode": "LOCAL_FILE_EXPORT",
+      "status": "HEALTHY",
+      "data_status": "VERIFIED",
+      "business_date": "2026-09-09",
+      "last_sync": "2026-09-14T15:26:16.086Z",
+      "checked_at": "2026-09-14T15:26:16.086Z",
+      "details": [
+        {
+          "source": "gpos",
+          "status": "HEALTHY",
+          "reason": null
+        }
+      ]
+    }
+  },
+  "backfill": {
+    "requested_from": "2026-09-10",
+    "requested_to": "2026-09-17",
+    "result": "NOT_POSTED",
+    "dates": [
+      {
+        "date": "2026-09-10",
+        "store_status": "OPEN",
+        "source_data_exists": true,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": 44,
+        "inventory_events_found": null,
+        "sync_required": true,
+        "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+        "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+      },
+      {
+        "date": "2026-09-11",
+        "store_status": "OPEN",
+        "source_data_exists": true,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": 50,
+        "inventory_events_found": null,
+        "sync_required": true,
+        "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+        "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+      },
+      {
+        "date": "2026-09-12",
+        "store_status": "OPEN",
+        "source_data_exists": true,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": 74,
+        "inventory_events_found": null,
+        "sync_required": true,
+        "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+        "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+      },
+      {
+        "date": "2026-09-13",
+        "store_status": "OPEN",
+        "source_data_exists": true,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": 71,
+        "inventory_events_found": null,
+        "sync_required": true,
+        "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+        "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+      },
+      {
+        "date": "2026-09-14",
+        "store_status": "OPEN",
+        "source_data_exists": true,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": 51,
+        "inventory_events_found": null,
+        "sync_required": true,
+        "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+        "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+      },
+      {
+        "date": "2026-09-15",
+        "store_status": "CLOSED",
+        "source_data_exists": false,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": null,
+        "inventory_events_found": null,
+        "sync_required": false,
+        "reason": "Tuesday is configured as a closed weekday; no sales=0 row is created."
+      },
+      {
+        "date": "2026-09-16",
+        "store_status": "OPEN",
+        "source_data_exists": true,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": 53,
+        "inventory_events_found": null,
+        "sync_required": true,
+        "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+        "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+      },
+      {
+        "date": "2026-09-17",
+        "store_status": "OPEN",
+        "source_data_exists": true,
+        "transaction_level_source_exists": false,
+        "sales_orders_found": 12,
+        "inventory_events_found": null,
+        "sync_required": true,
+        "source_grain": "aggregate GPOS capture with paginated menu-report evidence, not transaction-level records",
+        "reason": "Source evidence exists after 2026-09-09, but no transaction-level input path is configured and no order/receipt records are present in the repo for safe ingestion."
+      }
+    ],
+    "reason": "Aggregate evidence was retained, but transaction-level sales and inventory records are absent; no raw/canonical rows were fabricated."
+  },
+  "reports_before_fix": {
+    "latest_business_date": "2026-09-09",
+    "sales_business_date": "2026-09-09",
+    "inventory_business_date": "2026-09-09",
+    "generated_at": "2026-09-16T04:12:11.176Z"
+  },
+  "future_sync_contract": {
+    "backfill_command": "npm run backfill -- gpos",
+    "incremental_command": "npm run sync -- gpos",
+    "order": [
+      "health freshness check",
+      "fetch only new records",
+      "normalize",
+      "validate",
+      "reconcile",
+      "save checkpoint",
+      "generate reports",
+      "publish"
+    ],
+    "idempotent": true,
+    "closed_days_create_zero_sales": false
+  },
+  "status_note": "Latest business date is intentionally unchanged until a configured transaction-level source is supplied and passes validation."
+}
