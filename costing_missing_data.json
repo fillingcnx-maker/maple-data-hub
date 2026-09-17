@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "report_type": "costing_missing_data_audit",
-  "generated_at": "2026-09-17T08:30:55.398Z",
+  "generated_at": "2026-09-17T11:25:15.885Z",
   "repository": "https://github.com/fillingcnx-maker/maple-executive-os",
   "branch": "main",
-  "source_revision": "aae97a3afb7a5dd7b78eae2c7e374bcc0e8fc014",
+  "source_revision": "bff0c8ccb40c509213f5067bc01d3ddbc3731f48",
   "scope": {
     "stores": [
       "Filling Cafe",
@@ -22,10 +22,10 @@
   },
   "counts": {
     "total_menus": 111,
-    "costing_complete": 83,
-    "costing_missing": 28,
-    "owner_action_count": 12,
-    "source_missing_unit_cost_rows": 9
+    "costing_complete": 85,
+    "costing_missing": 26,
+    "owner_action_count": 10,
+    "source_missing_unit_cost_rows": 7
   },
   "dataset_audit": [
     {
@@ -94,8 +94,8 @@
       "store": "Filling Cafe",
       "business_unit": "filling_cafe",
       "total_menus": 51,
-      "costing_complete": 41,
-      "costing_incomplete": 10,
+      "costing_complete": 43,
+      "costing_incomplete": 8,
       "calculable_menus": [
         {
           "store": "Filling Cafe",
@@ -629,6 +629,32 @@
           "cost_per_serving": 70.02,
           "source": "Expense Control cafe-recipes.js",
           "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-010",
+          "menu": "เค้กหมี",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 65,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 75.02,
+          "source": "Owner instruction 2026-09-17",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-BAKERY-002",
+          "menu": "Muffin chocolate",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 50,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 60.019999999999996,
+          "source": "Owner instruction 2026-09-17",
+          "status": "COSTING_COMPLETE"
         }
       ],
       "not_calculable_menus": [
@@ -735,87 +761,6 @@
               "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
               "status": "SOURCE_MISSING",
               "owner_action_required": true,
-              "evidence": {
-                "recipe_source": "Owner instruction 2026-09-17",
-                "recipe_version": "2026-09-17",
-                "costing_status": "COSTING_INCOMPLETE"
-              }
-            }
-          ],
-          "source": "Owner instruction 2026-09-17"
-        },
-        {
-          "store": "Filling Cafe",
-          "business_unit": "filling_cafe",
-          "menu_sku": "CAFE-CAKE-010",
-          "menu": "เค้กหมี",
-          "recipe_version": "2026-09-17",
-          "variant": "delivery",
-          "status": "COSTING_INCOMPLETE",
-          "missing": [
-            {
-              "store": "Filling Cafe",
-              "business_unit": "filling_cafe",
-              "menu_sku": "CAFE-CAKE-010",
-              "menu": "เค้กหมี",
-              "ingredient_sku": "FC-CAKE-010",
-              "ingredient": "เค้กหมี",
-              "dataset": "Ingredient Master / Costing",
-              "missing_field": "unit_cost",
-              "source_should_have_data": "Ingredient Master / canonical unit_costs",
-              "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-              "status": "SOURCE_MISSING",
-              "owner_action_required": true,
-              "evidence": {
-                "recipe_source": "Owner instruction 2026-09-17",
-                "recipe_version": "2026-09-17",
-                "costing_status": "COSTING_INCOMPLETE"
-              }
-            }
-          ],
-          "source": "Owner instruction 2026-09-17"
-        },
-        {
-          "store": "Filling Cafe",
-          "business_unit": "filling_cafe",
-          "menu_sku": "CAFE-BAKERY-002",
-          "menu": "Muffin chocolate",
-          "recipe_version": "2026-09-17",
-          "variant": "delivery",
-          "status": "COSTING_INCOMPLETE",
-          "missing": [
-            {
-              "store": "Filling Cafe",
-              "business_unit": "filling_cafe",
-              "menu_sku": "CAFE-BAKERY-002",
-              "menu": "Muffin chocolate",
-              "ingredient_sku": "FC-BAKERY-002",
-              "ingredient": "Muffin chocolate",
-              "dataset": "Ingredient Master / Costing",
-              "missing_field": "unit_cost",
-              "source_should_have_data": "Ingredient Master / canonical unit_costs",
-              "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-              "status": "SOURCE_MISSING",
-              "owner_action_required": true,
-              "evidence": {
-                "recipe_source": "Owner instruction 2026-09-17",
-                "recipe_version": "2026-09-17",
-                "costing_status": "COSTING_INCOMPLETE"
-              }
-            },
-            {
-              "store": "Filling Cafe",
-              "business_unit": "filling_cafe",
-              "menu_sku": "CAFE-BAKERY-002",
-              "menu": "Muffin chocolate",
-              "ingredient_sku": null,
-              "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
-              "dataset": "Ingredient Master / Costing",
-              "missing_field": "packaging_sku",
-              "source_should_have_data": "Recipe/BOM Master and canonical costing pipeline",
-              "reason": "Component SKU is missing",
-              "status": "MAPPING_ERROR",
-              "owner_action_required": false,
               "evidence": {
                 "recipe_source": "Owner instruction 2026-09-17",
                 "recipe_version": "2026-09-17",
@@ -3293,6 +3238,32 @@
       "cost_per_serving": 3.2295154761904765,
       "source": "Expense Control steak-bom-updates.js",
       "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-010",
+      "menu": "เค้กหมี",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 65,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 75.02,
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-BAKERY-002",
+      "menu": "Muffin chocolate",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 50,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 60.019999999999996,
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_COMPLETE"
     }
   ],
   "menus_not_calculable": [
@@ -3965,87 +3936,6 @@
         }
       ],
       "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
-    },
-    {
-      "store": "Filling Cafe",
-      "business_unit": "filling_cafe",
-      "menu_sku": "CAFE-CAKE-010",
-      "menu": "เค้กหมี",
-      "recipe_version": "2026-09-17",
-      "variant": "delivery",
-      "status": "COSTING_INCOMPLETE",
-      "missing": [
-        {
-          "store": "Filling Cafe",
-          "business_unit": "filling_cafe",
-          "menu_sku": "CAFE-CAKE-010",
-          "menu": "เค้กหมี",
-          "ingredient_sku": "FC-CAKE-010",
-          "ingredient": "เค้กหมี",
-          "dataset": "Ingredient Master / Costing",
-          "missing_field": "unit_cost",
-          "source_should_have_data": "Ingredient Master / canonical unit_costs",
-          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-          "status": "SOURCE_MISSING",
-          "owner_action_required": true,
-          "evidence": {
-            "recipe_source": "Owner instruction 2026-09-17",
-            "recipe_version": "2026-09-17",
-            "costing_status": "COSTING_INCOMPLETE"
-          }
-        }
-      ],
-      "source": "Owner instruction 2026-09-17"
-    },
-    {
-      "store": "Filling Cafe",
-      "business_unit": "filling_cafe",
-      "menu_sku": "CAFE-BAKERY-002",
-      "menu": "Muffin chocolate",
-      "recipe_version": "2026-09-17",
-      "variant": "delivery",
-      "status": "COSTING_INCOMPLETE",
-      "missing": [
-        {
-          "store": "Filling Cafe",
-          "business_unit": "filling_cafe",
-          "menu_sku": "CAFE-BAKERY-002",
-          "menu": "Muffin chocolate",
-          "ingredient_sku": "FC-BAKERY-002",
-          "ingredient": "Muffin chocolate",
-          "dataset": "Ingredient Master / Costing",
-          "missing_field": "unit_cost",
-          "source_should_have_data": "Ingredient Master / canonical unit_costs",
-          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-          "status": "SOURCE_MISSING",
-          "owner_action_required": true,
-          "evidence": {
-            "recipe_source": "Owner instruction 2026-09-17",
-            "recipe_version": "2026-09-17",
-            "costing_status": "COSTING_INCOMPLETE"
-          }
-        },
-        {
-          "store": "Filling Cafe",
-          "business_unit": "filling_cafe",
-          "menu_sku": "CAFE-BAKERY-002",
-          "menu": "Muffin chocolate",
-          "ingredient_sku": null,
-          "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
-          "dataset": "Ingredient Master / Costing",
-          "missing_field": "packaging_sku",
-          "source_should_have_data": "Recipe/BOM Master and canonical costing pipeline",
-          "reason": "Component SKU is missing",
-          "status": "MAPPING_ERROR",
-          "owner_action_required": false,
-          "evidence": {
-            "recipe_source": "Owner instruction 2026-09-17",
-            "recipe_version": "2026-09-17",
-            "costing_status": "COSTING_INCOMPLETE"
-          }
-        }
-      ],
-      "source": "Owner instruction 2026-09-17"
     },
     {
       "store": "Filling Cafe",
@@ -4739,63 +4629,6 @@
     {
       "store": "Filling Cafe",
       "business_unit": "filling_cafe",
-      "menu_sku": "CAFE-CAKE-010",
-      "menu": "เค้กหมี",
-      "ingredient_sku": "FC-CAKE-010",
-      "ingredient": "เค้กหมี",
-      "dataset": "Ingredient Master / Costing",
-      "missing_field": "unit_cost",
-      "source_should_have_data": "Ingredient Master / canonical unit_costs",
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-      "status": "SOURCE_MISSING",
-      "owner_action_required": true,
-      "evidence": {
-        "recipe_source": "Owner instruction 2026-09-17",
-        "recipe_version": "2026-09-17",
-        "costing_status": "COSTING_INCOMPLETE"
-      }
-    },
-    {
-      "store": "Filling Cafe",
-      "business_unit": "filling_cafe",
-      "menu_sku": "CAFE-BAKERY-002",
-      "menu": "Muffin chocolate",
-      "ingredient_sku": "FC-BAKERY-002",
-      "ingredient": "Muffin chocolate",
-      "dataset": "Ingredient Master / Costing",
-      "missing_field": "unit_cost",
-      "source_should_have_data": "Ingredient Master / canonical unit_costs",
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-      "status": "SOURCE_MISSING",
-      "owner_action_required": true,
-      "evidence": {
-        "recipe_source": "Owner instruction 2026-09-17",
-        "recipe_version": "2026-09-17",
-        "costing_status": "COSTING_INCOMPLETE"
-      }
-    },
-    {
-      "store": "Filling Cafe",
-      "business_unit": "filling_cafe",
-      "menu_sku": "CAFE-BAKERY-002",
-      "menu": "Muffin chocolate",
-      "ingredient_sku": null,
-      "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
-      "dataset": "Ingredient Master / Costing",
-      "missing_field": "packaging_sku",
-      "source_should_have_data": "Recipe/BOM Master and canonical costing pipeline",
-      "reason": "Component SKU is missing",
-      "status": "MAPPING_ERROR",
-      "owner_action_required": false,
-      "evidence": {
-        "recipe_source": "Owner instruction 2026-09-17",
-        "recipe_version": "2026-09-17",
-        "costing_status": "COSTING_INCOMPLETE"
-      }
-    },
-    {
-      "store": "Filling Cafe",
-      "business_unit": "filling_cafe",
       "menu_sku": "CAFE-SODA-STRAWBERRY",
       "menu": "Strawberry Soda",
       "ingredient_sku": "FC-ING-037",
@@ -5004,20 +4837,6 @@
     }
   ],
   "source_missing_unit_costs": [
-    {
-      "sku": "FC-CAKE-010",
-      "unit": "ชิ้น",
-      "ingredient": "เค้กหมี",
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-      "source": "Owner instruction 2026-09-17"
-    },
-    {
-      "sku": "FC-BAKERY-002",
-      "unit": "ชิ้น",
-      "ingredient": "Muffin chocolate",
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-      "source": "Owner instruction 2026-09-17"
-    },
     {
       "sku": "FC-ING-019-A",
       "unit": "ml",
@@ -5324,36 +5143,6 @@
     {
       "id": "OWNER_6",
       "missing_field": "unit_cost",
-      "ingredient_sku": "FC-CAKE-010",
-      "source_should_have_data": "Ingredient Master / canonical unit_costs",
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-      "affected_menus": [
-        {
-          "menu_sku": "CAFE-CAKE-010",
-          "menu": "เค้กหมี",
-          "store": "Filling Cafe"
-        }
-      ],
-      "owner_action_required": true
-    },
-    {
-      "id": "OWNER_7",
-      "missing_field": "unit_cost",
-      "ingredient_sku": "FC-BAKERY-002",
-      "source_should_have_data": "Ingredient Master / canonical unit_costs",
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-      "affected_menus": [
-        {
-          "menu_sku": "CAFE-BAKERY-002",
-          "menu": "Muffin chocolate",
-          "store": "Filling Cafe"
-        }
-      ],
-      "owner_action_required": true
-    },
-    {
-      "id": "OWNER_8",
-      "missing_field": "unit_cost",
       "ingredient_sku": "FC-ING-037",
       "source_should_have_data": "Ingredient Master / canonical unit_costs",
       "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
@@ -5387,7 +5176,7 @@
       "owner_action_required": true
     },
     {
-      "id": "OWNER_9",
+      "id": "OWNER_7",
       "missing_field": "unit_cost",
       "ingredient_sku": "FC-ING-019-L",
       "source_should_have_data": "Ingredient Master / canonical unit_costs",
@@ -5402,7 +5191,7 @@
       "owner_action_required": true
     },
     {
-      "id": "OWNER_10",
+      "id": "OWNER_8",
       "missing_field": "unit_cost",
       "ingredient_sku": "FC-ING-068",
       "source_should_have_data": "Ingredient Master / canonical unit_costs",
@@ -5417,7 +5206,7 @@
       "owner_action_required": true
     },
     {
-      "id": "OWNER_11",
+      "id": "OWNER_9",
       "missing_field": "unit_cost",
       "ingredient_sku": "FC-ING-019-M",
       "source_should_have_data": "Ingredient Master / canonical unit_costs",
@@ -5432,7 +5221,7 @@
       "owner_action_required": true
     },
     {
-      "id": "OWNER_12",
+      "id": "OWNER_10",
       "missing_field": "unit_cost",
       "ingredient_sku": "FC-ING-018",
       "source_should_have_data": "Ingredient Master / canonical unit_costs",

@@ -2,8 +2,8 @@
 
 - Repository: https://github.com/fillingcnx-maker/maple-executive-os
 - Branch: main
-- Source revision: aae97a3afb7a5dd7b78eae2c7e374bcc0e8fc014
-- Generated: 2026-09-17T08:30:55.398Z
+- Source revision: bff0c8ccb40c509213f5067bc01d3ddbc3731f48
+- Generated: 2026-09-17T11:25:15.885Z
 - Status: **AUDIT_COMPLETE_WITH_MISSING_DATA**
 
 > `null`/missing หมายถึงไม่มีหลักฐานที่คำนวณได้ ไม่ใช่ศูนย์ และไม่มีการเดาสูตร ปริมาณ หน่วย หรือราคา
@@ -11,10 +11,10 @@
 ## สรุป
 
 - เมนูทั้งหมด: **111**
-- Costing ครบ: **83**
-- Costing ยังขาด: **28**
-- แถวต้นทุนวัตถุดิบที่ source ยังขาด: **9**
-- Owner actions ที่ต้องแก้จริง: **12**
+- Costing ครบ: **85**
+- Costing ยังขาด: **26**
+- แถวต้นทุนวัตถุดิบที่ source ยังขาด: **7**
+- Owner actions ที่ต้องแก้จริง: **10**
 
 ## สูตรและกติกา
 
@@ -30,9 +30,9 @@
 ### Filling Cafe
 
 - เมนูทั้งหมด: **51**
-- คำนวณต้นทุนครบ: **41**
-- ยังขาด: **10**
-- รายการที่คำนวณไม่ได้: CAFE-COFFEE-CARAMEL Caramel Macchiato, CAFE-COFFEE-ORANGE Orange Coffee, CAFE-SMOOTHIE-APPLE Apple Smoothie, CAFE-CAKE-010 เค้กหมี, CAFE-BAKERY-002 Muffin chocolate, CAFE-SODA-STRAWBERRY Strawberry Soda, CAFE-SODA-BLUEBERRY Blueberry Soda, CAFE-SODA-LYCHEE Lychee Soda, CAFE-SODA-MANGO Mango Soda, CAFE-SODA-APPLE Apple Soda
+- คำนวณต้นทุนครบ: **43**
+- ยังขาด: **8**
+- รายการที่คำนวณไม่ได้: CAFE-COFFEE-CARAMEL Caramel Macchiato, CAFE-COFFEE-ORANGE Orange Coffee, CAFE-SMOOTHIE-APPLE Apple Smoothie, CAFE-SODA-STRAWBERRY Strawberry Soda, CAFE-SODA-BLUEBERRY Blueberry Soda, CAFE-SODA-LYCHEE Lychee Soda, CAFE-SODA-MANGO Mango Soda, CAFE-SODA-APPLE Apple Soda
 
 ### Filling Steak
 
@@ -128,6 +128,8 @@
 | Filling Steak | SRV-001 | ค่าเปิดเหล้า | dine-in | 0.0000 | 2026-09-17 |
 | Filling Steak | SRV-002 | ค่าเปิดไวน์ | dine-in | 0.0000 | 2026-09-17 |
 | Filling Steak | PREP-PEP | ซอสพริกไทยดำ | dine-in | 3.2295 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-010 | เค้กหมี | delivery | 75.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-BAKERY-002 | Muffin chocolate | delivery | 60.0200 | 2026-09-17 |
 
 ## เมนูที่คำนวณไม่ได้ / รายการที่ติด
 
@@ -155,9 +157,6 @@
 | Filling Steak | CMB-005 | สเต็กหมู + ไส้กรอกรวม | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
 | Filling Steak | CMB-006 | สเต็กไก่ + ปลาทอด | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
 | Filling Steak | CMB-007 | สเต็กไก่ + ไส้กรอกรวม | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
-| Filling Cafe | CAFE-CAKE-010 | เค้กหมี | FC-CAKE-010 | unit_cost | Owner requested the menu/SKU but no purchase unit cost was supplied | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
-| Filling Cafe | CAFE-BAKERY-002 | Muffin chocolate | FC-BAKERY-002 | unit_cost | Owner requested the menu/SKU but no purchase unit cost was supplied | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
-| Filling Cafe | CAFE-BAKERY-002 | Muffin chocolate | — | packaging_sku | Component SKU is missing | Recipe/BOM Master and canonical costing pipeline | MAPPING_ERROR | ไม่ใช่ |
 | Filling Cafe | CAFE-SODA-STRAWBERRY | Strawberry Soda | FC-ING-037 | unit_cost | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
 | Filling Cafe | CAFE-SODA-BLUEBERRY | Blueberry Soda | FC-ING-037 | unit_cost | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
 | Filling Cafe | CAFE-SODA-LYCHEE | Lychee Soda | FC-ING-019-L | unit_cost | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Ingredient Master / canonical unit_costs | SOURCE_MISSING | ใช่ |
@@ -202,13 +201,11 @@
 | OWNER_3 | unit_cost | FC-ING-016 | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SMOOTHIE-APPLE<br>Filling Cafe: CAFE-SODA-APPLE |
 | OWNER_4 | side_selection | — | Source defines multiple options but no verified selection/default was available | Filling Steak: STK-001<br>Filling Steak: STK-002<br>Filling Steak: STK-003<br>Filling Steak: STK-004<br>Filling Steak: STK-008<br>Filling Steak: STK-005<br>Filling Steak: STK-006<br>Filling Steak: STK-007<br>Filling Steak: CMB-003<br>Filling Steak: CMB-001<br>Filling Steak: CMB-002<br>Filling Steak: CMB-004<br>Filling Steak: CMB-005<br>Filling Steak: CMB-006<br>Filling Steak: CMB-007 |
 | OWNER_5 | coke_selection | — | Source defines multiple options but no verified selection/default was available | Filling Steak: SET-M<br>Filling Steak: SET-L<br>Filling Steak: SET-XL |
-| OWNER_6 | unit_cost | FC-CAKE-010 | Owner requested the menu/SKU but no purchase unit cost was supplied | Filling Cafe: CAFE-CAKE-010 |
-| OWNER_7 | unit_cost | FC-BAKERY-002 | Owner requested the menu/SKU but no purchase unit cost was supplied | Filling Cafe: CAFE-BAKERY-002 |
-| OWNER_8 | unit_cost | FC-ING-037 | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-STRAWBERRY<br>Filling Cafe: CAFE-SODA-BLUEBERRY<br>Filling Cafe: CAFE-SODA-LYCHEE<br>Filling Cafe: CAFE-SODA-MANGO<br>Filling Cafe: CAFE-SODA-APPLE |
-| OWNER_9 | unit_cost | FC-ING-019-L | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-LYCHEE |
-| OWNER_10 | unit_cost | FC-ING-068 | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-LYCHEE |
-| OWNER_11 | unit_cost | FC-ING-019-M | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-MANGO |
-| OWNER_12 | unit_cost | FC-ING-018 | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-MANGO |
+| OWNER_6 | unit_cost | FC-ING-037 | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-STRAWBERRY<br>Filling Cafe: CAFE-SODA-BLUEBERRY<br>Filling Cafe: CAFE-SODA-LYCHEE<br>Filling Cafe: CAFE-SODA-MANGO<br>Filling Cafe: CAFE-SODA-APPLE |
+| OWNER_7 | unit_cost | FC-ING-019-L | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-LYCHEE |
+| OWNER_8 | unit_cost | FC-ING-068 | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-LYCHEE |
+| OWNER_9 | unit_cost | FC-ING-019-M | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-MANGO |
+| OWNER_10 | unit_cost | FC-ING-018 | Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit | Filling Cafe: CAFE-SODA-MANGO |
 
 รายการนี้ไม่รวมปัญหาที่ pipeline แก้เองได้ และไม่รวมข้อมูลที่ถูกพบแล้วใน canonical master
 

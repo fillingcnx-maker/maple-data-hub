@@ -1,6 +1,6 @@
 # MAPLE EXECUTIVE BRIEF
 
-Generated: 2026-09-17T09:55:56.675Z
+Generated: 2026-09-17T11:25:40.742Z
 Publication Status: PROVISIONAL
 Data Quality: 100 — VERIFIED
 Overall Freshness: CURRENT (0 day(s) old; as of 2026-09-17)
@@ -39,8 +39,8 @@ Source: Canonical Costing Master
 Effective date: 2026-09-17
 Status: INCOMPLETE
 Menus: 111
-Complete: 83
-Incomplete: 28
+Complete: 85
+Incomplete: 26
 
 ## Alerts
 - INFO MARKETING_ATTRIBUTION_MISSING (Meta Ads)
@@ -55,7 +55,7 @@ Incomplete: 28
 - Meta Ads 2026-09-17: attributed_revenue — The current Meta export does not contain attributable revenue
 - GPOS 2026-09-17: verified_store_mapping — Some receipt lines could not be mapped to a verified store; totals are retained as provisional and not used as final store profit
 - Google Calendar 2026-09-17: events — No Google Calendar adapter is configured
-- Canonical Costing Master 2026-09-17: cost_per_serving — 28 menu(s) remain incomplete; financial cost stays null for those menus
+- Canonical Costing Master 2026-09-17: cost_per_serving — 26 menu(s) remain incomplete; financial cost stays null for those menus
 
 ## Next Actions
 - refresh_source from Meta Ads (2026-09-17)

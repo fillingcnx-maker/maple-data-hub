@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T09:55:56.675Z",
-  "pipeline_run": "20260917095556-publish-brief-2ab7d844",
+  "generated_at": "2026-09-17T11:25:40.742Z",
+  "pipeline_run": "20260917112540-publish-brief-0ceb5d71",
   "publication_status": "PROVISIONAL",
   "data_quality_score": 100,
   "freshness": {
@@ -50,10 +50,10 @@
       "source": "Canonical Costing Master",
       "business_date": "2026-09-17",
       "date_range": null,
-      "last_sync": "2026-09-17T08:30:55.236Z",
+      "last_sync": "2026-09-17T11:25:15.714Z",
       "status": "INCOMPLETE",
-      "costing_complete": 83,
-      "costing_incomplete": 28
+      "costing_complete": 85,
+      "costing_incomplete": 26
     },
     "calendar": {
       "artifact": "latest.json#calendar",

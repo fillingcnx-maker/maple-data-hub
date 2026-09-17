@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_type": "costing_master",
-  "generated_at": "2026-09-17T08:30:55.236Z",
+  "generated_at": "2026-09-17T11:25:15.714Z",
   "effective_from": "2026-09-17",
   "recipe_version": "2026-09-17",
   "source_revision": null,
@@ -3993,23 +3993,23 @@
       "sku": "FC-CAKE-010",
       "ingredient": "เค้กหมี",
       "unit": "ชิ้น",
-      "unit_cost": null,
+      "unit_cost": 65,
       "currency": "THB",
-      "status": "SOURCE_MISSING",
+      "status": "VERIFIED",
       "source": "Owner instruction 2026-09-17",
-      "checked_at": null,
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+      "checked_at": "2026-09-17",
+      "reason": null
     },
     {
       "sku": "FC-BAKERY-002",
       "ingredient": "Muffin chocolate",
       "unit": "ชิ้น",
-      "unit_cost": null,
+      "unit_cost": 50,
       "currency": "THB",
-      "status": "SOURCE_MISSING",
+      "status": "VERIFIED",
       "source": "Owner instruction 2026-09-17",
-      "checked_at": null,
-      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+      "checked_at": "2026-09-17",
+      "reason": null
     },
     {
       "sku": "FC-ING-019-A",
@@ -23738,7 +23738,7 @@
           "min_selections": null,
           "max_selections": null,
           "source_status": null,
-          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อต่อชิ้น"
+          "note": "สินค้าซื้อมาขายไป ต้นทุนตามราคาซื้อต่อชิ้น"
         }
       ],
       "delivery_components": [
@@ -23807,7 +23807,7 @@
       "delivery_packaging_allocation": 0.6,
       "yield_quantity": null,
       "yield_unit": null,
-      "status": "INCOMPLETE — สูตรภายในและราคาซื้อยังไม่ได้ระบุ; ใช้ SKU สินค้าซื้อมาขายไป"
+      "status": "ต้นทุนซื้อสำเร็จรูปต่อชิ้นจากข้อมูลผู้ใช้; ใช้แพ็กเกจจิ้งเดียวกับเมนูเค้ก/เบเกอรี่เดิม"
     },
     {
       "menu_sku": "CAFE-BAKERY-002",
@@ -23833,23 +23833,61 @@
           "min_selections": null,
           "max_selections": null,
           "source_status": null,
-          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อและบรรจุภัณฑ์ที่ยืนยัน"
+          "note": "สินค้าซื้อมาขายไป ต้นทุนตามราคาซื้อต่อชิ้น"
         }
       ],
       "delivery_components": [
         {
-          "sku": null,
-          "name": "บรรจุภัณฑ์ Muffin chocolate",
-          "quantity": null,
-          "unit": null,
+          "sku": "FC-PKG-021",
+          "name": "กล่องเค้กกลมฝาโดม",
+          "quantity": 1,
+          "unit": "ชุด",
           "role": "packaging",
           "variant_dependent": false,
           "group": null,
           "min_selections": null,
           "max_selections": null,
-          "missing_field": "packaging_sku",
-          "source_status": "MISSING",
-          "note": "ยังไม่ได้ระบุชนิด/จำนวน/ต้นทุนบรรจุภัณฑ์"
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-026",
+          "name": "ถุงกระดาษ 8 x 12 นิ้ว",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-028",
+          "name": "ถุงใส่เค้ก",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-027",
+          "name": "ช้อนตัดเค้กพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
         }
       ],
       "order_components": [],
@@ -23864,7 +23902,7 @@
       "delivery_packaging_allocation": 0.6,
       "yield_quantity": null,
       "yield_unit": null,
-      "status": "INCOMPLETE — ราคาซื้อและบรรจุภัณฑ์ยังไม่ได้ระบุ; ไม่เดาข้อมูล"
+      "status": "ต้นทุนซื้อสำเร็จรูปต่อชิ้นจากข้อมูลผู้ใช้; ใช้แพ็กเกจจิ้งเดียวกับเมนูเค้ก/เบเกอรี่เดิม"
     },
     {
       "menu_sku": "CAFE-SODA-STRAWBERRY",
@@ -42294,19 +42332,11 @@
       "menu_sku": "CAFE-CAKE-010",
       "variant": "delivery",
       "selections": {},
-      "cost_per_serving": null,
-      "ingredient_cost": null,
-      "packaging_cost": null,
-      "status": "COSTING_INCOMPLETE",
-      "missing": [
-        {
-          "missing_field": "unit_cost",
-          "ingredient_sku": "FC-CAKE-010",
-          "ingredient": "เค้กหมี",
-          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-          "status": "SOURCE_MISSING"
-        }
-      ],
+      "cost_per_serving": 75.02,
+      "ingredient_cost": 65,
+      "packaging_cost": 10.02,
+      "status": "COSTING_COMPLETE",
+      "missing": [],
       "components": [
         {
           "sku": "FC-CAKE-010",
@@ -42319,11 +42349,11 @@
           "min_selections": null,
           "max_selections": null,
           "source_status": null,
-          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อต่อชิ้น",
-          "line_cost": null,
-          "unit_cost": null,
-          "status": "SOURCE_MISSING",
-          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+          "note": "สินค้าซื้อมาขายไป ต้นทุนตามราคาซื้อต่อชิ้น",
+          "line_cost": 65,
+          "unit_cost": 65,
+          "status": "COSTING_COMPLETE",
+          "reason": null
         },
         {
           "sku": "FC-PKG-021",
@@ -42401,26 +42431,11 @@
       "menu_sku": "CAFE-BAKERY-002",
       "variant": "delivery",
       "selections": {},
-      "cost_per_serving": null,
-      "ingredient_cost": null,
-      "packaging_cost": null,
-      "status": "COSTING_INCOMPLETE",
-      "missing": [
-        {
-          "missing_field": "unit_cost",
-          "ingredient_sku": "FC-BAKERY-002",
-          "ingredient": "Muffin chocolate",
-          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
-          "status": "SOURCE_MISSING"
-        },
-        {
-          "missing_field": "packaging_sku",
-          "ingredient_sku": null,
-          "ingredient": "บรรจุภัณฑ์ Muffin chocolate",
-          "reason": "Component SKU is missing",
-          "status": "MAPPING_ERROR"
-        }
-      ],
+      "cost_per_serving": 60.019999999999996,
+      "ingredient_cost": 50,
+      "packaging_cost": 10.02,
+      "status": "COSTING_COMPLETE",
+      "missing": [],
       "components": [
         {
           "sku": "FC-BAKERY-002",
@@ -42433,28 +42448,79 @@
           "min_selections": null,
           "max_selections": null,
           "source_status": null,
-          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อและบรรจุภัณฑ์ที่ยืนยัน",
-          "line_cost": null,
-          "unit_cost": null,
-          "status": "SOURCE_MISSING",
-          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+          "note": "สินค้าซื้อมาขายไป ต้นทุนตามราคาซื้อต่อชิ้น",
+          "line_cost": 50,
+          "unit_cost": 50,
+          "status": "COSTING_COMPLETE",
+          "reason": null
         },
         {
-          "sku": null,
-          "name": "บรรจุภัณฑ์ Muffin chocolate",
-          "quantity": null,
-          "unit": null,
+          "sku": "FC-PKG-021",
+          "name": "กล่องเค้กกลมฝาโดม",
+          "quantity": 1,
+          "unit": "ชุด",
           "role": "packaging",
           "variant_dependent": false,
           "group": null,
           "min_selections": null,
           "max_selections": null,
-          "missing_field": "packaging_sku",
-          "source_status": "MISSING",
-          "note": "ยังไม่ได้ระบุชนิด/จำนวน/ต้นทุนบรรจุภัณฑ์",
-          "line_cost": null,
-          "status": "MAPPING_ERROR",
-          "reason": "Component SKU is missing"
+          "source_status": null,
+          "note": null,
+          "line_cost": 6,
+          "unit_cost": 6,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-026",
+          "name": "ถุงกระดาษ 8 x 12 นิ้ว",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 3,
+          "unit_cost": 3,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-028",
+          "name": "ถุงใส่เค้ก",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.52,
+          "unit_cost": 0.52,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-027",
+          "name": "ช้อนตัดเค้กพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.5,
+          "unit_cost": 0.5,
+          "status": "COSTING_COMPLETE",
+          "reason": null
         }
       ],
       "recipe_version": "2026-09-17",
@@ -50465,14 +50531,14 @@
       "business_unit": "filling_cafe",
       "recipe_version": "2026-09-17",
       "source": "Owner instruction 2026-09-17",
-      "status": "COSTING_INCOMPLETE",
+      "status": "COSTING_COMPLETE",
       "components": [
         {
           "ingredient_sku": "FC-CAKE-010",
           "quantity": 1,
           "unit": "ชิ้น",
           "role": "ingredient",
-          "line_cost": null
+          "line_cost": 65
         },
         {
           "ingredient_sku": "FC-PKG-021",
@@ -50509,14 +50575,42 @@
       "business_unit": "filling_cafe",
       "recipe_version": "2026-09-17",
       "source": "Owner instruction 2026-09-17",
-      "status": "COSTING_INCOMPLETE",
+      "status": "COSTING_COMPLETE",
       "components": [
         {
           "ingredient_sku": "FC-BAKERY-002",
           "quantity": 1,
           "unit": "ชิ้น",
           "role": "ingredient",
-          "line_cost": null
+          "line_cost": 50
+        },
+        {
+          "ingredient_sku": "FC-PKG-021",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 6
+        },
+        {
+          "ingredient_sku": "FC-PKG-026",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 3
+        },
+        {
+          "ingredient_sku": "FC-PKG-028",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.52
+        },
+        {
+          "ingredient_sku": "FC-PKG-027",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.5
         }
       ]
     },
@@ -50935,8 +51029,13 @@
         "FC-CAKE-010",
         "FC-BAKERY-002"
       ],
+      "unit_costs": {
+        "FC-CAKE-010|ชิ้น": 65,
+        "FC-BAKERY-002|ชิ้น": 50
+      },
+      "packaging_policy": "ใช้แพ็กเกจจิ้งชุดเดียวกับเมนูเค้ก/เบเกอรี่เดิม",
       "source": "Owner instruction 2026-09-17",
-      "status": "INCOMPLETE_COST_SOURCE_MISSING"
+      "status": "COST_SOURCE_VERIFIED"
     },
     {
       "update": "new soda flavor BOMs",
@@ -50969,9 +51068,9 @@
   "summary": {
     "active_cafe_menus": 51,
     "active_steak_menus": 60,
-    "costing_complete": 83,
-    "costing_incomplete": 28,
-    "source_missing_unit_cost_rows": 9,
+    "costing_complete": 85,
+    "costing_incomplete": 26,
+    "source_missing_unit_cost_rows": 7,
     "source_conflicts": 0
   },
   "source": "Canonical Costing Master",
