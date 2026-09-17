@@ -1,712 +1,4123 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "report_type": "costing_missing_data_audit",
-  "generated_at": "2026-09-17T01:41:16.933Z",
+  "generated_at": "2026-09-17T08:17:14.060Z",
   "repository": "https://github.com/fillingcnx-maker/maple-executive-os",
   "branch": "main",
-  "source_revision": "e5a0eb6d6cda957b19848501c4c913df15ee18f4",
+  "source_revision": "6a29076066a3ba7d6b2bea31935c42c52637baef",
   "scope": {
     "stores": [
       "Filling Cafe",
       "Filling Steak"
     ],
-    "source_scope": "private repo only",
-    "external_repositories_used": []
+    "source_scope": "canonical master imported from configured Expense Control source provenance",
+    "external_repositories_used": [],
+    "raw_source_files_overwritten": false
   },
   "method": {
     "rule": "missing stays null/missing; no zero-fill; no inferred menu, SKU, quantity, conversion, or unit cost",
-    "cost_per_serving_formula": "sum(recipe_quantity converted to ingredient base unit × ingredient_unit_cost) + sum(packaging_quantity × packaging_unit_cost)",
-    "data_grain_required": "one menu SKU with complete recipe component and packaging rows"
+    "cost_per_serving_formula": "sum(recipe quantity converted to canonical unit × canonical unit cost) + sum(packaging quantity × canonical packaging unit cost)",
+    "selection_rule": "Cafe coffee defaults to verified ไม่หวาน when defined; other Cafe menus default to verified ปกติ; Steak defaults only sauce PREP-GRV when exposed, never side/coke",
+    "fallback_rule": "No direct/default/promo cost fallback is accepted by Maple costing.mjs"
   },
   "counts": {
-    "total_menus": null,
-    "costing_complete": null,
-    "costing_missing": null,
-    "owner_action_count": 4
+    "total_menus": 103,
+    "costing_complete": 83,
+    "costing_missing": 20,
+    "owner_action_count": 3,
+    "source_missing_unit_cost_rows": 0
   },
   "dataset_audit": [
     {
       "dataset": "Ingredient Master",
-      "key": "ingredient_master",
-      "status": "MISSING",
-      "candidate_paths": [],
-      "field_matches": [],
-      "evidence_paths": [],
-      "missing_fields": [
-        "ingredient_sku",
-        "ingredient_name",
-        "base_unit",
-        "unit_cost",
-        "currency",
-        "source"
-      ]
+      "status": "CANONICAL",
+      "source": "Expense Control seed-data.js + unit-cost-conversions.js",
+      "reason": null
     },
     {
-      "dataset": "Recipe/BOM Master",
-      "key": "recipe_bom_master",
-      "status": "MISSING",
-      "candidate_paths": [],
-      "field_matches": [],
-      "evidence_paths": [],
-      "missing_fields": [
-        "menu_sku",
-        "menu_name",
-        "business_unit",
-        "ingredient_sku",
-        "quantity",
-        "unit"
-      ]
+      "dataset": "Recipe/BOM Master — Filling Cafe",
+      "status": "CANONICAL",
+      "source": "Expense Control cafe-recipes.js",
+      "reason": null
+    },
+    {
+      "dataset": "Recipe/BOM Master — Filling Steak",
+      "status": "CANONICAL",
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "reason": null
     },
     {
       "dataset": "Packaging SKU",
-      "key": "packaging_sku",
-      "status": "MISSING",
-      "candidate_paths": [],
-      "field_matches": [],
-      "evidence_paths": [],
-      "missing_fields": [
-        "packaging_sku",
-        "packaging_name",
-        "unit_cost",
-        "unit",
-        "quantity_per_serving"
-      ]
+      "status": "CANONICAL",
+      "source": "Expense Control inventoryItems + recipe packaging components",
+      "reason": null
     },
     {
-      "dataset": "Costing",
-      "key": "costing",
-      "status": "MISSING",
-      "candidate_paths": [],
-      "field_matches": [],
-      "evidence_paths": [],
-      "missing_fields": [
-        "menu_sku",
-        "cost_per_serving",
-        "cost_components",
-        "calculated_at",
-        "source"
-      ]
+      "dataset": "Unit Conversion",
+      "status": "CANONICAL",
+      "source": "Expense Control unit-cost-conversions.js + stock-cost-utils.js",
+      "reason": null
     },
     {
-      "dataset": "Stock Mapping",
-      "key": "stock_mapping",
-      "status": "MISSING",
-      "candidate_paths": [],
-      "field_matches": [],
-      "evidence_paths": [],
-      "missing_fields": [
-        "menu_sku",
-        "ingredient_sku",
-        "source_unit",
-        "target_unit",
-        "conversion_factor"
-      ]
+      "dataset": "SKU Mapping",
+      "status": "CANONICAL_WITH_REVIEW_GUARD",
+      "source": "Expense Control gpos-menu-mapping.js",
+      "reason": "Heuristic mapping is not accepted for financial truth"
     },
     {
-      "dataset": "Menu Catalog",
-      "key": "menu_catalog",
+      "dataset": "Stock Deduction",
+      "status": "CANONICAL_WITH_SAFETY_GUARD",
+      "source": "Expense Control gpos-stock-deduction.js",
+      "reason": "Movement is allowed only for complete costing"
+    },
+    {
+      "dataset": "Obsidian recipe cards",
+      "status": "STALE",
+      "source": "Obsidian business notes",
+      "reason": "Older revision than the 2026-09-17 Expense Control source"
+    },
+    {
+      "dataset": "Maple costing master before import",
       "status": "MISSING",
-      "candidate_paths": [],
-      "field_matches": [],
-      "evidence_paths": [],
-      "missing_fields": [
-        "menu_sku",
-        "menu_name",
-        "business_unit",
-        "active"
-      ]
+      "source": "Private repo",
+      "reason": "No central costing domain existed before this import"
     }
   ],
-  "observed_source_facts": {
-    "sales": {
-      "path": "reports/maple/sales.json",
-      "business_date": "2026-09-09",
-      "source": "GPOS",
-      "business_units": [
-        "filling_cafe",
-        "filling_steak"
-      ],
-      "menu_catalog_present": false,
-      "fields_observed": [
-        "business_date",
-        "total_sales",
-        "order_count",
-        "average_bill",
-        "by_business_unit",
-        "by_channel",
-        "by_hour",
-        "vs_previous_day_pct",
-        "vs_7_day_average_pct",
-        "data_status",
-        "source",
-        "date_range",
-        "status",
-        "freshness",
-        "generated_at",
-        "pipeline_run"
-      ]
-    },
-    "inventory": {
-      "path": "reports/maple/inventory.json",
-      "business_date": "2026-09-09",
-      "source": "Stock System + GPOS BOM + Expense Control",
-      "item_codes": [
-        "FC-CAKE-001",
-        "FC-CAKE-005",
-        "FC-CAKE-003",
-        "FC-CAKE-008"
-      ],
-      "has_unit_cost": false,
-      "has_recipe_quantities": false,
-      "fields_observed": [
-        "business_date",
-        "items",
-        "event_count",
-        "reconciliation_status",
-        "reconciliation_issues",
-        "data_status",
-        "source",
-        "date_range",
-        "status",
-        "freshness",
-        "generated_at",
-        "pipeline_run"
-      ]
-    }
-  },
   "stores": [
     {
       "store": "Filling Cafe",
       "business_unit": "filling_cafe",
-      "menu_catalog": {
-        "status": "MISSING",
-        "menu_count": null,
-        "missing_fields": [
-          "menu_sku",
-          "menu_name",
-          "business_unit"
-        ],
-        "source_should_have_data": "Menu Catalog / GPOS menu-level export"
-      },
-      "calculable_menus": [],
-      "not_calculable_menus": [],
-      "audit_status": "NOT_AUDITABLE_WITH_REPO_DATA_ONLY",
-      "reason": "ไม่มีเมนูของร้านนี้ใน private repo จึงไม่สร้างชื่อหรือ SKU ขึ้นเอง"
+      "total_menus": 43,
+      "costing_complete": 41,
+      "costing_incomplete": 2,
+      "calculable_menus": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-AMER-MID",
+          "menu": "Americano / AMERICANO-กลาง",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 11.462500000000002,
+          "packaging_cost": 8.13,
+          "cost_per_serving": 19.5925,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-AMER-DARK",
+          "menu": "Americano / AMERICANO-เข้ม",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 13.997500000000002,
+          "packaging_cost": 8.13,
+          "cost_per_serving": 22.127500000000005,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-LATTE",
+          "menu": "Latte",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 18.485000000000003,
+          "packaging_cost": 8.31,
+          "cost_per_serving": 26.795,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-CAPPUCCINO",
+          "menu": "Cappuccino",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 17.075,
+          "packaging_cost": 8.13,
+          "cost_per_serving": 25.205,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-ESPRESSO",
+          "menu": "Espresso เย็น / ESPRESSO",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 16.05,
+          "packaging_cost": 8.13,
+          "cost_per_serving": 24.18,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-MOCHA",
+          "menu": "Mocha / Mocha-กลาง",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 21.091190476190476,
+          "packaging_cost": 8.31,
+          "cost_per_serving": 29.40119047619048,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-COCONUT",
+          "menu": "Coconut Black",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 41.445,
+          "packaging_cost": 8.13,
+          "cost_per_serving": 49.575,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-HONEY-LEMON",
+          "menu": "Black Honey Lemon",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 11.462500000000002,
+          "packaging_cost": 8.13,
+          "cost_per_serving": 19.5925,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-LEMON",
+          "menu": "Black Lemon",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 11.462500000000002,
+          "packaging_cost": 8.13,
+          "cost_per_serving": 19.5925,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MILK-FRESH",
+          "menu": "Fresh Milk",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 13.141666666666666,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 17.371666666666666,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MILK-PINK",
+          "menu": "Pink Milk",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 14.186032863849764,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 18.416032863849765,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MILK-STRAWBERRY-PINK",
+          "menu": "Strawberry Pink Milk",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 16.766032863849766,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 20.996032863849766,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MILK-CARAMEL",
+          "menu": "Caramel Milk",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 15.973254504504505,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 20.203254504504503,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MILK-HONEY",
+          "menu": "Honey Milk",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 14.923076923076923,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 19.153076923076924,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COCOA",
+          "menu": "Cocoa / โกโก้",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 16.849761904761902,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 21.079761904761902,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CHOCOLATE",
+          "menu": "Chocolate Premium",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 48.6225,
+          "packaging_cost": 4.41,
+          "cost_per_serving": 53.0325,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-TEA-THAI",
+          "menu": "Thai Tea / THAI TEA",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 27.657249999999998,
+          "packaging_cost": 4.41,
+          "cost_per_serving": 32.06725,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-TEA-GREEN",
+          "menu": "Green Tea / Green TEA",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 27.657249999999998,
+          "packaging_cost": 4.41,
+          "cost_per_serving": 32.06725,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-TEA-THAI-FRAPPE",
+          "menu": "Thai Tea Frappe",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 21.388350000000003,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 25.618350000000003,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-TEA-GREEN-FRAPPE",
+          "menu": "Green Tea Frappe",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 21.388350000000003,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 25.618350000000003,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SMOOTHIE-STRAWBERRY",
+          "menu": "Strawberry Smoothie",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 29.77364489489489,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 34.00364489489489,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SMOOTHIE-BLUEBERRY",
+          "menu": "Blueberry Smoothie",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 31.423644894894895,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 35.653644894894896,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MATCHA-LATTE",
+          "menu": "Matcha Latte",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 54.5,
+          "packaging_cost": 4.31,
+          "cost_per_serving": 58.81,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MATCHA-COCONUT",
+          "menu": "Matcha Coconut / Coconut Matcha",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 58.459999999999994,
+          "packaging_cost": 4.31,
+          "cost_per_serving": 62.769999999999996,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-MATCHA-PURE",
+          "menu": "Pure Matcha",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 28.99,
+          "packaging_cost": 4.13,
+          "cost_per_serving": 33.12,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-PEACH",
+          "menu": "Peach Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 14.711928274428276,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 18.941928274428275,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-LEMON",
+          "menu": "Lemon Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 14.711928274428276,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 18.941928274428275,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-HONEY-LEMON",
+          "menu": "Honey Lemon Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 14.711928274428276,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 18.941928274428275,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-TEA-LEMON",
+          "menu": "Lemon Tea",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 10.830067567567568,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 15.060067567567568,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-TEA-HONEY-LEMON",
+          "menu": "Honey Lemon Tea",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 10.830067567567568,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 15.060067567567568,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-TEA-PEACH",
+          "menu": "Peach Tea",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 10.830067567567568,
+          "packaging_cost": 4.2299999999999995,
+          "cost_per_serving": 15.060067567567568,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-001",
+          "menu": "Orange Cake",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 70,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 80.02,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-002",
+          "menu": "Coconut Cake",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 70,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 80.02,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-003",
+          "menu": "เค้กกล้วยหอม",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 35,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 45.019999999999996,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-004",
+          "menu": "เค้กกล้วยหอมคาราเมล",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 70,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 80.02,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-005",
+          "menu": "ชีสเค้กหน้าไหม้",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 60,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 70.02,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-006",
+          "menu": "เค้กชาไทย",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 40,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 50.019999999999996,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-007",
+          "menu": "เค้กชาเขียว",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 50,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 60.019999999999996,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-008",
+          "menu": "Black Forest Cake",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 70,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 80.02,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-009",
+          "menu": "Red Velvet Cake",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 70,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 80.02,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-BAKERY-001",
+          "menu": "แปงชูวิสครัวซองค์",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "ingredient_cost": 60,
+          "packaging_cost": 10.02,
+          "cost_per_serving": 70.02,
+          "source": "Expense Control cafe-recipes.js",
+          "status": "COSTING_COMPLETE"
+        }
+      ],
+      "not_calculable_menus": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-CARAMEL",
+          "menu": "Caramel Macchiato",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-COFFEE-CARAMEL",
+              "menu": "Caramel Macchiato",
+              "ingredient_sku": null,
+              "ingredient": "ความหวานของCaramel Macchiato: 25% / 50% / ปกติ",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "sweetness_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "No verified sweetness option/default is available for this menu",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control cafe-recipes.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control cafe-recipes.js"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-ORANGE",
+          "menu": "Orange Coffee",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-COFFEE-ORANGE",
+              "menu": "Orange Coffee",
+              "ingredient_sku": null,
+              "ingredient": "ความหวานของOrange Coffee: 25% / 50% / ปกติ",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "sweetness_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "No verified sweetness option/default is available for this menu",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control cafe-recipes.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control cafe-recipes.js"
+        }
+      ],
+      "audit_status": "AUDITED_FROM_CANONICAL_MASTER"
     },
     {
       "store": "Filling Steak",
       "business_unit": "filling_steak",
-      "menu_catalog": {
-        "status": "MISSING",
-        "menu_count": null,
-        "missing_fields": [
-          "menu_sku",
-          "menu_name",
-          "business_unit"
-        ],
-        "source_should_have_data": "Menu Catalog / GPOS menu-level export"
-      },
-      "calculable_menus": [],
-      "not_calculable_menus": [],
-      "audit_status": "NOT_AUDITABLE_WITH_REPO_DATA_ONLY",
-      "reason": "ไม่มีเมนูของร้านนี้ใน private repo จึงไม่สร้างชื่อหรือ SKU ขึ้นเอง"
+      "total_menus": 60,
+      "costing_complete": 42,
+      "costing_incomplete": 18,
+      "calculable_menus": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PST-001",
+          "menu": "สปาเก็ตตี้คาโบนาร่า",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 35.970111111111116,
+          "packaging_cost": 0,
+          "cost_per_serving": 35.970111111111116,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PST-002",
+          "menu": "สปาเก็ตตี้ครีมกุ้ง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 63.905111111111104,
+          "packaging_cost": 0,
+          "cost_per_serving": 63.905111111111104,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PST-003",
+          "menu": "สปาเก็ตตี้ผัดขี้เมา",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 28.911555388888893,
+          "packaging_cost": 0,
+          "cost_per_serving": 28.911555388888893,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PST-006",
+          "menu": "สปาเก็ตตี้ซอสมะเขือเทศหมูสับ",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 46.02623611111112,
+          "packaging_cost": 0,
+          "cost_per_serving": 46.02623611111112,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SND-001",
+          "menu": "Club Sandwich / คลับแซนด์วิช",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 35.65883333333334,
+          "packaging_cost": 0,
+          "cost_per_serving": 35.65883333333334,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SNK-001",
+          "menu": "ทอดรวม",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 54.6710357456553,
+          "packaging_cost": 0,
+          "cost_per_serving": 54.6710357456553,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SNK-002",
+          "menu": "เอ็นไก่ทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 50.6496,
+          "packaging_cost": 0,
+          "cost_per_serving": 50.6496,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SNK-003",
+          "menu": "หมูแดดเดียว",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 25.2453335,
+          "packaging_cost": 0,
+          "cost_per_serving": 25.2453335,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SNK-005",
+          "menu": "เฟรนช์ฟรายส์ขายแยก",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 14.109050000000002,
+          "packaging_cost": 0,
+          "cost_per_serving": 14.109050000000002,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SLD-001",
+          "menu": "สลัดน้ำมันงาญี่ปุ่น",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 38,
+          "packaging_cost": 0,
+          "cost_per_serving": 38,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SLD-002",
+          "menu": "สลัดปูอัดไข่กุ้ง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 60.63499999999999,
+          "packaging_cost": 0,
+          "cost_per_serving": 60.63499999999999,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SLD-003",
+          "menu": "Caesar Salad",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 51.46222222222222,
+          "packaging_cost": 0,
+          "cost_per_serving": 51.46222222222222,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SNK-006",
+          "menu": "มันบดขายแยก",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 5.518068181818182,
+          "packaging_cost": 0,
+          "cost_per_serving": 5.518068181818182,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "MOD-SAUCE-01",
+          "menu": "เพิ่มซอสปลาทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 6.976136363636363,
+          "packaging_cost": 0,
+          "cost_per_serving": 6.976136363636363,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PST-007",
+          "menu": "สปาเก็ตตี้พริกแห้งเบคอน",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 12.615888988888887,
+          "packaging_cost": 0,
+          "cost_per_serving": 12.615888988888887,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-002",
+          "menu": "โค้ก Original / มีน้ำตาล",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 13.08,
+          "packaging_cost": 0,
+          "cost_per_serving": 13.08,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-003",
+          "menu": "โค้ก Zero / ไม่มีน้ำตาล",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 13.92,
+          "packaging_cost": 0,
+          "cost_per_serving": 13.92,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PST-004",
+          "menu": "สปาเก็ตตี้เพสโต้กุ้ง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 63.62733423611111,
+          "packaging_cost": 0,
+          "cost_per_serving": 63.62733423611111,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PST-005",
+          "menu": "สปาเก็ตตี้เพสโต้เนื้อ",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 57.62733423611111,
+          "packaging_cost": 0,
+          "cost_per_serving": 57.62733423611111,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-001",
+          "menu": "Everyday Burger เนื้อ",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 88.56186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 88.56186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-002",
+          "menu": "Everyday Burger หมู",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 73.56186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 73.56186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-003",
+          "menu": "Everyday Burger ไก่ย่าง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 70.56186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 70.56186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-004",
+          "menu": "Everyday Burger ไก่ทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 66.46186235537692,
+          "packaging_cost": 0,
+          "cost_per_serving": 66.46186235537692,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-005",
+          "menu": "Big Bike Burger เนื้อ",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 155.58186235537696,
+          "packaging_cost": 0,
+          "cost_per_serving": 155.58186235537696,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-006",
+          "menu": "Big Bike Burger หมู",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 125.58186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 125.58186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-007",
+          "menu": "Big Bike Burger ไก่ย่าง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 119.58186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 119.58186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-008",
+          "menu": "Big Bike Burger ไก่ทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 111.38186235537692,
+          "packaging_cost": 0,
+          "cost_per_serving": 111.38186235537692,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-009",
+          "menu": "Melt More Burger เนื้อ",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 117.05186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 117.05186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-010",
+          "menu": "Melt More Burger หมู",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 102.05186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 102.05186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-011",
+          "menu": "Melt More Burger ไก่ย่าง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 99.05186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 99.05186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "BGR-012",
+          "menu": "Melt More Burger ไก่ทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 94.95186235537693,
+          "packaging_cost": 0,
+          "cost_per_serving": 94.95186235537693,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "MOD-ADDON-BURGER-BEEF-CHEESE-GRILLED-CHICKEN",
+          "menu": "แอดออนเบอร์เกอร์: แพตตี้เนื้อ + ชีส + ไก่ย่าง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 70,
+          "packaging_cost": 0,
+          "cost_per_serving": 70,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SNK-004",
+          "menu": "หมูคำหวาน",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 30.694609857142858,
+          "packaging_cost": 0,
+          "cost_per_serving": 30.694609857142858,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-001",
+          "menu": "น้ำเปล่าสิงห์",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 3.92,
+          "packaging_cost": 0,
+          "cost_per_serving": 3.92,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-004",
+          "menu": "โซดาสิงห์",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 9,
+          "packaging_cost": 0,
+          "cost_per_serving": 9,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-005",
+          "menu": "น้ำแร่ Charles House",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 5,
+          "packaging_cost": 0,
+          "cost_per_serving": 5,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-006",
+          "menu": "น้ำแข็ง 1 ถัง",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 2,
+          "packaging_cost": 0,
+          "cost_per_serving": 2,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-007",
+          "menu": "เบียร์สิงห์ขวดใหญ่",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 57.5,
+          "packaging_cost": 0,
+          "cost_per_serving": 57.5,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "DRK-008",
+          "menu": "เบียร์สิงห์ โปร 3 ขวด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 172.5,
+          "packaging_cost": 0,
+          "cost_per_serving": 172.5,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SRV-001",
+          "menu": "ค่าเปิดเหล้า",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 0,
+          "packaging_cost": 0,
+          "cost_per_serving": 0,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SRV-002",
+          "menu": "ค่าเปิดไวน์",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 0,
+          "packaging_cost": 0,
+          "cost_per_serving": 0,
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "PREP-PEP",
+          "menu": "ซอสพริกไทยดำ",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "ingredient_cost": 3.2295154761904765,
+          "packaging_cost": 0,
+          "cost_per_serving": 3.2295154761904765,
+          "source": "Expense Control steak-bom-updates.js",
+          "status": "COSTING_COMPLETE"
+        }
+      ],
+      "not_calculable_menus": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-001",
+          "menu": "สเต็กหมู",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-001",
+              "menu": "สเต็กหมู",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-002",
+          "menu": "สเต็กไก่",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-002",
+              "menu": "สเต็กไก่",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-003",
+          "menu": "สเต็กปลาทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-003",
+              "menu": "สเต็กปลาทอด",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-004",
+          "menu": "สเต็กไส้กรอกรวม",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-004",
+              "menu": "สเต็กไส้กรอกรวม",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-008",
+          "menu": "Pork Chop",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-008",
+              "menu": "Pork Chop",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-005",
+          "menu": "สเต็ก Ribeye / เนื้อสันแหลม",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-005",
+              "menu": "สเต็ก Ribeye / เนื้อสันแหลม",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-006",
+          "menu": "สเต็ก Striploin / เนื้อสันนอก",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-006",
+              "menu": "สเต็ก Striploin / เนื้อสันนอก",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-007",
+          "menu": "สเต็ก Picanha",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "STK-007",
+              "menu": "สเต็ก Picanha",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-003",
+          "menu": "สเต็กหมู + ไก่",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "CMB-003",
+              "menu": "สเต็กหมู + ไก่",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SET-M",
+          "menu": "Set M",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "SET-M",
+              "menu": "Set M",
+              "ingredient_sku": null,
+              "ingredient": "โค้ก เลือก 1: โค้ก Original 2 กระป๋อง / โค้ก Zero 2 กระป๋อง",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "coke_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SET-L",
+          "menu": "Set L",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "SET-L",
+              "menu": "Set L",
+              "ingredient_sku": null,
+              "ingredient": "โค้ก เลือก 1: โค้ก Original 3 กระป๋อง / โค้ก Zero 3 กระป๋อง",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "coke_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SET-XL",
+          "menu": "Set XL",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "SET-XL",
+              "menu": "Set XL",
+              "ingredient_sku": null,
+              "ingredient": "โค้ก เลือก 1: โค้ก Original 4 กระป๋อง / โค้ก Zero 4 กระป๋อง",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "coke_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-001",
+          "menu": "สเต็กหมู + หมู",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "CMB-001",
+              "menu": "สเต็กหมู + หมู",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-002",
+          "menu": "สเต็กไก่ + ไก่",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "CMB-002",
+              "menu": "สเต็กไก่ + ไก่",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-004",
+          "menu": "สเต็กหมู + ปลาทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "CMB-004",
+              "menu": "สเต็กหมู + ปลาทอด",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-005",
+          "menu": "สเต็กหมู + ไส้กรอกรวม",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "CMB-005",
+              "menu": "สเต็กหมู + ไส้กรอกรวม",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-006",
+          "menu": "สเต็กไก่ + ปลาทอด",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "CMB-006",
+              "menu": "สเต็กไก่ + ปลาทอด",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        },
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-007",
+          "menu": "สเต็กไก่ + ไส้กรอกรวม",
+          "recipe_version": "2026-09-17",
+          "variant": "dine-in",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Steak",
+              "business_unit": "filling_steak",
+              "menu_sku": "CMB-007",
+              "menu": "สเต็กไก่ + ไส้กรอกรวม",
+              "ingredient_sku": null,
+              "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+              "dataset": "Recipe/BOM Master",
+              "missing_field": "side_selection",
+              "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+              "reason": "Source defines multiple options but no verified selection/default was available",
+              "status": "MAPPING_ERROR",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+        }
+      ],
+      "audit_status": "AUDITED_FROM_CANONICAL_MASTER"
     }
   ],
-  "menus_calculable": [],
-  "menus_not_calculable": [],
+  "menus_calculable": [
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-AMER-MID",
+      "menu": "Americano / AMERICANO-กลาง",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 11.462500000000002,
+      "packaging_cost": 8.13,
+      "cost_per_serving": 19.5925,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-AMER-DARK",
+      "menu": "Americano / AMERICANO-เข้ม",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 13.997500000000002,
+      "packaging_cost": 8.13,
+      "cost_per_serving": 22.127500000000005,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-LATTE",
+      "menu": "Latte",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 18.485000000000003,
+      "packaging_cost": 8.31,
+      "cost_per_serving": 26.795,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-CAPPUCCINO",
+      "menu": "Cappuccino",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 17.075,
+      "packaging_cost": 8.13,
+      "cost_per_serving": 25.205,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-ESPRESSO",
+      "menu": "Espresso เย็น / ESPRESSO",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 16.05,
+      "packaging_cost": 8.13,
+      "cost_per_serving": 24.18,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-MOCHA",
+      "menu": "Mocha / Mocha-กลาง",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 21.091190476190476,
+      "packaging_cost": 8.31,
+      "cost_per_serving": 29.40119047619048,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-COCONUT",
+      "menu": "Coconut Black",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 41.445,
+      "packaging_cost": 8.13,
+      "cost_per_serving": 49.575,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-HONEY-LEMON",
+      "menu": "Black Honey Lemon",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 11.462500000000002,
+      "packaging_cost": 8.13,
+      "cost_per_serving": 19.5925,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-LEMON",
+      "menu": "Black Lemon",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 11.462500000000002,
+      "packaging_cost": 8.13,
+      "cost_per_serving": 19.5925,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MILK-FRESH",
+      "menu": "Fresh Milk",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 13.141666666666666,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 17.371666666666666,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MILK-PINK",
+      "menu": "Pink Milk",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 14.186032863849764,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 18.416032863849765,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MILK-STRAWBERRY-PINK",
+      "menu": "Strawberry Pink Milk",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 16.766032863849766,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 20.996032863849766,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MILK-CARAMEL",
+      "menu": "Caramel Milk",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 15.973254504504505,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 20.203254504504503,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MILK-HONEY",
+      "menu": "Honey Milk",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 14.923076923076923,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 19.153076923076924,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COCOA",
+      "menu": "Cocoa / โกโก้",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 16.849761904761902,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 21.079761904761902,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CHOCOLATE",
+      "menu": "Chocolate Premium",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 48.6225,
+      "packaging_cost": 4.41,
+      "cost_per_serving": 53.0325,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-TEA-THAI",
+      "menu": "Thai Tea / THAI TEA",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 27.657249999999998,
+      "packaging_cost": 4.41,
+      "cost_per_serving": 32.06725,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-TEA-GREEN",
+      "menu": "Green Tea / Green TEA",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 27.657249999999998,
+      "packaging_cost": 4.41,
+      "cost_per_serving": 32.06725,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-TEA-THAI-FRAPPE",
+      "menu": "Thai Tea Frappe",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 21.388350000000003,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 25.618350000000003,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-TEA-GREEN-FRAPPE",
+      "menu": "Green Tea Frappe",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 21.388350000000003,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 25.618350000000003,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SMOOTHIE-STRAWBERRY",
+      "menu": "Strawberry Smoothie",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 29.77364489489489,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 34.00364489489489,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SMOOTHIE-BLUEBERRY",
+      "menu": "Blueberry Smoothie",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 31.423644894894895,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 35.653644894894896,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MATCHA-LATTE",
+      "menu": "Matcha Latte",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 54.5,
+      "packaging_cost": 4.31,
+      "cost_per_serving": 58.81,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MATCHA-COCONUT",
+      "menu": "Matcha Coconut / Coconut Matcha",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 58.459999999999994,
+      "packaging_cost": 4.31,
+      "cost_per_serving": 62.769999999999996,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-MATCHA-PURE",
+      "menu": "Pure Matcha",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 28.99,
+      "packaging_cost": 4.13,
+      "cost_per_serving": 33.12,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-PEACH",
+      "menu": "Peach Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 14.711928274428276,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 18.941928274428275,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-LEMON",
+      "menu": "Lemon Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 14.711928274428276,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 18.941928274428275,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-HONEY-LEMON",
+      "menu": "Honey Lemon Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 14.711928274428276,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 18.941928274428275,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-TEA-LEMON",
+      "menu": "Lemon Tea",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 10.830067567567568,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 15.060067567567568,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-TEA-HONEY-LEMON",
+      "menu": "Honey Lemon Tea",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 10.830067567567568,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 15.060067567567568,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-TEA-PEACH",
+      "menu": "Peach Tea",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 10.830067567567568,
+      "packaging_cost": 4.2299999999999995,
+      "cost_per_serving": 15.060067567567568,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-001",
+      "menu": "Orange Cake",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 70,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 80.02,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-002",
+      "menu": "Coconut Cake",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 70,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 80.02,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-003",
+      "menu": "เค้กกล้วยหอม",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 35,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 45.019999999999996,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-004",
+      "menu": "เค้กกล้วยหอมคาราเมล",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 70,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 80.02,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-005",
+      "menu": "ชีสเค้กหน้าไหม้",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 60,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 70.02,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-006",
+      "menu": "เค้กชาไทย",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 40,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 50.019999999999996,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-007",
+      "menu": "เค้กชาเขียว",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 50,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 60.019999999999996,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-008",
+      "menu": "Black Forest Cake",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 70,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 80.02,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-009",
+      "menu": "Red Velvet Cake",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 70,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 80.02,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-BAKERY-001",
+      "menu": "แปงชูวิสครัวซองค์",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "ingredient_cost": 60,
+      "packaging_cost": 10.02,
+      "cost_per_serving": 70.02,
+      "source": "Expense Control cafe-recipes.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PST-001",
+      "menu": "สปาเก็ตตี้คาโบนาร่า",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 35.970111111111116,
+      "packaging_cost": 0,
+      "cost_per_serving": 35.970111111111116,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PST-002",
+      "menu": "สปาเก็ตตี้ครีมกุ้ง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 63.905111111111104,
+      "packaging_cost": 0,
+      "cost_per_serving": 63.905111111111104,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PST-003",
+      "menu": "สปาเก็ตตี้ผัดขี้เมา",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 28.911555388888893,
+      "packaging_cost": 0,
+      "cost_per_serving": 28.911555388888893,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PST-006",
+      "menu": "สปาเก็ตตี้ซอสมะเขือเทศหมูสับ",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 46.02623611111112,
+      "packaging_cost": 0,
+      "cost_per_serving": 46.02623611111112,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SND-001",
+      "menu": "Club Sandwich / คลับแซนด์วิช",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 35.65883333333334,
+      "packaging_cost": 0,
+      "cost_per_serving": 35.65883333333334,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SNK-001",
+      "menu": "ทอดรวม",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 54.6710357456553,
+      "packaging_cost": 0,
+      "cost_per_serving": 54.6710357456553,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SNK-002",
+      "menu": "เอ็นไก่ทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 50.6496,
+      "packaging_cost": 0,
+      "cost_per_serving": 50.6496,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SNK-003",
+      "menu": "หมูแดดเดียว",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 25.2453335,
+      "packaging_cost": 0,
+      "cost_per_serving": 25.2453335,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SNK-005",
+      "menu": "เฟรนช์ฟรายส์ขายแยก",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 14.109050000000002,
+      "packaging_cost": 0,
+      "cost_per_serving": 14.109050000000002,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SLD-001",
+      "menu": "สลัดน้ำมันงาญี่ปุ่น",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 38,
+      "packaging_cost": 0,
+      "cost_per_serving": 38,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SLD-002",
+      "menu": "สลัดปูอัดไข่กุ้ง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 60.63499999999999,
+      "packaging_cost": 0,
+      "cost_per_serving": 60.63499999999999,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SLD-003",
+      "menu": "Caesar Salad",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 51.46222222222222,
+      "packaging_cost": 0,
+      "cost_per_serving": 51.46222222222222,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SNK-006",
+      "menu": "มันบดขายแยก",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 5.518068181818182,
+      "packaging_cost": 0,
+      "cost_per_serving": 5.518068181818182,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "MOD-SAUCE-01",
+      "menu": "เพิ่มซอสปลาทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 6.976136363636363,
+      "packaging_cost": 0,
+      "cost_per_serving": 6.976136363636363,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PST-007",
+      "menu": "สปาเก็ตตี้พริกแห้งเบคอน",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 12.615888988888887,
+      "packaging_cost": 0,
+      "cost_per_serving": 12.615888988888887,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-002",
+      "menu": "โค้ก Original / มีน้ำตาล",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 13.08,
+      "packaging_cost": 0,
+      "cost_per_serving": 13.08,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-003",
+      "menu": "โค้ก Zero / ไม่มีน้ำตาล",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 13.92,
+      "packaging_cost": 0,
+      "cost_per_serving": 13.92,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PST-004",
+      "menu": "สปาเก็ตตี้เพสโต้กุ้ง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 63.62733423611111,
+      "packaging_cost": 0,
+      "cost_per_serving": 63.62733423611111,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PST-005",
+      "menu": "สปาเก็ตตี้เพสโต้เนื้อ",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 57.62733423611111,
+      "packaging_cost": 0,
+      "cost_per_serving": 57.62733423611111,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-001",
+      "menu": "Everyday Burger เนื้อ",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 88.56186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 88.56186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-002",
+      "menu": "Everyday Burger หมู",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 73.56186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 73.56186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-003",
+      "menu": "Everyday Burger ไก่ย่าง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 70.56186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 70.56186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-004",
+      "menu": "Everyday Burger ไก่ทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 66.46186235537692,
+      "packaging_cost": 0,
+      "cost_per_serving": 66.46186235537692,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-005",
+      "menu": "Big Bike Burger เนื้อ",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 155.58186235537696,
+      "packaging_cost": 0,
+      "cost_per_serving": 155.58186235537696,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-006",
+      "menu": "Big Bike Burger หมู",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 125.58186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 125.58186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-007",
+      "menu": "Big Bike Burger ไก่ย่าง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 119.58186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 119.58186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-008",
+      "menu": "Big Bike Burger ไก่ทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 111.38186235537692,
+      "packaging_cost": 0,
+      "cost_per_serving": 111.38186235537692,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-009",
+      "menu": "Melt More Burger เนื้อ",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 117.05186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 117.05186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-010",
+      "menu": "Melt More Burger หมู",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 102.05186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 102.05186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-011",
+      "menu": "Melt More Burger ไก่ย่าง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 99.05186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 99.05186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "BGR-012",
+      "menu": "Melt More Burger ไก่ทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 94.95186235537693,
+      "packaging_cost": 0,
+      "cost_per_serving": 94.95186235537693,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "MOD-ADDON-BURGER-BEEF-CHEESE-GRILLED-CHICKEN",
+      "menu": "แอดออนเบอร์เกอร์: แพตตี้เนื้อ + ชีส + ไก่ย่าง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 70,
+      "packaging_cost": 0,
+      "cost_per_serving": 70,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SNK-004",
+      "menu": "หมูคำหวาน",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 30.694609857142858,
+      "packaging_cost": 0,
+      "cost_per_serving": 30.694609857142858,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-001",
+      "menu": "น้ำเปล่าสิงห์",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 3.92,
+      "packaging_cost": 0,
+      "cost_per_serving": 3.92,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-004",
+      "menu": "โซดาสิงห์",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 9,
+      "packaging_cost": 0,
+      "cost_per_serving": 9,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-005",
+      "menu": "น้ำแร่ Charles House",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 5,
+      "packaging_cost": 0,
+      "cost_per_serving": 5,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-006",
+      "menu": "น้ำแข็ง 1 ถัง",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 2,
+      "packaging_cost": 0,
+      "cost_per_serving": 2,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-007",
+      "menu": "เบียร์สิงห์ขวดใหญ่",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 57.5,
+      "packaging_cost": 0,
+      "cost_per_serving": 57.5,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "DRK-008",
+      "menu": "เบียร์สิงห์ โปร 3 ขวด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 172.5,
+      "packaging_cost": 0,
+      "cost_per_serving": 172.5,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SRV-001",
+      "menu": "ค่าเปิดเหล้า",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 0,
+      "packaging_cost": 0,
+      "cost_per_serving": 0,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SRV-002",
+      "menu": "ค่าเปิดไวน์",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 0,
+      "packaging_cost": 0,
+      "cost_per_serving": 0,
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "PREP-PEP",
+      "menu": "ซอสพริกไทยดำ",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "ingredient_cost": 3.2295154761904765,
+      "packaging_cost": 0,
+      "cost_per_serving": 3.2295154761904765,
+      "source": "Expense Control steak-bom-updates.js",
+      "status": "COSTING_COMPLETE"
+    }
+  ],
+  "menus_not_calculable": [
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-CARAMEL",
+      "menu": "Caramel Macchiato",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-CARAMEL",
+          "menu": "Caramel Macchiato",
+          "ingredient_sku": null,
+          "ingredient": "ความหวานของCaramel Macchiato: 25% / 50% / ปกติ",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "sweetness_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "No verified sweetness option/default is available for this menu",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control cafe-recipes.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control cafe-recipes.js"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-ORANGE",
+      "menu": "Orange Coffee",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-COFFEE-ORANGE",
+          "menu": "Orange Coffee",
+          "ingredient_sku": null,
+          "ingredient": "ความหวานของOrange Coffee: 25% / 50% / ปกติ",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "sweetness_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "No verified sweetness option/default is available for this menu",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control cafe-recipes.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control cafe-recipes.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-001",
+      "menu": "สเต็กหมู",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-001",
+          "menu": "สเต็กหมู",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-002",
+      "menu": "สเต็กไก่",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-002",
+          "menu": "สเต็กไก่",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-003",
+      "menu": "สเต็กปลาทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-003",
+          "menu": "สเต็กปลาทอด",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-004",
+      "menu": "สเต็กไส้กรอกรวม",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-004",
+          "menu": "สเต็กไส้กรอกรวม",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-008",
+      "menu": "Pork Chop",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-008",
+          "menu": "Pork Chop",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-005",
+      "menu": "สเต็ก Ribeye / เนื้อสันแหลม",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-005",
+          "menu": "สเต็ก Ribeye / เนื้อสันแหลม",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-006",
+      "menu": "สเต็ก Striploin / เนื้อสันนอก",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-006",
+          "menu": "สเต็ก Striploin / เนื้อสันนอก",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-007",
+      "menu": "สเต็ก Picanha",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "STK-007",
+          "menu": "สเต็ก Picanha",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-003",
+      "menu": "สเต็กหมู + ไก่",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-003",
+          "menu": "สเต็กหมู + ไก่",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SET-M",
+      "menu": "Set M",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SET-M",
+          "menu": "Set M",
+          "ingredient_sku": null,
+          "ingredient": "โค้ก เลือก 1: โค้ก Original 2 กระป๋อง / โค้ก Zero 2 กระป๋อง",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "coke_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SET-L",
+      "menu": "Set L",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SET-L",
+          "menu": "Set L",
+          "ingredient_sku": null,
+          "ingredient": "โค้ก เลือก 1: โค้ก Original 3 กระป๋อง / โค้ก Zero 3 กระป๋อง",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "coke_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SET-XL",
+      "menu": "Set XL",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "SET-XL",
+          "menu": "Set XL",
+          "ingredient_sku": null,
+          "ingredient": "โค้ก เลือก 1: โค้ก Original 4 กระป๋อง / โค้ก Zero 4 กระป๋อง",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "coke_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-001",
+      "menu": "สเต็กหมู + หมู",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-001",
+          "menu": "สเต็กหมู + หมู",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-002",
+      "menu": "สเต็กไก่ + ไก่",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-002",
+          "menu": "สเต็กไก่ + ไก่",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-004",
+      "menu": "สเต็กหมู + ปลาทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-004",
+          "menu": "สเต็กหมู + ปลาทอด",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-005",
+      "menu": "สเต็กหมู + ไส้กรอกรวม",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-005",
+          "menu": "สเต็กหมู + ไส้กรอกรวม",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-006",
+      "menu": "สเต็กไก่ + ปลาทอด",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-006",
+          "menu": "สเต็กไก่ + ปลาทอด",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-007",
+      "menu": "สเต็กไก่ + ไส้กรอกรวม",
+      "recipe_version": "2026-09-17",
+      "variant": "dine-in",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Steak",
+          "business_unit": "filling_steak",
+          "menu_sku": "CMB-007",
+          "menu": "สเต็กไก่ + ไส้กรอกรวม",
+          "ingredient_sku": null,
+          "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+          "dataset": "Recipe/BOM Master",
+          "missing_field": "side_selection",
+          "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+          "reason": "Source defines multiple options but no verified selection/default was available",
+          "status": "MAPPING_ERROR",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    }
+  ],
   "missing": [
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-CARAMEL",
+      "menu": "Caramel Macchiato",
       "ingredient_sku": null,
-      "dataset": "Ingredient Master",
-      "missing_field": "ingredient_sku",
-      "source_should_have_data": "private repo source for Ingredient Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Ingredient Master",
-      "missing_field": "ingredient_name",
-      "source_should_have_data": "private repo source for Ingredient Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Ingredient Master",
-      "missing_field": "base_unit",
-      "source_should_have_data": "private repo source for Ingredient Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน base_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Ingredient Master",
-      "missing_field": "unit_cost",
-      "source_should_have_data": "private repo source for Ingredient Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit_cost ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Ingredient Master",
-      "missing_field": "currency",
-      "source_should_have_data": "private repo source for Ingredient Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน currency ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Ingredient Master",
-      "missing_field": "source",
-      "source_should_have_data": "private repo source for Ingredient Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน source ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
+      "ingredient": "ความหวานของCaramel Macchiato: 25% / 50% / ปกติ",
       "dataset": "Recipe/BOM Master",
-      "missing_field": "menu_sku",
-      "source_should_have_data": "private repo source for Recipe/BOM Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "missing_field": "sweetness_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "No verified sweetness option/default is available for this menu",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control cafe-recipes.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-COFFEE-ORANGE",
+      "menu": "Orange Coffee",
       "ingredient_sku": null,
+      "ingredient": "ความหวานของOrange Coffee: 25% / 50% / ปกติ",
       "dataset": "Recipe/BOM Master",
-      "missing_field": "menu_name",
-      "source_should_have_data": "private repo source for Recipe/BOM Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "missing_field": "sweetness_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "No verified sweetness option/default is available for this menu",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control cafe-recipes.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-001",
+      "menu": "สเต็กหมู",
       "ingredient_sku": null,
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
       "dataset": "Recipe/BOM Master",
-      "missing_field": "business_unit",
-      "source_should_have_data": "private repo source for Recipe/BOM Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน business_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-002",
+      "menu": "สเต็กไก่",
       "ingredient_sku": null,
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
       "dataset": "Recipe/BOM Master",
-      "missing_field": "ingredient_sku",
-      "source_should_have_data": "private repo source for Recipe/BOM Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-003",
+      "menu": "สเต็กปลาทอด",
       "ingredient_sku": null,
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
       "dataset": "Recipe/BOM Master",
-      "missing_field": "quantity",
-      "source_should_have_data": "private repo source for Recipe/BOM Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน quantity ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-004",
+      "menu": "สเต็กไส้กรอกรวม",
       "ingredient_sku": null,
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
       "dataset": "Recipe/BOM Master",
-      "missing_field": "unit",
-      "source_should_have_data": "private repo source for Recipe/BOM Master",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-008",
+      "menu": "Pork Chop",
       "ingredient_sku": null,
-      "dataset": "Packaging SKU",
-      "missing_field": "packaging_sku",
-      "source_should_have_data": "private repo source for Packaging SKU",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน packaging_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-005",
+      "menu": "สเต็ก Ribeye / เนื้อสันแหลม",
       "ingredient_sku": null,
-      "dataset": "Packaging SKU",
-      "missing_field": "packaging_name",
-      "source_should_have_data": "private repo source for Packaging SKU",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน packaging_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-006",
+      "menu": "สเต็ก Striploin / เนื้อสันนอก",
       "ingredient_sku": null,
-      "dataset": "Packaging SKU",
-      "missing_field": "unit_cost",
-      "source_should_have_data": "private repo source for Packaging SKU",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit_cost ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "STK-007",
+      "menu": "สเต็ก Picanha",
       "ingredient_sku": null,
-      "dataset": "Packaging SKU",
-      "missing_field": "unit",
-      "source_should_have_data": "private repo source for Packaging SKU",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-003",
+      "menu": "สเต็กหมู + ไก่",
       "ingredient_sku": null,
-      "dataset": "Packaging SKU",
-      "missing_field": "quantity_per_serving",
-      "source_should_have_data": "private repo source for Packaging SKU",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน quantity_per_serving ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SET-M",
+      "menu": "Set M",
       "ingredient_sku": null,
-      "dataset": "Costing",
-      "missing_field": "menu_sku",
-      "source_should_have_data": "private repo source for Costing",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "โค้ก เลือก 1: โค้ก Original 2 กระป๋อง / โค้ก Zero 2 กระป๋อง",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "coke_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SET-L",
+      "menu": "Set L",
       "ingredient_sku": null,
-      "dataset": "Costing",
-      "missing_field": "cost_per_serving",
-      "source_should_have_data": "private repo source for Costing",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน cost_per_serving ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "โค้ก เลือก 1: โค้ก Original 3 กระป๋อง / โค้ก Zero 3 กระป๋อง",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "coke_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "SET-XL",
+      "menu": "Set XL",
       "ingredient_sku": null,
-      "dataset": "Costing",
-      "missing_field": "cost_components",
-      "source_should_have_data": "private repo source for Costing",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน cost_components ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "โค้ก เลือก 1: โค้ก Original 4 กระป๋อง / โค้ก Zero 4 กระป๋อง",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "coke_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-001",
+      "menu": "สเต็กหมู + หมู",
       "ingredient_sku": null,
-      "dataset": "Costing",
-      "missing_field": "calculated_at",
-      "source_should_have_data": "private repo source for Costing",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน calculated_at ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-002",
+      "menu": "สเต็กไก่ + ไก่",
       "ingredient_sku": null,
-      "dataset": "Costing",
-      "missing_field": "source",
-      "source_should_have_data": "private repo source for Costing",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน source ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-004",
+      "menu": "สเต็กหมู + ปลาทอด",
       "ingredient_sku": null,
-      "dataset": "Stock Mapping",
-      "missing_field": "menu_sku",
-      "source_should_have_data": "private repo source for Stock Mapping",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-005",
+      "menu": "สเต็กหมู + ไส้กรอกรวม",
       "ingredient_sku": null,
-      "dataset": "Stock Mapping",
-      "missing_field": "ingredient_sku",
-      "source_should_have_data": "private repo source for Stock Mapping",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-006",
+      "menu": "สเต็กไก่ + ปลาทอด",
       "ingredient_sku": null,
-      "dataset": "Stock Mapping",
-      "missing_field": "source_unit",
-      "source_should_have_data": "private repo source for Stock Mapping",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน source_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     },
     {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
+      "store": "Filling Steak",
+      "business_unit": "filling_steak",
+      "menu_sku": "CMB-007",
+      "menu": "สเต็กไก่ + ไส้กรอกรวม",
       "ingredient_sku": null,
-      "dataset": "Stock Mapping",
-      "missing_field": "target_unit",
-      "source_should_have_data": "private repo source for Stock Mapping",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน target_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Stock Mapping",
-      "missing_field": "conversion_factor",
-      "source_should_have_data": "private repo source for Stock Mapping",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน conversion_factor ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Menu Catalog",
-      "missing_field": "menu_sku",
-      "source_should_have_data": "private repo source for Menu Catalog",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Menu Catalog",
-      "missing_field": "menu_name",
-      "source_should_have_data": "private repo source for Menu Catalog",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน menu_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Menu Catalog",
-      "missing_field": "business_unit",
-      "source_should_have_data": "private repo source for Menu Catalog",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน business_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
-    },
-    {
-      "store": null,
-      "business_unit": null,
-      "menu_sku": null,
-      "ingredient_sku": null,
-      "dataset": "Menu Catalog",
-      "missing_field": "active",
-      "source_should_have_data": "private repo source for Menu Catalog",
-      "reason": "ไม่พบ source record/file/table ที่ยืนยัน active ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้",
-      "status": "OWNER_REQUIRED",
-      "evidence_paths": []
+      "ingredient": "เครื่องเคียง เลือก 1: มันบด 1 portion ในจานสเต็ก / เฟรนช์ฟรายส์",
+      "dataset": "Recipe/BOM Master",
+      "missing_field": "side_selection",
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "status": "MAPPING_ERROR",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Expense Control steak-catalog.js + steak-bom-updates.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     }
   ],
+  "source_missing_unit_costs": [],
   "pipeline_findings": [
     {
       "id": "PIPELINE_NO_COSTING_DOMAIN",
       "severity": "HIGH",
-      "status": "PIPELINE_GAP",
-      "system_can_fix": true,
-      "reason": "ไม่มี canonical kind/table/schema สำหรับ Ingredient Master, Recipe/BOM, Packaging หรือ Costing",
-      "evidence_paths": [
-        "packages/core/src/pipeline.mjs",
-        "packages/core/src/canonical.mjs",
-        "db/sqlite/schema.sql"
-      ],
-      "remediation": "เพิ่ม source adapter, canonical records, validation และ storage สำหรับ costing ก่อนนำตัวเลขมาใช้"
-    },
-    {
-      "id": "PIPELINE_RECIPE_AS_INVENTORY",
-      "severity": "HIGH",
-      "status": "PIPELINE_GAP",
-      "system_can_fix": true,
-      "reason": "Obsidian ที่อยู่ในโฟลเดอร์ recipes ถูก route เป็น inventory และ normalize เป็น stock event; สูตรจึงไม่กลายเป็น BOM/cost component",
-      "evidence_paths": [
-        "packages/core/src/pipeline.mjs",
-        "packages/core/src/canonical.mjs",
-        "packages/core/src/adapters.mjs"
-      ],
-      "remediation": "แยก recipe/BOM normalizer และตรวจ quantity/unit/ingredient SKU แทนการตีความเป็น inventory"
-    },
-    {
-      "id": "PIPELINE_REPORTS_ARE_AGGREGATES",
-      "severity": "HIGH",
-      "status": "SOURCE_GRAIN_GAP",
-      "system_can_fix": true,
-      "reason": "sales.json มีเพียงยอดรวมตามร้าน/ช่องทาง และ inventory.json มีเพียง movement item code; ไม่มี menu SKU กับส่วนประกอบสูตร",
-      "evidence_paths": [
-        "reports/maple/sales.json",
-        "reports/maple/inventory.json"
-      ],
-      "remediation": "ดึงและเก็บ menu-level source ก่อนทำ costing; ไม่แตกยอดรวมเป็นเมนูโดยการเดา"
-    },
-    {
-      "id": "PIPELINE_NO_COSTING_PUBLIC_ARTIFACT",
-      "severity": "MEDIUM",
       "status": "FIXED_IN_THIS_CHANGE",
       "system_can_fix": true,
-      "reason": "publisher ไม่ได้ allowlist รายงาน audit costing",
+      "reason": "Maple previously had sales/inventory aggregates but no canonical Ingredient, Recipe/BOM, Packaging, Unit Cost, or Costing domain.",
       "evidence_paths": [
-        "scripts/publish-maple-data-hub.mjs"
+        "packages/core/src/costing.mjs",
+        "reports/maple/costing_master.json"
       ],
-      "remediation": "เพิ่ม costing_missing_data.json/md ใน public allowlist หลังผ่าน security validation"
+      "remediation": "Read the canonical costing master and use costing.mjs for menu costing and stock deduction."
+    },
+    {
+      "id": "PIPELINE_AUDIT_FALSE_MISSING",
+      "severity": "HIGH",
+      "status": "FIXED_IN_THIS_CHANGE",
+      "system_can_fix": true,
+      "reason": "The previous audit only searched Maple paths and reported all costing sources as missing even though configured Expense Control source records existed.",
+      "evidence_paths": [
+        "scripts/audit-costing.mjs",
+        "scripts/generate-costing-master.mjs"
+      ],
+      "remediation": "Audit the imported canonical master menu-by-menu and retain source provenance."
+    },
+    {
+      "id": "PIPELINE_BATCH_FIELD_MISMATCH",
+      "severity": "HIGH",
+      "status": "FIXED_IN_THIS_CHANGE",
+      "system_can_fix": true,
+      "reason": "Batch source uses yieldQty while normalized master uses yield_quantity; nested batch costing previously stopped at a false mapping error.",
+      "evidence_paths": [
+        "packages/core/src/costing.mjs",
+        "scripts/generate-costing-master.mjs"
+      ],
+      "remediation": "Normalize both source field names and calculate nested batch cost only when yield unit matches."
+    },
+    {
+      "id": "PIPELINE_HEURISTIC_SKU_FALLBACK",
+      "severity": "MEDIUM",
+      "status": "GUARDED",
+      "system_can_fix": true,
+      "reason": "Legacy GPOS menu mapping has a heuristic fallback; it is not allowed to create financial truth or stock movement without verified mapping.",
+      "evidence_paths": [
+        "reports/maple/costing_master.json"
+      ],
+      "remediation": "Keep heuristic matches as review-only and require canonical SKU mapping for posting."
+    },
+    {
+      "id": "LEGACY_ESTIMATED_COGS_OUTSIDE_MAPLE",
+      "severity": "HIGH",
+      "status": "NOT_USED_BY_MAPLE",
+      "system_can_fix": false,
+      "reason": "The audited legacy Expense Control UI contains operational benchmark COGS fallback paths; this target-only change does not mutate that source repository.",
+      "evidence_paths": [
+        "reports/maple/costing_master.json"
+      ],
+      "remediation": "Maple financial reports must use only canonical costing status and null when incomplete."
     }
   ],
   "fixes_applied": [
     {
-      "id": "FIX_AUDIT_REPORT",
+      "id": "FIX_CANONICAL_COSTING_MASTER",
       "status": "APPLIED",
-      "detail": "เพิ่ม deterministic audit ที่รายงาน missing เป็น null/missing และแยก pipeline gap ออกจาก Owner action"
+      "detail": "Imported normalized Ingredient, Recipe/BOM, Packaging, Unit Cost, Costing, and Stock Mapping into one central artifact."
     },
     {
-      "id": "FIX_PUBLIC_ALLOWLIST",
+      "id": "FIX_COSTING_ENGINE",
       "status": "APPLIED",
-      "detail": "เพิ่มรายงาน costing audit เข้า allowlist ของ data-hub โดยไม่ใส่ secret หรือข้อมูลส่วนบุคคล"
+      "detail": "Added nested batch costing, exact unit-cost lookup, explicit selection handling, and null-on-missing behavior."
+    },
+    {
+      "id": "FIX_DETERMINISTIC_AUDIT",
+      "status": "APPLIED",
+      "detail": "Audit now reports the actual menu and component that prevents cost per serving."
+    },
+    {
+      "id": "FIX_NO_FALLBACK",
+      "status": "APPLIED",
+      "detail": "Maple costing does not read direct/default/promo costs outside canonical unit_costs."
     }
   ],
   "owner_actions": [
     {
-      "id": "OWNER_INGREDIENT_MASTER",
-      "action": "จัดให้มี Ingredient Master ใน source ที่ repo นี้อ่านได้",
-      "required_fields": [
-        "ingredient_sku",
-        "ingredient_name",
-        "base_unit",
-        "unit_cost",
-        "currency",
-        "source"
+      "id": "OWNER_1",
+      "missing_field": "sweetness_selection",
+      "ingredient_sku": null,
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "No verified sweetness option/default is available for this menu",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-COFFEE-CARAMEL",
+          "menu": "Caramel Macchiato",
+          "store": "Filling Cafe"
+        },
+        {
+          "menu_sku": "CAFE-COFFEE-ORANGE",
+          "menu": "Orange Coffee",
+          "store": "Filling Cafe"
+        }
       ],
-      "excludes_system_fix": true
+      "owner_action_required": true
     },
     {
-      "id": "OWNER_RECIPE_BOM_MASTER",
-      "action": "จัดให้มี Recipe/BOM Master พร้อมรายการเมนูของทั้งสองร้าน",
-      "required_fields": [
-        "menu_sku",
-        "menu_name",
-        "business_unit",
-        "ingredient_sku",
-        "quantity",
-        "unit"
+      "id": "OWNER_2",
+      "missing_field": "side_selection",
+      "ingredient_sku": null,
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "affected_menus": [
+        {
+          "menu_sku": "STK-001",
+          "menu": "สเต็กหมู",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "STK-002",
+          "menu": "สเต็กไก่",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "STK-003",
+          "menu": "สเต็กปลาทอด",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "STK-004",
+          "menu": "สเต็กไส้กรอกรวม",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "STK-008",
+          "menu": "Pork Chop",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "STK-005",
+          "menu": "สเต็ก Ribeye / เนื้อสันแหลม",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "STK-006",
+          "menu": "สเต็ก Striploin / เนื้อสันนอก",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "STK-007",
+          "menu": "สเต็ก Picanha",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "CMB-003",
+          "menu": "สเต็กหมู + ไก่",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "CMB-001",
+          "menu": "สเต็กหมู + หมู",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "CMB-002",
+          "menu": "สเต็กไก่ + ไก่",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "CMB-004",
+          "menu": "สเต็กหมู + ปลาทอด",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "CMB-005",
+          "menu": "สเต็กหมู + ไส้กรอกรวม",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "CMB-006",
+          "menu": "สเต็กไก่ + ปลาทอด",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "CMB-007",
+          "menu": "สเต็กไก่ + ไส้กรอกรวม",
+          "store": "Filling Steak"
+        }
       ],
-      "excludes_system_fix": true
+      "owner_action_required": true
     },
     {
-      "id": "OWNER_PACKAGING_SKU",
-      "action": "จัดให้มี Packaging SKU และจำนวนใช้ต่อ serving",
-      "required_fields": [
-        "packaging_sku",
-        "packaging_name",
-        "unit_cost",
-        "unit",
-        "quantity_per_serving"
+      "id": "OWNER_3",
+      "missing_field": "coke_selection",
+      "ingredient_sku": null,
+      "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
+      "reason": "Source defines multiple options but no verified selection/default was available",
+      "affected_menus": [
+        {
+          "menu_sku": "SET-M",
+          "menu": "Set M",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "SET-L",
+          "menu": "Set L",
+          "store": "Filling Steak"
+        },
+        {
+          "menu_sku": "SET-XL",
+          "menu": "Set XL",
+          "store": "Filling Steak"
+        }
       ],
-      "excludes_system_fix": true
-    },
-    {
-      "id": "OWNER_STOCK_MAPPING",
-      "action": "ยืนยัน Stock Mapping และ unit conversion เฉพาะรายการที่ไม่มีใน source",
-      "required_fields": [
-        "menu_sku",
-        "ingredient_sku",
-        "source_unit",
-        "target_unit",
-        "conversion_factor"
-      ],
-      "excludes_system_fix": true
+      "owner_action_required": true
     }
   ],
   "limitations": [
-    "repo นี้ไม่มี Ingredient Master, Recipe/BOM Master, Packaging SKU หรือ menu-level costing records",
-    "รายงาน sales/inventory ที่มีอยู่เป็น aggregate/movement evidence ไม่ใช่ costing source",
-    "จึงยังระบุจำนวนเมนูทั้งหมดและจำนวนเมนูที่ costing ครบ/ขาดเป็น null ได้เท่านั้น"
+    "Unit costs that are absent or unusable in the canonical source remain null and require a real source value.",
+    "Steak side and Coke choices remain incomplete when the source offers multiple options without an explicit default or order-level choice.",
+    "Legacy source repository was audited read-only; no raw/source file was overwritten."
   ],
-  "status": "BLOCKED_BY_MISSING_COSTING_SOURCES"
+  "master_validation": {
+    "valid": true,
+    "duplicate_menu_skus": [],
+    "missing_recipe_identity": [],
+    "missing_recipe_source": []
+  },
+  "status": "AUDIT_COMPLETE_WITH_MISSING_DATA"
 }

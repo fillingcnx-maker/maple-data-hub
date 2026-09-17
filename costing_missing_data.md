@@ -2,132 +2,193 @@
 
 - Repository: https://github.com/fillingcnx-maker/maple-executive-os
 - Branch: main
-- Source revision: e5a0eb6d6cda957b19848501c4c913df15ee18f4
-- Scope: private repo only; Filling Cafe และ Filling Steak
-- Status: **BLOCKED_BY_MISSING_COSTING_SOURCES**
-- Generated: 2026-09-17T01:41:16.933Z
+- Source revision: 6a29076066a3ba7d6b2bea31935c42c52637baef
+- Generated: 2026-09-17T08:17:14.060Z
+- Status: **AUDIT_COMPLETE_WITH_MISSING_DATA**
 
-> ค่า `null` หรือ `—` หมายถึงไม่มีหลักฐานใน repo นี้ ไม่ใช่ศูนย์ และไม่มีการเดาข้อมูลแทน
+> `null`/missing หมายถึงไม่มีหลักฐานที่คำนวณได้ ไม่ใช่ศูนย์ และไม่มีการเดาสูตร ปริมาณ หน่วย หรือราคา
 
 ## สรุป
 
-- เมนูทั้งหมด: **—**
-- Costing ครบ: **—**
-- Costing ยังขาด: **—**
-- Owner actions ที่ต้องแก้จริง: **4 กลุ่มข้อมูลต้นทาง**
+- เมนูทั้งหมด: **103**
+- Costing ครบ: **83**
+- Costing ยังขาด: **20**
+- แถวต้นทุนวัตถุดิบที่ source ยังขาด: **0**
+- Owner actions ที่ต้องแก้จริง: **3**
 
-ไม่สามารถนับเมนูหรือยืนยันต้นทุนต่อเมนูได้ เพราะ private repo นี้ไม่มี menu catalog และไม่มี costing masters ที่จำเป็น
+## สูตรและกติกา
 
-## สูตรที่ใช้ตรวจ
+`cost per serving = sum(recipe quantity converted to canonical unit × canonical unit cost) + packaging cost`
 
-`cost per serving = sum(recipe quantity converted to ingredient base unit × ingredient unit cost) + sum(packaging quantity × packaging unit cost)`
-
-ต้องมีครบทั้ง Menu SKU, Ingredient SKU, quantity, unit, conversion, unit cost และ packaging ต่อ serving จึงจะคำนวณได้
-
-## Audit แหล่งข้อมูล
-
-| Dataset | Status | Evidence in repo | Missing fields ที่ต้องใช้ |
-|---|---|---|---|
-| Ingredient Master | MISSING | — | ingredient_sku<br>ingredient_name<br>base_unit<br>unit_cost<br>currency<br>source |
-| Recipe/BOM Master | MISSING | — | menu_sku<br>menu_name<br>business_unit<br>ingredient_sku<br>quantity<br>unit |
-| Packaging SKU | MISSING | — | packaging_sku<br>packaging_name<br>unit_cost<br>unit<br>quantity_per_serving |
-| Costing | MISSING | — | menu_sku<br>cost_per_serving<br>cost_components<br>calculated_at<br>source |
-| Stock Mapping | MISSING | — | menu_sku<br>ingredient_sku<br>source_unit<br>target_unit<br>conversion_factor |
-| Menu Catalog | MISSING | — | menu_sku<br>menu_name<br>business_unit<br>active |
+- ใช้ Recipe/BOM เวอร์ชันล่าสุดที่มี provenance
+- ใช้ unit cost จาก canonical `unit_costs` เท่านั้น
+- ไม่มี direct/default/promo fallback
+- หากตัวเลือกหลายแบบไม่มีค่าเลือกที่ยืนยันได้ จะเป็น MAPPING_ERROR และไม่แทนด้วยศูนย์
 
 ## สถานะแยกร้าน
 
 ### Filling Cafe
 
-- สถานะ: NOT_AUDITABLE_WITH_REPO_DATA_ONLY
-- จำนวนเมนู: —
-- เมนูที่คำนวณได้ครบ: —
-- เมนูที่คำนวณไม่ได้: —
-- เหตุผล: ไม่มีเมนูของร้านนี้ใน private repo จึงไม่สร้างชื่อหรือ SKU ขึ้นเอง
+- เมนูทั้งหมด: **43**
+- คำนวณต้นทุนครบ: **41**
+- ยังขาด: **2**
+- รายการที่คำนวณไม่ได้: CAFE-COFFEE-CARAMEL Caramel Macchiato, CAFE-COFFEE-ORANGE Orange Coffee
 
 ### Filling Steak
 
-- สถานะ: NOT_AUDITABLE_WITH_REPO_DATA_ONLY
-- จำนวนเมนู: —
-- เมนูที่คำนวณได้ครบ: —
-- เมนูที่คำนวณไม่ได้: —
-- เหตุผล: ไม่มีเมนูของร้านนี้ใน private repo จึงไม่สร้างชื่อหรือ SKU ขึ้นเอง
+- เมนูทั้งหมด: **60**
+- คำนวณต้นทุนครบ: **42**
+- ยังขาด: **18**
+- รายการที่คำนวณไม่ได้: STK-001 สเต็กหมู, STK-002 สเต็กไก่, STK-003 สเต็กปลาทอด, STK-004 สเต็กไส้กรอกรวม, STK-008 Pork Chop, STK-005 สเต็ก Ribeye / เนื้อสันแหลม, STK-006 สเต็ก Striploin / เนื้อสันนอก, STK-007 สเต็ก Picanha, CMB-003 สเต็กหมู + ไก่, SET-M Set M, SET-L Set L, SET-XL Set XL, CMB-001 สเต็กหมู + หมู, CMB-002 สเต็กไก่ + ไก่, CMB-004 สเต็กหมู + ปลาทอด, CMB-005 สเต็กหมู + ไส้กรอกรวม, CMB-006 สเต็กไก่ + ปลาทอด, CMB-007 สเต็กไก่ + ไส้กรอกรวม
 
 ## เมนูที่คำนวณได้ครบ
 
-ยังไม่มีรายการที่ยืนยันได้จาก repo นี้ จึงเป็นรายการว่าง ไม่ได้แปลว่าทุกเมนูมีต้นทุนเป็นศูนย์
+| ร้าน | Menu SKU | เมนู | Variant | Cost/serving (บาท) | Recipe version |
+|---|---|---|---|---:|---|
+| Filling Cafe | CAFE-COFFEE-AMER-MID | Americano / AMERICANO-กลาง | delivery | 19.5925 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-AMER-DARK | Americano / AMERICANO-เข้ม | delivery | 22.1275 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-LATTE | Latte | delivery | 26.7950 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-CAPPUCCINO | Cappuccino | delivery | 25.2050 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-ESPRESSO | Espresso เย็น / ESPRESSO | delivery | 24.1800 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-MOCHA | Mocha / Mocha-กลาง | delivery | 29.4012 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-COCONUT | Coconut Black | delivery | 49.5750 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-HONEY-LEMON | Black Honey Lemon | delivery | 19.5925 | 2026-09-17 |
+| Filling Cafe | CAFE-COFFEE-LEMON | Black Lemon | delivery | 19.5925 | 2026-09-17 |
+| Filling Cafe | CAFE-MILK-FRESH | Fresh Milk | delivery | 17.3717 | 2026-09-17 |
+| Filling Cafe | CAFE-MILK-PINK | Pink Milk | delivery | 18.4160 | 2026-09-17 |
+| Filling Cafe | CAFE-MILK-STRAWBERRY-PINK | Strawberry Pink Milk | delivery | 20.9960 | 2026-09-17 |
+| Filling Cafe | CAFE-MILK-CARAMEL | Caramel Milk | delivery | 20.2033 | 2026-09-17 |
+| Filling Cafe | CAFE-MILK-HONEY | Honey Milk | delivery | 19.1531 | 2026-09-17 |
+| Filling Cafe | CAFE-COCOA | Cocoa / โกโก้ | delivery | 21.0798 | 2026-09-17 |
+| Filling Cafe | CAFE-CHOCOLATE | Chocolate Premium | delivery | 53.0325 | 2026-09-17 |
+| Filling Cafe | CAFE-TEA-THAI | Thai Tea / THAI TEA | delivery | 32.0673 | 2026-09-17 |
+| Filling Cafe | CAFE-TEA-GREEN | Green Tea / Green TEA | delivery | 32.0673 | 2026-09-17 |
+| Filling Cafe | CAFE-TEA-THAI-FRAPPE | Thai Tea Frappe | delivery | 25.6184 | 2026-09-17 |
+| Filling Cafe | CAFE-TEA-GREEN-FRAPPE | Green Tea Frappe | delivery | 25.6184 | 2026-09-17 |
+| Filling Cafe | CAFE-SMOOTHIE-STRAWBERRY | Strawberry Smoothie | delivery | 34.0036 | 2026-09-17 |
+| Filling Cafe | CAFE-SMOOTHIE-BLUEBERRY | Blueberry Smoothie | delivery | 35.6536 | 2026-09-17 |
+| Filling Cafe | CAFE-MATCHA-LATTE | Matcha Latte | delivery | 58.8100 | 2026-09-17 |
+| Filling Cafe | CAFE-MATCHA-COCONUT | Matcha Coconut / Coconut Matcha | delivery | 62.7700 | 2026-09-17 |
+| Filling Cafe | CAFE-MATCHA-PURE | Pure Matcha | delivery | 33.1200 | 2026-09-17 |
+| Filling Cafe | CAFE-SODA-PEACH | Peach Soda | delivery | 18.9419 | 2026-09-17 |
+| Filling Cafe | CAFE-SODA-LEMON | Lemon Soda | delivery | 18.9419 | 2026-09-17 |
+| Filling Cafe | CAFE-SODA-HONEY-LEMON | Honey Lemon Soda | delivery | 18.9419 | 2026-09-17 |
+| Filling Cafe | CAFE-TEA-LEMON | Lemon Tea | delivery | 15.0601 | 2026-09-17 |
+| Filling Cafe | CAFE-TEA-HONEY-LEMON | Honey Lemon Tea | delivery | 15.0601 | 2026-09-17 |
+| Filling Cafe | CAFE-TEA-PEACH | Peach Tea | delivery | 15.0601 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-001 | Orange Cake | delivery | 80.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-002 | Coconut Cake | delivery | 80.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-003 | เค้กกล้วยหอม | delivery | 45.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-004 | เค้กกล้วยหอมคาราเมล | delivery | 80.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-005 | ชีสเค้กหน้าไหม้ | delivery | 70.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-006 | เค้กชาไทย | delivery | 50.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-007 | เค้กชาเขียว | delivery | 60.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-008 | Black Forest Cake | delivery | 80.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-CAKE-009 | Red Velvet Cake | delivery | 80.0200 | 2026-09-17 |
+| Filling Cafe | CAFE-BAKERY-001 | แปงชูวิสครัวซองค์ | delivery | 70.0200 | 2026-09-17 |
+| Filling Steak | PST-001 | สปาเก็ตตี้คาโบนาร่า | dine-in | 35.9701 | 2026-09-17 |
+| Filling Steak | PST-002 | สปาเก็ตตี้ครีมกุ้ง | dine-in | 63.9051 | 2026-09-17 |
+| Filling Steak | PST-003 | สปาเก็ตตี้ผัดขี้เมา | dine-in | 28.9116 | 2026-09-17 |
+| Filling Steak | PST-006 | สปาเก็ตตี้ซอสมะเขือเทศหมูสับ | dine-in | 46.0262 | 2026-09-17 |
+| Filling Steak | SND-001 | Club Sandwich / คลับแซนด์วิช | dine-in | 35.6588 | 2026-09-17 |
+| Filling Steak | SNK-001 | ทอดรวม | dine-in | 54.6710 | 2026-09-17 |
+| Filling Steak | SNK-002 | เอ็นไก่ทอด | dine-in | 50.6496 | 2026-09-17 |
+| Filling Steak | SNK-003 | หมูแดดเดียว | dine-in | 25.2453 | 2026-09-17 |
+| Filling Steak | SNK-005 | เฟรนช์ฟรายส์ขายแยก | dine-in | 14.1091 | 2026-09-17 |
+| Filling Steak | SLD-001 | สลัดน้ำมันงาญี่ปุ่น | dine-in | 38.0000 | 2026-09-17 |
+| Filling Steak | SLD-002 | สลัดปูอัดไข่กุ้ง | dine-in | 60.6350 | 2026-09-17 |
+| Filling Steak | SLD-003 | Caesar Salad | dine-in | 51.4622 | 2026-09-17 |
+| Filling Steak | SNK-006 | มันบดขายแยก | dine-in | 5.5181 | 2026-09-17 |
+| Filling Steak | MOD-SAUCE-01 | เพิ่มซอสปลาทอด | dine-in | 6.9761 | 2026-09-17 |
+| Filling Steak | PST-007 | สปาเก็ตตี้พริกแห้งเบคอน | dine-in | 12.6159 | 2026-09-17 |
+| Filling Steak | DRK-002 | โค้ก Original / มีน้ำตาล | dine-in | 13.0800 | 2026-09-17 |
+| Filling Steak | DRK-003 | โค้ก Zero / ไม่มีน้ำตาล | dine-in | 13.9200 | 2026-09-17 |
+| Filling Steak | PST-004 | สปาเก็ตตี้เพสโต้กุ้ง | dine-in | 63.6273 | 2026-09-17 |
+| Filling Steak | PST-005 | สปาเก็ตตี้เพสโต้เนื้อ | dine-in | 57.6273 | 2026-09-17 |
+| Filling Steak | BGR-001 | Everyday Burger เนื้อ | dine-in | 88.5619 | 2026-09-17 |
+| Filling Steak | BGR-002 | Everyday Burger หมู | dine-in | 73.5619 | 2026-09-17 |
+| Filling Steak | BGR-003 | Everyday Burger ไก่ย่าง | dine-in | 70.5619 | 2026-09-17 |
+| Filling Steak | BGR-004 | Everyday Burger ไก่ทอด | dine-in | 66.4619 | 2026-09-17 |
+| Filling Steak | BGR-005 | Big Bike Burger เนื้อ | dine-in | 155.5819 | 2026-09-17 |
+| Filling Steak | BGR-006 | Big Bike Burger หมู | dine-in | 125.5819 | 2026-09-17 |
+| Filling Steak | BGR-007 | Big Bike Burger ไก่ย่าง | dine-in | 119.5819 | 2026-09-17 |
+| Filling Steak | BGR-008 | Big Bike Burger ไก่ทอด | dine-in | 111.3819 | 2026-09-17 |
+| Filling Steak | BGR-009 | Melt More Burger เนื้อ | dine-in | 117.0519 | 2026-09-17 |
+| Filling Steak | BGR-010 | Melt More Burger หมู | dine-in | 102.0519 | 2026-09-17 |
+| Filling Steak | BGR-011 | Melt More Burger ไก่ย่าง | dine-in | 99.0519 | 2026-09-17 |
+| Filling Steak | BGR-012 | Melt More Burger ไก่ทอด | dine-in | 94.9519 | 2026-09-17 |
+| Filling Steak | MOD-ADDON-BURGER-BEEF-CHEESE-GRILLED-CHICKEN | แอดออนเบอร์เกอร์: แพตตี้เนื้อ + ชีส + ไก่ย่าง | dine-in | 70.0000 | 2026-09-17 |
+| Filling Steak | SNK-004 | หมูคำหวาน | dine-in | 30.6946 | 2026-09-17 |
+| Filling Steak | DRK-001 | น้ำเปล่าสิงห์ | dine-in | 3.9200 | 2026-09-17 |
+| Filling Steak | DRK-004 | โซดาสิงห์ | dine-in | 9.0000 | 2026-09-17 |
+| Filling Steak | DRK-005 | น้ำแร่ Charles House | dine-in | 5.0000 | 2026-09-17 |
+| Filling Steak | DRK-006 | น้ำแข็ง 1 ถัง | dine-in | 2.0000 | 2026-09-17 |
+| Filling Steak | DRK-007 | เบียร์สิงห์ขวดใหญ่ | dine-in | 57.5000 | 2026-09-17 |
+| Filling Steak | DRK-008 | เบียร์สิงห์ โปร 3 ขวด | dine-in | 172.5000 | 2026-09-17 |
+| Filling Steak | SRV-001 | ค่าเปิดเหล้า | dine-in | 0.0000 | 2026-09-17 |
+| Filling Steak | SRV-002 | ค่าเปิดไวน์ | dine-in | 0.0000 | 2026-09-17 |
+| Filling Steak | PREP-PEP | ซอสพริกไทยดำ | dine-in | 3.2295 | 2026-09-17 |
 
-## เมนูที่คำนวณไม่ได้
+## เมนูที่คำนวณไม่ได้ / รายการที่ติด
 
-ไม่สามารถสร้างรายชื่อเมนูได้ เพราะไม่พบ Menu Catalog/Menu SKU ของทั้งสองร้าน การสร้างชื่อเมนูจากยอดรวมจะเป็นการ fabricate
+| ร้าน | Menu SKU | เมนู | Ingredient/SKU | Missing field | สาเหตุจริง | Source ที่ควรมีข้อมูล | Status | Owner ต้องแก้ |
+|---|---|---|---|---|---|---|---|---|
+| Filling Cafe | CAFE-COFFEE-CARAMEL | Caramel Macchiato | — | sweetness_selection | No verified sweetness option/default is available for this menu | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Cafe | CAFE-COFFEE-ORANGE | Orange Coffee | — | sweetness_selection | No verified sweetness option/default is available for this menu | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-001 | สเต็กหมู | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-002 | สเต็กไก่ | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-003 | สเต็กปลาทอด | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-004 | สเต็กไส้กรอกรวม | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-008 | Pork Chop | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-005 | สเต็ก Ribeye / เนื้อสันแหลม | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-006 | สเต็ก Striploin / เนื้อสันนอก | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | STK-007 | สเต็ก Picanha | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | CMB-003 | สเต็กหมู + ไก่ | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | SET-M | Set M | — | coke_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | SET-L | Set L | — | coke_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | SET-XL | Set XL | — | coke_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | CMB-001 | สเต็กหมู + หมู | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | CMB-002 | สเต็กไก่ + ไก่ | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | CMB-004 | สเต็กหมู + ปลาทอด | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | CMB-005 | สเต็กหมู + ไส้กรอกรวม | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | CMB-006 | สเต็กไก่ + ปลาทอด | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
+| Filling Steak | CMB-007 | สเต็กไก่ + ไส้กรอกรวม | — | side_selection | Source defines multiple options but no verified selection/default was available | Recipe/BOM Master / verified menu option or default | MAPPING_ERROR | ใช่ |
 
-## Missing ทั้งหมด
+## Audit แหล่งข้อมูล
 
-| Dataset | Store | Menu SKU | Missing field | Reason | Source ที่ควรมีข้อมูล | Status |
-|---|---|---|---|---|---|---|
-| Ingredient Master | — | — | ingredient_sku | ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Ingredient Master | OWNER_REQUIRED |
-| Ingredient Master | — | — | ingredient_name | ไม่พบ source record/file/table ที่ยืนยัน ingredient_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Ingredient Master | OWNER_REQUIRED |
-| Ingredient Master | — | — | base_unit | ไม่พบ source record/file/table ที่ยืนยัน base_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Ingredient Master | OWNER_REQUIRED |
-| Ingredient Master | — | — | unit_cost | ไม่พบ source record/file/table ที่ยืนยัน unit_cost ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Ingredient Master | OWNER_REQUIRED |
-| Ingredient Master | — | — | currency | ไม่พบ source record/file/table ที่ยืนยัน currency ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Ingredient Master | OWNER_REQUIRED |
-| Ingredient Master | — | — | source | ไม่พบ source record/file/table ที่ยืนยัน source ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Ingredient Master | OWNER_REQUIRED |
-| Recipe/BOM Master | — | — | menu_sku | ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Recipe/BOM Master | OWNER_REQUIRED |
-| Recipe/BOM Master | — | — | menu_name | ไม่พบ source record/file/table ที่ยืนยัน menu_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Recipe/BOM Master | OWNER_REQUIRED |
-| Recipe/BOM Master | — | — | business_unit | ไม่พบ source record/file/table ที่ยืนยัน business_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Recipe/BOM Master | OWNER_REQUIRED |
-| Recipe/BOM Master | — | — | ingredient_sku | ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Recipe/BOM Master | OWNER_REQUIRED |
-| Recipe/BOM Master | — | — | quantity | ไม่พบ source record/file/table ที่ยืนยัน quantity ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Recipe/BOM Master | OWNER_REQUIRED |
-| Recipe/BOM Master | — | — | unit | ไม่พบ source record/file/table ที่ยืนยัน unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Recipe/BOM Master | OWNER_REQUIRED |
-| Packaging SKU | — | — | packaging_sku | ไม่พบ source record/file/table ที่ยืนยัน packaging_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Packaging SKU | OWNER_REQUIRED |
-| Packaging SKU | — | — | packaging_name | ไม่พบ source record/file/table ที่ยืนยัน packaging_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Packaging SKU | OWNER_REQUIRED |
-| Packaging SKU | — | — | unit_cost | ไม่พบ source record/file/table ที่ยืนยัน unit_cost ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Packaging SKU | OWNER_REQUIRED |
-| Packaging SKU | — | — | unit | ไม่พบ source record/file/table ที่ยืนยัน unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Packaging SKU | OWNER_REQUIRED |
-| Packaging SKU | — | — | quantity_per_serving | ไม่พบ source record/file/table ที่ยืนยัน quantity_per_serving ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Packaging SKU | OWNER_REQUIRED |
-| Costing | — | — | menu_sku | ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Costing | OWNER_REQUIRED |
-| Costing | — | — | cost_per_serving | ไม่พบ source record/file/table ที่ยืนยัน cost_per_serving ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Costing | OWNER_REQUIRED |
-| Costing | — | — | cost_components | ไม่พบ source record/file/table ที่ยืนยัน cost_components ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Costing | OWNER_REQUIRED |
-| Costing | — | — | calculated_at | ไม่พบ source record/file/table ที่ยืนยัน calculated_at ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Costing | OWNER_REQUIRED |
-| Costing | — | — | source | ไม่พบ source record/file/table ที่ยืนยัน source ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Costing | OWNER_REQUIRED |
-| Stock Mapping | — | — | menu_sku | ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Stock Mapping | OWNER_REQUIRED |
-| Stock Mapping | — | — | ingredient_sku | ไม่พบ source record/file/table ที่ยืนยัน ingredient_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Stock Mapping | OWNER_REQUIRED |
-| Stock Mapping | — | — | source_unit | ไม่พบ source record/file/table ที่ยืนยัน source_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Stock Mapping | OWNER_REQUIRED |
-| Stock Mapping | — | — | target_unit | ไม่พบ source record/file/table ที่ยืนยัน target_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Stock Mapping | OWNER_REQUIRED |
-| Stock Mapping | — | — | conversion_factor | ไม่พบ source record/file/table ที่ยืนยัน conversion_factor ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Stock Mapping | OWNER_REQUIRED |
-| Menu Catalog | — | — | menu_sku | ไม่พบ source record/file/table ที่ยืนยัน menu_sku ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Menu Catalog | OWNER_REQUIRED |
-| Menu Catalog | — | — | menu_name | ไม่พบ source record/file/table ที่ยืนยัน menu_name ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Menu Catalog | OWNER_REQUIRED |
-| Menu Catalog | — | — | business_unit | ไม่พบ source record/file/table ที่ยืนยัน business_unit ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Menu Catalog | OWNER_REQUIRED |
-| Menu Catalog | — | — | active | ไม่พบ source record/file/table ที่ยืนยัน active ใน repo นี้; จึงไม่สามารถคำนวณต้นทุนต่อ serving ได้ | private repo source for Menu Catalog | OWNER_REQUIRED |
+| Dataset | Status | Canonical source | Reason |
+|---|---|---|---|
+| Ingredient Master | CANONICAL | Expense Control seed-data.js + unit-cost-conversions.js | — |
+| Recipe/BOM Master — Filling Cafe | CANONICAL | Expense Control cafe-recipes.js | — |
+| Recipe/BOM Master — Filling Steak | CANONICAL | Expense Control steak-catalog.js + steak-bom-updates.js | — |
+| Packaging SKU | CANONICAL | Expense Control inventoryItems + recipe packaging components | — |
+| Unit Conversion | CANONICAL | Expense Control unit-cost-conversions.js + stock-cost-utils.js | — |
+| SKU Mapping | CANONICAL_WITH_REVIEW_GUARD | Expense Control gpos-menu-mapping.js | Heuristic mapping is not accepted for financial truth |
+| Stock Deduction | CANONICAL_WITH_SAFETY_GUARD | Expense Control gpos-stock-deduction.js | Movement is allowed only for complete costing |
+| Obsidian recipe cards | STALE | Obsidian business notes | Older revision than the 2026-09-17 Expense Control source |
+| Maple costing master before import | MISSING | Private repo | No central costing domain existed before this import |
 
-## Pipeline / mapping findings
+## Pipeline ที่แก้แล้ว
 
-| Finding | Severity | Status | Reason | Evidence | Remediation |
-|---|---|---|---|---|---|
-| PIPELINE_NO_COSTING_DOMAIN | HIGH | PIPELINE_GAP | ไม่มี canonical kind/table/schema สำหรับ Ingredient Master, Recipe/BOM, Packaging หรือ Costing | packages/core/src/pipeline.mjs<br>packages/core/src/canonical.mjs<br>db/sqlite/schema.sql | เพิ่ม source adapter, canonical records, validation และ storage สำหรับ costing ก่อนนำตัวเลขมาใช้ |
-| PIPELINE_RECIPE_AS_INVENTORY | HIGH | PIPELINE_GAP | Obsidian ที่อยู่ในโฟลเดอร์ recipes ถูก route เป็น inventory และ normalize เป็น stock event; สูตรจึงไม่กลายเป็น BOM/cost component | packages/core/src/pipeline.mjs<br>packages/core/src/canonical.mjs<br>packages/core/src/adapters.mjs | แยก recipe/BOM normalizer และตรวจ quantity/unit/ingredient SKU แทนการตีความเป็น inventory |
-| PIPELINE_REPORTS_ARE_AGGREGATES | HIGH | SOURCE_GRAIN_GAP | sales.json มีเพียงยอดรวมตามร้าน/ช่องทาง และ inventory.json มีเพียง movement item code; ไม่มี menu SKU กับส่วนประกอบสูตร | reports/maple/sales.json<br>reports/maple/inventory.json | ดึงและเก็บ menu-level source ก่อนทำ costing; ไม่แตกยอดรวมเป็นเมนูโดยการเดา |
-| PIPELINE_NO_COSTING_PUBLIC_ARTIFACT | MEDIUM | FIXED_IN_THIS_CHANGE | publisher ไม่ได้ allowlist รายงาน audit costing | scripts/publish-maple-data-hub.mjs | เพิ่ม costing_missing_data.json/md ใน public allowlist หลังผ่าน security validation |
-
-## สิ่งที่แก้จาก pipeline
-
-- เพิ่ม audit script ที่แยก source missing, pipeline gap และ Owner action โดยรักษา missing เป็น `null/missing`
-- เพิ่มรายงานนี้เข้า publisher allowlist เพื่อให้เผยแพร่ได้หลังผ่าน security validation
-- ยังไม่เติม costing record ใด ๆ และยังไม่สร้าง movement เพราะไม่มีสูตร/ต้นทุนต้นทางให้ตรวจสอบ
+- **PIPELINE_NO_COSTING_DOMAIN** (FIXED_IN_THIS_CHANGE): Maple previously had sales/inventory aggregates but no canonical Ingredient, Recipe/BOM, Packaging, Unit Cost, or Costing domain. — Read the canonical costing master and use costing.mjs for menu costing and stock deduction.
+- **PIPELINE_AUDIT_FALSE_MISSING** (FIXED_IN_THIS_CHANGE): The previous audit only searched Maple paths and reported all costing sources as missing even though configured Expense Control source records existed. — Audit the imported canonical master menu-by-menu and retain source provenance.
+- **PIPELINE_BATCH_FIELD_MISMATCH** (FIXED_IN_THIS_CHANGE): Batch source uses yieldQty while normalized master uses yield_quantity; nested batch costing previously stopped at a false mapping error. — Normalize both source field names and calculate nested batch cost only when yield unit matches.
+- **PIPELINE_HEURISTIC_SKU_FALLBACK** (GUARDED): Legacy GPOS menu mapping has a heuristic fallback; it is not allowed to create financial truth or stock movement without verified mapping. — Keep heuristic matches as review-only and require canonical SKU mapping for posting.
+- **LEGACY_ESTIMATED_COGS_OUTSIDE_MAPLE** (NOT_USED_BY_MAPLE): The audited legacy Expense Control UI contains operational benchmark COGS fallback paths; this target-only change does not mutate that source repository. — Maple financial reports must use only canonical costing status and null when incomplete.
 
 ## Owner ต้องแก้จริงเท่านั้น
 
-| OWNER_INGREDIENT_MASTER | จัดให้มี Ingredient Master ใน source ที่ repo นี้อ่านได้ | ingredient_sku<br>ingredient_name<br>base_unit<br>unit_cost<br>currency<br>source |
-| OWNER_RECIPE_BOM_MASTER | จัดให้มี Recipe/BOM Master พร้อมรายการเมนูของทั้งสองร้าน | menu_sku<br>menu_name<br>business_unit<br>ingredient_sku<br>quantity<br>unit |
-| OWNER_PACKAGING_SKU | จัดให้มี Packaging SKU และจำนวนใช้ต่อ serving | packaging_sku<br>packaging_name<br>unit_cost<br>unit<br>quantity_per_serving |
-| OWNER_STOCK_MAPPING | ยืนยัน Stock Mapping และ unit conversion เฉพาะรายการที่ไม่มีใน source | menu_sku<br>ingredient_sku<br>source_unit<br>target_unit<br>conversion_factor |
+| ID | Missing field | Ingredient/SKU | เหตุผล | เมนูที่ได้รับผลกระทบ |
+|---|---|---|---|---|
+| OWNER_1 | sweetness_selection | — | No verified sweetness option/default is available for this menu | Filling Cafe: CAFE-COFFEE-CARAMEL<br>Filling Cafe: CAFE-COFFEE-ORANGE |
+| OWNER_2 | side_selection | — | Source defines multiple options but no verified selection/default was available | Filling Steak: STK-001<br>Filling Steak: STK-002<br>Filling Steak: STK-003<br>Filling Steak: STK-004<br>Filling Steak: STK-008<br>Filling Steak: STK-005<br>Filling Steak: STK-006<br>Filling Steak: STK-007<br>Filling Steak: CMB-003<br>Filling Steak: CMB-001<br>Filling Steak: CMB-002<br>Filling Steak: CMB-004<br>Filling Steak: CMB-005<br>Filling Steak: CMB-006<br>Filling Steak: CMB-007 |
+| OWNER_3 | coke_selection | — | Source defines multiple options but no verified selection/default was available | Filling Steak: SET-M<br>Filling Steak: SET-L<br>Filling Steak: SET-XL |
 
-รายการนี้ไม่รวมงานที่ระบบควรแก้เอง เช่น การเพิ่ม canonical costing domain, recipe normalizer, unit conversion validation และการดึง menu-level source
+รายการนี้ไม่รวมปัญหาที่ pipeline แก้เองได้ และไม่รวมข้อมูลที่ถูกพบแล้วใน canonical master
 
-## ข้อจำกัด
+## Validation
 
-- repo นี้ไม่มี Ingredient Master, Recipe/BOM Master, Packaging SKU หรือ menu-level costing records
-- รายงาน sales/inventory ที่มีอยู่เป็น aggregate/movement evidence ไม่ใช่ costing source
-- จึงยังระบุจำนวนเมนูทั้งหมดและจำนวนเมนูที่ costing ครบ/ขาดเป็น null ได้เท่านั้น
-
-## Traceable source facts
-
-- `reports/maple/sales.json`: source=GPOS, business_date=2026-09-09, มีเพียง business-unit/channel aggregate
-- `reports/maple/inventory.json`: source=Stock System + GPOS BOM + Expense Control, business_date=2026-09-09, item codes=FC-CAKE-001, FC-CAKE-005, FC-CAKE-003, FC-CAKE-008, ไม่มี unit cost และ recipe quantities
+- duplicate menu SKU: **0**
+- missing recipe identity: **0**
+- missing recipe source: **0**
+- raw/source overwritten: **ไม่ใช่**
