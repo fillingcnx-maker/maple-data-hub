@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "report_type": "bom_policy_update",
+  "generated_at": "2026-09-17T02:48:06.280Z",
+  "effective_from": "2026-09-17",
+  "source": "Filling Cafe Expense Control BOM master",
+  "source_revision": null,
+  "source_revision_note": "แหล่งสูตรต้นทางเป็นระบบ expense-tracker ที่ยังไม่มี git revision",
+  "source_files": [
+    "expense-tracker/cafe-recipes.js",
+    "expense-tracker/steak-catalog.js",
+    "expense-tracker/steak-bom-updates.js",
+    "expense-tracker/bom-costing.js",
+    "expense-tracker/gpos-stock-deduction.js"
+  ],
+  "period": {
+    "from": "2026-09-17",
+    "to": "2026-09-17",
+    "label": "BOM policy effective snapshot"
+  },
+  "platform": "internal BOM/Costing",
+  "status": "VERIFIED",
+  "stores": {
+    "Filling Cafe": {
+      "default_rules": [
+        {
+          "scope": "COFFEE",
+          "default_sweetness": "ไม่หวาน",
+          "basis": "เลือกตัวเลือกไม่หวานที่มีอยู่ในสูตร ไม่คิดไซรัปเพิ่ม"
+        },
+        {
+          "scope": "เมนูอื่นที่มี sweetness",
+          "default_sweetness": "ปกติ",
+          "basis": "ใช้ตัวเลือกปกติของสูตรเมื่อไม่มีรายละเอียดระดับความหวาน"
+        }
+      ],
+      "default_sweetness_menu_skus": {
+        "ไม่หวาน": [
+          "CAFE-COFFEE-AMER-MID",
+          "CAFE-COFFEE-AMER-DARK",
+          "CAFE-COFFEE-LATTE",
+          "CAFE-COFFEE-CAPPUCCINO",
+          "CAFE-COFFEE-ESPRESSO",
+          "CAFE-COFFEE-MOCHA",
+          "CAFE-COFFEE-HONEY-LEMON",
+          "CAFE-COFFEE-LEMON"
+        ],
+        "ปกติ": [
+          "CAFE-MILK-FRESH",
+          "CAFE-MILK-PINK",
+          "CAFE-MILK-STRAWBERRY-PINK",
+          "CAFE-MILK-CARAMEL",
+          "CAFE-MILK-HONEY",
+          "CAFE-COCOA",
+          "CAFE-CHOCOLATE",
+          "CAFE-TEA-THAI",
+          "CAFE-TEA-GREEN",
+          "CAFE-MATCHA-LATTE",
+          "CAFE-MATCHA-PURE",
+          "CAFE-TEA-LEMON",
+          "CAFE-TEA-HONEY-LEMON",
+          "CAFE-TEA-PEACH"
+        ]
+      },
+      "recipe_updates": [
+        {
+          "menu_sku": "CAFE-MATCHA-PURE",
+          "menu_name": "Pure Matcha",
+          "components": [
+            {
+              "sku": "FC-ING-027",
+              "name": "Matcha",
+              "quantity": 3,
+              "unit": "g"
+            },
+            {
+              "sku": "FC-ING-001",
+              "name": "น้ำเปล่าสำหรับตี Matcha",
+              "quantity": 120,
+              "unit": "ml"
+            },
+            {
+              "sku": "FC-ING-002",
+              "name": "น้ำแข็งก้อนใหญ่",
+              "quantity": 180,
+              "unit": "g"
+            }
+          ],
+          "change": "ใช้น้ำ 120 ml ตีกับ Matcha และไม่เติมน้ำเย็น 120 ml แยกอีกครั้ง"
+        },
+        {
+          "menu_skus": [
+            "CAFE-TEA-LEMON",
+            "CAFE-TEA-HONEY-LEMON",
+            "CAFE-TEA-PEACH"
+          ],
+          "menu_names": [
+            "Lemon Tea",
+            "Honey Lemon Tea",
+            "Peach Tea"
+          ],
+          "fixed_flavor_syrup": {
+            "CAFE-TEA-LEMON": {
+              "sku": "FC-ING-013",
+              "quantity": 40,
+              "unit": "ml"
+            },
+            "CAFE-TEA-HONEY-LEMON": {
+              "sku": "FC-ING-012",
+              "quantity": 40,
+              "unit": "ml"
+            },
+            "CAFE-TEA-PEACH": {
+              "sku": "FC-ING-014",
+              "quantity": 40,
+              "unit": "ml"
+            }
+          },
+          "sweetness_syrup": {
+            "sku": "FC-ING-008",
+            "unit": "ml",
+            "levels": {
+              "25%": 10,
+              "50%": 15,
+              "ปกติ": 20
+            }
+          },
+          "change": "ไซรัปกลิ่นประจำเมนูคงที่ 40 ml; ระดับความหวานเปลี่ยนเป็นน้ำเชื่อมตาม 10/15/20 ml"
+        }
+      ]
+    },
+    "ร้านสเต็ก": {
+      "default_rules": [
+        {
+          "scope": "เมนูที่มีตัวเลือกซอส",
+          "default_sauce": {
+            "sku": "PREP-GRV",
+            "name": "ซอสเกรวี่",
+            "quantity": 37,
+            "unit": "g"
+          },
+          "override": {
+            "sku": "PREP-PEP",
+            "name": "ซอสพริกไทยดำ",
+            "when": "รายละเอียดรายการระบุพริกไทยดำ"
+          }
+        },
+        {
+          "scope": "Set M/L/XL",
+          "coke_quantity": {
+            "SET-M": 2,
+            "SET-L": 3,
+            "SET-XL": 4
+          },
+          "coke_type_rule": "ต้องใช้ Original หรือ Zero ตามรายละเอียดรายการจริง; ถ้าไม่ระบุให้ต้องตรวจ"
+        }
+      ],
+      "sauce_default_menu_skus": [
+        "STK-001",
+        "STK-002",
+        "STK-004",
+        "STK-008",
+        "STK-005",
+        "STK-006",
+        "STK-007",
+        "CMB-001",
+        "CMB-002",
+        "CMB-003",
+        "CMB-004",
+        "CMB-005",
+        "CMB-006",
+        "CMB-007"
+      ],
+      "recipe_updates": [
+        {
+          "menu_sku": "STK-003",
+          "menu_name": "สเต็กปลาทอด",
+          "components": [
+            {
+              "sku": "PREP-SLD",
+              "name": "ซอสสลัดร้าน",
+              "quantity": 50,
+              "unit": "g",
+              "stock_deduction": "50 g"
+            }
+          ],
+          "change": "ได้ซอสสลัดอย่างเดียว 50 g และไม่มีตัวเลือกซอส"
+        },
+        {
+          "menu_sku": "MOD-SAUCE-01",
+          "menu_name": "เพิ่มซอสปลาทอด",
+          "components": [
+            {
+              "sku": "PREP-SLD",
+              "name": "ซอสสลัดร้าน",
+              "quantity": 50,
+              "unit": "g",
+              "stock_deduction": "50 g"
+            },
+            {
+              "sku": "RAW-PKG-038",
+              "name": "ถุงซิปล็อก 8 x 12 ซม.",
+              "quantity": 1,
+              "unit": "ใบ",
+              "role": "packaging",
+              "unit_cost": 0.18,
+              "unit_cost_unit": "บาท/ใบ"
+            }
+          ],
+          "change": "แอดออนซอสปลาทอดใช้ถุงซิป 8 x 12 ซม. 1 ใบสำหรับ Delivery"
+        }
+      ],
+      "new_stock_sku": {
+        "sku": "RAW-PKG-038",
+        "name": "ถุงซิปล็อก 8 x 12 ซม.",
+        "stock_unit": "ใบ",
+        "purchase_unit": "แพ็ก",
+        "quantity_per_pack": 100,
+        "purchase_cost": 18,
+        "purchase_cost_unit": "บาท/แพ็ก",
+        "unit_cost": 0.18,
+        "unit_cost_unit": "บาท/ใบ",
+        "source": "ผู้ใช้ยืนยันในระบบ BOM",
+        "effective_date": "2026-09-17"
+      }
+    }
+  },
+  "validation": {
+    "formula_checks": [
+      "สเต็กปลาทอดใช้ PREP-SLD 50 g",
+      "แอดออนซอสปลาทอดใช้ PREP-SLD 50 g และ RAW-PKG-038 1 ใบ",
+      "Pure Matcha มีน้ำ FC-ING-001 เพียง 120 ml",
+      "ชาสกัดสดใช้ไซรัปประจำเมนู 40 ml และ FC-ING-008 ตามระดับความหวาน",
+      "ค่าเริ่มต้นซอสสเต็กเป็น PREP-GRV และ override เป็น PREP-PEP ได้",
+      "Set M/L/XL มี Coke 2/3/4 กระป๋อง"
+    ],
+    "automated_tests": {
+      "command": "npm test",
+      "passed": 220,
+      "failed": 0
+    }
+  },
+  "data_boundary": "รายงานนี้เป็น BOM policy snapshot เท่านั้น ไม่ใช่รายรับ ไม่ใช่ payout และไม่แก้ไข movement เดิม",
+  "notes": [
+    "ไม่ตั้งค่า Coke เป็น Original หรือ Zero อัตโนมัติเมื่อรายละเอียดรายการไม่ระบุ",
+    "ตัวเลือกเครื่องเคียงยังใช้ข้อมูลจริงจากรายการขาย ไม่เดาแทน",
+    "ตัวเลขต้นทุนที่เป็น 0 ในกาแฟหมายถึงไม่มีการใช้ไซรัปเมื่อเลือกไม่หวาน ไม่ใช่ข้อมูลต้นทุนหาย"
+  ]
+}
