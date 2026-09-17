@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "report_type": "costing_missing_data_audit",
-  "generated_at": "2026-09-17T08:17:14.060Z",
+  "generated_at": "2026-09-17T08:28:59.846Z",
   "repository": "https://github.com/fillingcnx-maker/maple-executive-os",
   "branch": "main",
-  "source_revision": "6a29076066a3ba7d6b2bea31935c42c52637baef",
+  "source_revision": "c5d7b2d7ad3ec9cf430cc6912f703afcc327428e",
   "scope": {
     "stores": [
       "Filling Cafe",
@@ -21,11 +21,11 @@
     "fallback_rule": "No direct/default/promo cost fallback is accepted by Maple costing.mjs"
   },
   "counts": {
-    "total_menus": 103,
+    "total_menus": 111,
     "costing_complete": 83,
-    "costing_missing": 20,
-    "owner_action_count": 3,
-    "source_missing_unit_cost_rows": 0
+    "costing_missing": 28,
+    "owner_action_count": 12,
+    "source_missing_unit_cost_rows": 9
   },
   "dataset_audit": [
     {
@@ -81,15 +81,21 @@
       "status": "MISSING",
       "source": "Private repo",
       "reason": "No central costing domain existed before this import"
+    },
+    {
+      "dataset": "Owner-requested menu updates",
+      "status": "CANONICAL_OVERLAY",
+      "source": "Owner instruction 2026-09-17",
+      "reason": "Explicit menu/SKU/formula update; missing prices remain null"
     }
   ],
   "stores": [
     {
       "store": "Filling Cafe",
       "business_unit": "filling_cafe",
-      "total_menus": 43,
+      "total_menus": 51,
       "costing_complete": 41,
-      "costing_incomplete": 2,
+      "costing_incomplete": 10,
       "calculable_menus": [
         {
           "store": "Filling Cafe",
@@ -687,6 +693,387 @@
             }
           ],
           "source": "Expense Control cafe-recipes.js"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SMOOTHIE-APPLE",
+          "menu": "Apple Smoothie",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SMOOTHIE-APPLE",
+              "menu": "Apple Smoothie",
+              "ingredient_sku": "FC-ING-019-A",
+              "ingredient": "Apple Fruit Base",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SMOOTHIE-APPLE",
+              "menu": "Apple Smoothie",
+              "ingredient_sku": "FC-ING-016",
+              "ingredient": "Apple Syrup",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-010",
+          "menu": "เค้กหมี",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-CAKE-010",
+              "menu": "เค้กหมี",
+              "ingredient_sku": "FC-CAKE-010",
+              "ingredient": "เค้กหมี",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-BAKERY-002",
+          "menu": "Muffin chocolate",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-BAKERY-002",
+              "menu": "Muffin chocolate",
+              "ingredient_sku": "FC-BAKERY-002",
+              "ingredient": "Muffin chocolate",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-STRAWBERRY",
+          "menu": "Strawberry Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-STRAWBERRY",
+              "menu": "Strawberry Soda",
+              "ingredient_sku": "FC-ING-037",
+              "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-BLUEBERRY",
+          "menu": "Blueberry Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-BLUEBERRY",
+              "menu": "Blueberry Soda",
+              "ingredient_sku": "FC-ING-037",
+              "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-LYCHEE",
+          "menu": "Lychee Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-LYCHEE",
+              "menu": "Lychee Soda",
+              "ingredient_sku": "FC-ING-019-L",
+              "ingredient": "Fruit Base Lychee",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-LYCHEE",
+              "menu": "Lychee Soda",
+              "ingredient_sku": "FC-ING-068",
+              "ingredient": "Syrup Lychee",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-LYCHEE",
+              "menu": "Lychee Soda",
+              "ingredient_sku": "FC-ING-037",
+              "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-MANGO",
+          "menu": "Mango Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-MANGO",
+              "menu": "Mango Soda",
+              "ingredient_sku": "FC-ING-019-M",
+              "ingredient": "Fruit Base Mango",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-MANGO",
+              "menu": "Mango Soda",
+              "ingredient_sku": "FC-ING-018",
+              "ingredient": "Syrup Mango",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-MANGO",
+              "menu": "Mango Soda",
+              "ingredient_sku": "FC-ING-037",
+              "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-APPLE",
+          "menu": "Apple Soda",
+          "recipe_version": "2026-09-17",
+          "variant": "delivery",
+          "status": "COSTING_INCOMPLETE",
+          "missing": [
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-APPLE",
+              "menu": "Apple Soda",
+              "ingredient_sku": "FC-ING-019-A",
+              "ingredient": "Fruit Base Apple",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-APPLE",
+              "menu": "Apple Soda",
+              "ingredient_sku": "FC-ING-016",
+              "ingredient": "Syrup Apple",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            },
+            {
+              "store": "Filling Cafe",
+              "business_unit": "filling_cafe",
+              "menu_sku": "CAFE-SODA-APPLE",
+              "menu": "Apple Soda",
+              "ingredient_sku": "FC-ING-037",
+              "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+              "dataset": "Ingredient Master / Costing",
+              "missing_field": "unit_cost",
+              "source_should_have_data": "Ingredient Master / canonical unit_costs",
+              "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+              "status": "SOURCE_MISSING",
+              "owner_action_required": true,
+              "evidence": {
+                "recipe_source": "Owner instruction 2026-09-17",
+                "recipe_version": "2026-09-17",
+                "costing_status": "COSTING_INCOMPLETE"
+              }
+            }
+          ],
+          "source": "Owner instruction 2026-09-17"
         }
       ],
       "audit_status": "AUDITED_FROM_CANONICAL_MASTER"
@@ -2953,6 +3340,56 @@
       "source": "Expense Control cafe-recipes.js"
     },
     {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SMOOTHIE-APPLE",
+      "menu": "Apple Smoothie",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SMOOTHIE-APPLE",
+          "menu": "Apple Smoothie",
+          "ingredient_sku": "FC-ING-019-A",
+          "ingredient": "Apple Fruit Base",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SMOOTHIE-APPLE",
+          "menu": "Apple Smoothie",
+          "ingredient_sku": "FC-ING-016",
+          "ingredient": "Apple Syrup",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
       "store": "Filling Steak",
       "business_unit": "filling_steak",
       "menu_sku": "STK-001",
@@ -3509,6 +3946,337 @@
         }
       ],
       "source": "Expense Control steak-catalog.js + steak-bom-updates.js"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-010",
+      "menu": "เค้กหมี",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-CAKE-010",
+          "menu": "เค้กหมี",
+          "ingredient_sku": "FC-CAKE-010",
+          "ingredient": "เค้กหมี",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-BAKERY-002",
+      "menu": "Muffin chocolate",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-BAKERY-002",
+          "menu": "Muffin chocolate",
+          "ingredient_sku": "FC-BAKERY-002",
+          "ingredient": "Muffin chocolate",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-STRAWBERRY",
+      "menu": "Strawberry Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-STRAWBERRY",
+          "menu": "Strawberry Soda",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-BLUEBERRY",
+      "menu": "Blueberry Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-BLUEBERRY",
+          "menu": "Blueberry Soda",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-LYCHEE",
+      "menu": "Lychee Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-LYCHEE",
+          "menu": "Lychee Soda",
+          "ingredient_sku": "FC-ING-019-L",
+          "ingredient": "Fruit Base Lychee",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-LYCHEE",
+          "menu": "Lychee Soda",
+          "ingredient_sku": "FC-ING-068",
+          "ingredient": "Syrup Lychee",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-LYCHEE",
+          "menu": "Lychee Soda",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-MANGO",
+      "menu": "Mango Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-MANGO",
+          "menu": "Mango Soda",
+          "ingredient_sku": "FC-ING-019-M",
+          "ingredient": "Fruit Base Mango",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-MANGO",
+          "menu": "Mango Soda",
+          "ingredient_sku": "FC-ING-018",
+          "ingredient": "Syrup Mango",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-MANGO",
+          "menu": "Mango Soda",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-APPLE",
+      "menu": "Apple Soda",
+      "recipe_version": "2026-09-17",
+      "variant": "delivery",
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-APPLE",
+          "menu": "Apple Soda",
+          "ingredient_sku": "FC-ING-019-A",
+          "ingredient": "Fruit Base Apple",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-APPLE",
+          "menu": "Apple Soda",
+          "ingredient_sku": "FC-ING-016",
+          "ingredient": "Syrup Apple",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        },
+        {
+          "store": "Filling Cafe",
+          "business_unit": "filling_cafe",
+          "menu_sku": "CAFE-SODA-APPLE",
+          "menu": "Apple Soda",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "dataset": "Ingredient Master / Costing",
+          "missing_field": "unit_cost",
+          "source_should_have_data": "Ingredient Master / canonical unit_costs",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING",
+          "owner_action_required": true,
+          "evidence": {
+            "recipe_source": "Owner instruction 2026-09-17",
+            "recipe_version": "2026-09-17",
+            "costing_status": "COSTING_INCOMPLETE"
+          }
+        }
+      ],
+      "source": "Owner instruction 2026-09-17"
     }
   ],
   "missing": [
@@ -3546,6 +4314,44 @@
       "owner_action_required": true,
       "evidence": {
         "recipe_source": "Expense Control cafe-recipes.js",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SMOOTHIE-APPLE",
+      "menu": "Apple Smoothie",
+      "ingredient_sku": "FC-ING-019-A",
+      "ingredient": "Apple Fruit Base",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SMOOTHIE-APPLE",
+      "menu": "Apple Smoothie",
+      "ingredient_sku": "FC-ING-016",
+      "ingredient": "Apple Syrup",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
         "recipe_version": "2026-09-17",
         "costing_status": "COSTING_INCOMPLETE"
       }
@@ -3891,9 +4697,320 @@
         "recipe_version": "2026-09-17",
         "costing_status": "COSTING_INCOMPLETE"
       }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-CAKE-010",
+      "menu": "เค้กหมี",
+      "ingredient_sku": "FC-CAKE-010",
+      "ingredient": "เค้กหมี",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-BAKERY-002",
+      "menu": "Muffin chocolate",
+      "ingredient_sku": "FC-BAKERY-002",
+      "ingredient": "Muffin chocolate",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-STRAWBERRY",
+      "menu": "Strawberry Soda",
+      "ingredient_sku": "FC-ING-037",
+      "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-BLUEBERRY",
+      "menu": "Blueberry Soda",
+      "ingredient_sku": "FC-ING-037",
+      "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-LYCHEE",
+      "menu": "Lychee Soda",
+      "ingredient_sku": "FC-ING-019-L",
+      "ingredient": "Fruit Base Lychee",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-LYCHEE",
+      "menu": "Lychee Soda",
+      "ingredient_sku": "FC-ING-068",
+      "ingredient": "Syrup Lychee",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-LYCHEE",
+      "menu": "Lychee Soda",
+      "ingredient_sku": "FC-ING-037",
+      "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-MANGO",
+      "menu": "Mango Soda",
+      "ingredient_sku": "FC-ING-019-M",
+      "ingredient": "Fruit Base Mango",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-MANGO",
+      "menu": "Mango Soda",
+      "ingredient_sku": "FC-ING-018",
+      "ingredient": "Syrup Mango",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-MANGO",
+      "menu": "Mango Soda",
+      "ingredient_sku": "FC-ING-037",
+      "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-APPLE",
+      "menu": "Apple Soda",
+      "ingredient_sku": "FC-ING-019-A",
+      "ingredient": "Fruit Base Apple",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-APPLE",
+      "menu": "Apple Soda",
+      "ingredient_sku": "FC-ING-016",
+      "ingredient": "Syrup Apple",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
+    },
+    {
+      "store": "Filling Cafe",
+      "business_unit": "filling_cafe",
+      "menu_sku": "CAFE-SODA-APPLE",
+      "menu": "Apple Soda",
+      "ingredient_sku": "FC-ING-037",
+      "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+      "dataset": "Ingredient Master / Costing",
+      "missing_field": "unit_cost",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "status": "SOURCE_MISSING",
+      "owner_action_required": true,
+      "evidence": {
+        "recipe_source": "Owner instruction 2026-09-17",
+        "recipe_version": "2026-09-17",
+        "costing_status": "COSTING_INCOMPLETE"
+      }
     }
   ],
-  "source_missing_unit_costs": [],
+  "source_missing_unit_costs": [
+    {
+      "sku": "FC-CAKE-010",
+      "unit": "ชิ้น",
+      "ingredient": "เค้กหมี",
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "sku": "FC-BAKERY-002",
+      "unit": "ชิ้น",
+      "ingredient": "Muffin chocolate",
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "sku": "FC-ING-019-A",
+      "unit": "ml",
+      "ingredient": "Fruit Base Apple",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "source": "Ingredient Master / seed-data"
+    },
+    {
+      "sku": "FC-ING-016",
+      "unit": "ml",
+      "ingredient": "Apple Syrup",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "source": "Ingredient Master / seed-data"
+    },
+    {
+      "sku": "FC-ING-037",
+      "unit": "ml",
+      "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "source": "Ingredient Master / seed-data"
+    },
+    {
+      "sku": "FC-ING-019-L",
+      "unit": "ml",
+      "ingredient": "Fruit Base Lychee",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "source": "Ingredient Master / seed-data"
+    },
+    {
+      "sku": "FC-ING-068",
+      "unit": "ml",
+      "ingredient": "ลองบีช ไซรัป กลิ่นลิ้นจี่",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "source": "Ingredient Master / seed-data"
+    },
+    {
+      "sku": "FC-ING-019-M",
+      "unit": "ml",
+      "ingredient": "Fruit Base Mango",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "source": "Ingredient Master / seed-data"
+    },
+    {
+      "sku": "FC-ING-018",
+      "unit": "ml",
+      "ingredient": "Mango Syrup",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "source": "Ingredient Master / seed-data"
+    }
+  ],
   "pipeline_findings": [
     {
       "id": "PIPELINE_NO_COSTING_DOMAIN",
@@ -3999,6 +5116,46 @@
     },
     {
       "id": "OWNER_2",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-ING-019-A",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-SMOOTHIE-APPLE",
+          "menu": "Apple Smoothie",
+          "store": "Filling Cafe"
+        },
+        {
+          "menu_sku": "CAFE-SODA-APPLE",
+          "menu": "Apple Soda",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_3",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-ING-016",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-SMOOTHIE-APPLE",
+          "menu": "Apple Smoothie",
+          "store": "Filling Cafe"
+        },
+        {
+          "menu_sku": "CAFE-SODA-APPLE",
+          "menu": "Apple Soda",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_4",
       "missing_field": "side_selection",
       "ingredient_sku": null,
       "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
@@ -4083,7 +5240,7 @@
       "owner_action_required": true
     },
     {
-      "id": "OWNER_3",
+      "id": "OWNER_5",
       "missing_field": "coke_selection",
       "ingredient_sku": null,
       "source_should_have_data": "Recipe/BOM Master / verified menu option or default",
@@ -4103,6 +5260,131 @@
           "menu_sku": "SET-XL",
           "menu": "Set XL",
           "store": "Filling Steak"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_6",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-CAKE-010",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-CAKE-010",
+          "menu": "เค้กหมี",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_7",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-BAKERY-002",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-BAKERY-002",
+          "menu": "Muffin chocolate",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_8",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-ING-037",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-SODA-STRAWBERRY",
+          "menu": "Strawberry Soda",
+          "store": "Filling Cafe"
+        },
+        {
+          "menu_sku": "CAFE-SODA-BLUEBERRY",
+          "menu": "Blueberry Soda",
+          "store": "Filling Cafe"
+        },
+        {
+          "menu_sku": "CAFE-SODA-LYCHEE",
+          "menu": "Lychee Soda",
+          "store": "Filling Cafe"
+        },
+        {
+          "menu_sku": "CAFE-SODA-MANGO",
+          "menu": "Mango Soda",
+          "store": "Filling Cafe"
+        },
+        {
+          "menu_sku": "CAFE-SODA-APPLE",
+          "menu": "Apple Soda",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_9",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-ING-019-L",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-SODA-LYCHEE",
+          "menu": "Lychee Soda",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_10",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-ING-068",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-SODA-LYCHEE",
+          "menu": "Lychee Soda",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_11",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-ING-019-M",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-SODA-MANGO",
+          "menu": "Mango Soda",
+          "store": "Filling Cafe"
+        }
+      ],
+      "owner_action_required": true
+    },
+    {
+      "id": "OWNER_12",
+      "missing_field": "unit_cost",
+      "ingredient_sku": "FC-ING-018",
+      "source_should_have_data": "Ingredient Master / canonical unit_costs",
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+      "affected_menus": [
+        {
+          "menu_sku": "CAFE-SODA-MANGO",
+          "menu": "Mango Soda",
+          "store": "Filling Cafe"
         }
       ],
       "owner_action_required": true

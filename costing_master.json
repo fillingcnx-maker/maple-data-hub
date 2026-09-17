@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "report_type": "costing_master",
-  "generated_at": "2026-09-17T08:17:13.910Z",
+  "generated_at": "2026-09-17T08:28:59.683Z",
   "effective_from": "2026-09-17",
   "recipe_version": "2026-09-17",
   "source_revision": null,
@@ -12,7 +12,7 @@
       "status": "CANONICAL"
     },
     "recipe": {
-      "source": "Expense Control cafe-recipes.js + steak-catalog.js + steak-bom-updates.js",
+      "source": "Expense Control cafe-recipes.js + steak-catalog.js + steak-bom-updates.js + Owner instruction 2026-09-17",
       "status": "CANONICAL"
     },
     "packaging": {
@@ -86,6 +86,12 @@
       "status": "MISSING",
       "source": "Private repo",
       "reason": "No central costing domain existed before this import"
+    },
+    {
+      "dataset": "Owner-requested menu updates",
+      "status": "CANONICAL_OVERLAY",
+      "source": "Owner instruction 2026-09-17",
+      "reason": "Explicit menu/SKU/formula update; missing prices remain null"
     }
   ],
   "ingredients": [
@@ -2072,6 +2078,22 @@
       "stock_unit": "กระป๋อง",
       "source": "Filling Steak — Inventory SKU & BOM 2026-09-17",
       "status": "VERIFIED_SOURCE_RECORD"
+    },
+    {
+      "sku": "FC-CAKE-010",
+      "name": "เค้กหมี",
+      "business_unit": "filling_cafe",
+      "stock_unit": "ชิ้น",
+      "source": "Owner instruction 2026-09-17",
+      "status": "SOURCE_MISSING_UNIT_COST"
+    },
+    {
+      "sku": "FC-BAKERY-002",
+      "name": "Muffin chocolate",
+      "business_unit": "filling_cafe",
+      "stock_unit": "ชิ้น",
+      "source": "Owner instruction 2026-09-17",
+      "status": "SOURCE_MISSING_UNIT_COST"
     }
   ],
   "unit_costs": [
@@ -3966,6 +3988,105 @@
       "source": "ผู้ใช้แจ้ง",
       "checked_at": "2026-08-30",
       "reason": null
+    },
+    {
+      "sku": "FC-CAKE-010",
+      "ingredient": "เค้กหมี",
+      "unit": "ชิ้น",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Owner instruction 2026-09-17",
+      "checked_at": null,
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+    },
+    {
+      "sku": "FC-BAKERY-002",
+      "ingredient": "Muffin chocolate",
+      "unit": "ชิ้น",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Owner instruction 2026-09-17",
+      "checked_at": null,
+      "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+    },
+    {
+      "sku": "FC-ING-019-A",
+      "ingredient": "Fruit Base Apple",
+      "unit": "ml",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Ingredient Master / seed-data",
+      "checked_at": null,
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+    },
+    {
+      "sku": "FC-ING-016",
+      "ingredient": "Apple Syrup",
+      "unit": "ml",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Ingredient Master / seed-data",
+      "checked_at": null,
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+    },
+    {
+      "sku": "FC-ING-037",
+      "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+      "unit": "ml",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Ingredient Master / seed-data",
+      "checked_at": null,
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+    },
+    {
+      "sku": "FC-ING-019-L",
+      "ingredient": "Fruit Base Lychee",
+      "unit": "ml",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Ingredient Master / seed-data",
+      "checked_at": null,
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+    },
+    {
+      "sku": "FC-ING-068",
+      "ingredient": "ลองบีช ไซรัป กลิ่นลิ้นจี่",
+      "unit": "ml",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Ingredient Master / seed-data",
+      "checked_at": null,
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+    },
+    {
+      "sku": "FC-ING-019-M",
+      "ingredient": "Fruit Base Mango",
+      "unit": "ml",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Ingredient Master / seed-data",
+      "checked_at": null,
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+    },
+    {
+      "sku": "FC-ING-018",
+      "ingredient": "Mango Syrup",
+      "unit": "ml",
+      "unit_cost": null,
+      "currency": "THB",
+      "status": "SOURCE_MISSING",
+      "source": "Ingredient Master / seed-data",
+      "checked_at": null,
+      "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
     }
   ],
   "recipes": [
@@ -8860,16 +8981,175 @@
       "menu_name": "Apple Smoothie",
       "business_unit": "filling_cafe",
       "store": "Filling Cafe",
-      "active": false,
+      "active": true,
       "recipe_type": "menu",
       "recipe_version": "2026-09-17",
-      "source": "Expense Control cafe-recipes.js",
+      "source": "Owner instruction 2026-09-17",
       "category": "SMOOTHIE",
-      "serving_type": null,
+      "serving_type": "Iced / Dine-in",
       "sell_price": null,
-      "components": [],
-      "delivery_components": [],
-      "order_components": [],
+      "components": [
+        {
+          "sku": "FC-ING-019-A",
+          "name": "Apple Fruit Base",
+          "quantity": 55,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-ING-016",
+          "name": "Apple Syrup",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-ING-023",
+          "name": "Yogurt Dutchie",
+          "quantity": 35,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-ING-024",
+          "name": "Smoothie Powder",
+          "quantity": 15,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-ING-008",
+          "name": "น้ำเชื่อม",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 375,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "delivery_components": [
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "order_components": [
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
       "sweetness": null,
       "defaults": {
         "sweetness": null,
@@ -8878,10 +9158,10 @@
         "coke": null
       },
       "delivery_enabled": true,
-      "delivery_packaging_allocation": null,
+      "delivery_packaging_allocation": 0.6,
       "yield_quantity": null,
       "yield_unit": null,
-      "status": "INACTIVE — เจ้าของร้านยืนยันไม่ใช้ Apple frozen"
+      "status": "INCOMPLETE — ใช้สูตร Smoothie เดิม ตัด frozen fruit ออก และเปลี่ยน syrup/fruit base เป็น Apple; ราคาขายยังไม่ได้ระบุ"
     },
     {
       "menu_sku": "CAFE-MATCHA-LATTE",
@@ -23433,6 +23713,1013 @@
       "yield_quantity": 40,
       "yield_unit": "ถุง",
       "status": "PARTIAL — 2 kg ได้ 40 ถุง · 120 กรัม/ถุง; ใช้ถุงพลาสติก 5×8 นิ้ว 1 ถุง/portion"
+    },
+    {
+      "menu_sku": "CAFE-CAKE-010",
+      "menu_name": "เค้กหมี",
+      "business_unit": "filling_cafe",
+      "store": "Filling Cafe",
+      "active": true,
+      "recipe_type": "menu",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "category": "BAKERY",
+      "serving_type": "Dine-in",
+      "sell_price": null,
+      "components": [
+        {
+          "sku": "FC-CAKE-010",
+          "name": "เค้กหมี",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อต่อชิ้น"
+        }
+      ],
+      "delivery_components": [
+        {
+          "sku": "FC-PKG-021",
+          "name": "กล่องเค้กกลมฝาโดม",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-026",
+          "name": "ถุงกระดาษ 8 x 12 นิ้ว",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-028",
+          "name": "ถุงใส่เค้ก",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-027",
+          "name": "ช้อนตัดเค้กพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "order_components": [],
+      "sweetness": null,
+      "defaults": {
+        "sweetness": null,
+        "sauce": null,
+        "side": null,
+        "coke": null
+      },
+      "delivery_enabled": true,
+      "delivery_packaging_allocation": 0.6,
+      "yield_quantity": null,
+      "yield_unit": null,
+      "status": "INCOMPLETE — สูตรภายในและราคาซื้อยังไม่ได้ระบุ; ใช้ SKU สินค้าซื้อมาขายไป"
+    },
+    {
+      "menu_sku": "CAFE-BAKERY-002",
+      "menu_name": "Muffin chocolate",
+      "business_unit": "filling_cafe",
+      "store": "Filling Cafe",
+      "active": true,
+      "recipe_type": "menu",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "category": "BAKERY",
+      "serving_type": "Dine-in",
+      "sell_price": null,
+      "components": [
+        {
+          "sku": "FC-BAKERY-002",
+          "name": "Muffin chocolate",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อและบรรจุภัณฑ์ที่ยืนยัน"
+        }
+      ],
+      "delivery_components": [],
+      "order_components": [],
+      "sweetness": null,
+      "defaults": {
+        "sweetness": null,
+        "sauce": null,
+        "side": null,
+        "coke": null
+      },
+      "delivery_enabled": true,
+      "delivery_packaging_allocation": 0.6,
+      "yield_quantity": null,
+      "yield_unit": null,
+      "status": "INCOMPLETE — ราคาซื้อและบรรจุภัณฑ์ยังไม่ได้ระบุ; ไม่เดาข้อมูล"
+    },
+    {
+      "menu_sku": "CAFE-SODA-STRAWBERRY",
+      "menu_name": "Strawberry Soda",
+      "business_unit": "filling_cafe",
+      "store": "Filling Cafe",
+      "active": true,
+      "recipe_type": "menu",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "category": "SODA",
+      "serving_type": "Iced / Dine-in",
+      "sell_price": null,
+      "components": [
+        {
+          "sku": "FC-ING-019-S",
+          "name": "Fruit Base Strawberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-015",
+          "name": "Syrup Strawberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml"
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม"
+        }
+      ],
+      "delivery_components": [
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "order_components": [
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "sweetness": null,
+      "defaults": {
+        "sweetness": null,
+        "sauce": null,
+        "side": null,
+        "coke": null
+      },
+      "delivery_enabled": true,
+      "delivery_packaging_allocation": 0.6,
+      "yield_quantity": null,
+      "yield_unit": null,
+      "status": "INCOMPLETE — สูตรยืนยันแล้ว แต่ unit cost ของรสชาติ/น้ำมะนาวบาง SKU ต้องมีค่าต้นทางก่อนคำนวณ"
+    },
+    {
+      "menu_sku": "CAFE-SODA-BLUEBERRY",
+      "menu_name": "Blueberry Soda",
+      "business_unit": "filling_cafe",
+      "store": "Filling Cafe",
+      "active": true,
+      "recipe_type": "menu",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "category": "SODA",
+      "serving_type": "Iced / Dine-in",
+      "sell_price": null,
+      "components": [
+        {
+          "sku": "FC-ING-019-B",
+          "name": "Fruit Base Blueberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-017",
+          "name": "Syrup Blueberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml"
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม"
+        }
+      ],
+      "delivery_components": [
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "order_components": [
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "sweetness": null,
+      "defaults": {
+        "sweetness": null,
+        "sauce": null,
+        "side": null,
+        "coke": null
+      },
+      "delivery_enabled": true,
+      "delivery_packaging_allocation": 0.6,
+      "yield_quantity": null,
+      "yield_unit": null,
+      "status": "INCOMPLETE — สูตรยืนยันแล้ว แต่ unit cost ของรสชาติ/น้ำมะนาวบาง SKU ต้องมีค่าต้นทางก่อนคำนวณ"
+    },
+    {
+      "menu_sku": "CAFE-SODA-LYCHEE",
+      "menu_name": "Lychee Soda",
+      "business_unit": "filling_cafe",
+      "store": "Filling Cafe",
+      "active": true,
+      "recipe_type": "menu",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "category": "SODA",
+      "serving_type": "Iced / Dine-in",
+      "sell_price": null,
+      "components": [
+        {
+          "sku": "FC-ING-019-L",
+          "name": "Fruit Base Lychee",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-068",
+          "name": "Syrup Lychee",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml"
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม"
+        }
+      ],
+      "delivery_components": [
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "order_components": [
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "sweetness": null,
+      "defaults": {
+        "sweetness": null,
+        "sauce": null,
+        "side": null,
+        "coke": null
+      },
+      "delivery_enabled": true,
+      "delivery_packaging_allocation": 0.6,
+      "yield_quantity": null,
+      "yield_unit": null,
+      "status": "INCOMPLETE — สูตรยืนยันแล้ว แต่ unit cost ของรสชาติ/น้ำมะนาวบาง SKU ต้องมีค่าต้นทางก่อนคำนวณ"
+    },
+    {
+      "menu_sku": "CAFE-SODA-MANGO",
+      "menu_name": "Mango Soda",
+      "business_unit": "filling_cafe",
+      "store": "Filling Cafe",
+      "active": true,
+      "recipe_type": "menu",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "category": "SODA",
+      "serving_type": "Iced / Dine-in",
+      "sell_price": null,
+      "components": [
+        {
+          "sku": "FC-ING-019-M",
+          "name": "Fruit Base Mango",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-018",
+          "name": "Syrup Mango",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml"
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม"
+        }
+      ],
+      "delivery_components": [
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "order_components": [
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "sweetness": null,
+      "defaults": {
+        "sweetness": null,
+        "sauce": null,
+        "side": null,
+        "coke": null
+      },
+      "delivery_enabled": true,
+      "delivery_packaging_allocation": 0.6,
+      "yield_quantity": null,
+      "yield_unit": null,
+      "status": "INCOMPLETE — สูตรยืนยันแล้ว แต่ unit cost ของรสชาติ/น้ำมะนาวบาง SKU ต้องมีค่าต้นทางก่อนคำนวณ"
+    },
+    {
+      "menu_sku": "CAFE-SODA-APPLE",
+      "menu_name": "Apple Soda",
+      "business_unit": "filling_cafe",
+      "store": "Filling Cafe",
+      "active": true,
+      "recipe_type": "menu",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "category": "SODA",
+      "serving_type": "Iced / Dine-in",
+      "sell_price": null,
+      "components": [
+        {
+          "sku": "FC-ING-019-A",
+          "name": "Fruit Base Apple",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-016",
+          "name": "Syrup Apple",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml"
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม"
+        }
+      ],
+      "delivery_components": [
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "order_components": [
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null
+        }
+      ],
+      "sweetness": null,
+      "defaults": {
+        "sweetness": null,
+        "sauce": null,
+        "side": null,
+        "coke": null
+      },
+      "delivery_enabled": true,
+      "delivery_packaging_allocation": 0.6,
+      "yield_quantity": null,
+      "yield_unit": null,
+      "status": "INCOMPLETE — สูตรยืนยันแล้ว แต่ unit cost ของรสชาติ/น้ำมะนาวบาง SKU ต้องมีค่าต้นทางก่อนคำนวณ"
     }
   ],
   "preparations": [
@@ -28764,6 +30051,222 @@
       ],
       "recipe_version": "2026-09-17",
       "source": "Expense Control cafe-recipes.js"
+    },
+    {
+      "menu_sku": "CAFE-SMOOTHIE-APPLE",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-019-A",
+          "ingredient": "Apple Fruit Base",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-016",
+          "ingredient": "Apple Syrup",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-ING-019-A",
+          "name": "Apple Fruit Base",
+          "quantity": 55,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-016",
+          "name": "Apple Syrup",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-023",
+          "name": "Yogurt Dutchie",
+          "quantity": 35,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 2.31,
+          "unit_cost": 0.066,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-024",
+          "name": "Smoothie Powder",
+          "quantity": 15,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 4.2375,
+          "unit_cost": 0.2825,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-008",
+          "name": "น้ำเชื่อม",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 1.075,
+          "unit_cost": 0.05375,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 375,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.65625,
+          "unit_cost": 0.00175,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 2.9,
+          "unit_cost": 2.9,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.45,
+          "unit_cost": 0.45,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.58,
+          "unit_cost": 0.58,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
     },
     {
       "menu_sku": "CAFE-MATCHA-LATTE",
@@ -40771,6 +42274,1154 @@
       ],
       "recipe_version": "2026-09-17",
       "source": "Expense Control steak-bom-updates.js"
+    },
+    {
+      "menu_sku": "CAFE-CAKE-010",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-CAKE-010",
+          "ingredient": "เค้กหมี",
+          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-CAKE-010",
+          "name": "เค้กหมี",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อต่อชิ้น",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+        },
+        {
+          "sku": "FC-PKG-021",
+          "name": "กล่องเค้กกลมฝาโดม",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 6,
+          "unit_cost": 6,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-026",
+          "name": "ถุงกระดาษ 8 x 12 นิ้ว",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 3,
+          "unit_cost": 3,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-028",
+          "name": "ถุงใส่เค้ก",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.52,
+          "unit_cost": 0.52,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-027",
+          "name": "ช้อนตัดเค้กพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.5,
+          "unit_cost": 0.5,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "menu_sku": "CAFE-BAKERY-002",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-BAKERY-002",
+          "ingredient": "Muffin chocolate",
+          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-BAKERY-002",
+          "name": "Muffin chocolate",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "สินค้าใหม่; ยังไม่มีราคาซื้อและบรรจุภัณฑ์ที่ยืนยัน",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Owner requested the menu/SKU but no purchase unit cost was supplied"
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "menu_sku": "CAFE-SODA-STRAWBERRY",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-ING-019-S",
+          "name": "Fruit Base Strawberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml",
+          "line_cost": 5.622222222222222,
+          "unit_cost": 0.2811111111111111,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-015",
+          "name": "Syrup Strawberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml",
+          "line_cost": 3.783783783783784,
+          "unit_cost": 0.1891891891891892,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml",
+          "line_cost": 2.923076923076923,
+          "unit_cost": 0.02435897435897436,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม",
+          "line_cost": 0.4375,
+          "unit_cost": 0.00175,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 2.9,
+          "unit_cost": 2.9,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.45,
+          "unit_cost": 0.45,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.58,
+          "unit_cost": 0.58,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "menu_sku": "CAFE-SODA-BLUEBERRY",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-ING-019-B",
+          "name": "Fruit Base Blueberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml",
+          "line_cost": 5.622222222222222,
+          "unit_cost": 0.2811111111111111,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-017",
+          "name": "Syrup Blueberry",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml",
+          "line_cost": 3.783783783783784,
+          "unit_cost": 0.1891891891891892,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml",
+          "line_cost": 2.923076923076923,
+          "unit_cost": 0.02435897435897436,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม",
+          "line_cost": 0.4375,
+          "unit_cost": 0.00175,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 2.9,
+          "unit_cost": 2.9,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.45,
+          "unit_cost": 0.45,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.58,
+          "unit_cost": 0.58,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "menu_sku": "CAFE-SODA-LYCHEE",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-019-L",
+          "ingredient": "Fruit Base Lychee",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-068",
+          "ingredient": "Syrup Lychee",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-ING-019-L",
+          "name": "Fruit Base Lychee",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-068",
+          "name": "Syrup Lychee",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml",
+          "line_cost": 2.923076923076923,
+          "unit_cost": 0.02435897435897436,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม",
+          "line_cost": 0.4375,
+          "unit_cost": 0.00175,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 2.9,
+          "unit_cost": 2.9,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.45,
+          "unit_cost": 0.45,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.58,
+          "unit_cost": 0.58,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "menu_sku": "CAFE-SODA-MANGO",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-019-M",
+          "ingredient": "Fruit Base Mango",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-018",
+          "ingredient": "Syrup Mango",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-ING-019-M",
+          "name": "Fruit Base Mango",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-018",
+          "name": "Syrup Mango",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml",
+          "line_cost": 2.923076923076923,
+          "unit_cost": 0.02435897435897436,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม",
+          "line_cost": 0.4375,
+          "unit_cost": 0.00175,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 2.9,
+          "unit_cost": 2.9,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.45,
+          "unit_cost": 0.45,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.58,
+          "unit_cost": 0.58,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
+    },
+    {
+      "menu_sku": "CAFE-SODA-APPLE",
+      "variant": "delivery",
+      "selections": {},
+      "cost_per_serving": null,
+      "ingredient_cost": null,
+      "packaging_cost": null,
+      "status": "COSTING_INCOMPLETE",
+      "missing": [
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-019-A",
+          "ingredient": "Fruit Base Apple",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-016",
+          "ingredient": "Syrup Apple",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        },
+        {
+          "missing_field": "unit_cost",
+          "ingredient_sku": "FC-ING-037",
+          "ingredient": "น้ำมะนาวแช่แข็ง Aro",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit",
+          "status": "SOURCE_MISSING"
+        }
+      ],
+      "components": [
+        {
+          "sku": "FC-ING-019-A",
+          "name": "Fruit Base Apple",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Fruit base ตามรสชาติ 20 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-016",
+          "name": "Syrup Apple",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "Syrup ตามรสชาติ 20 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-038",
+          "name": "โซดาสิงห์",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำโซดา 120 ml",
+          "line_cost": 2.923076923076923,
+          "unit_cost": 0.02435897435897436,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-ING-037",
+          "name": "น้ำมะนาวแช่แข็ง Aro",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "น้ำมะนาว 10 ml",
+          "line_cost": null,
+          "unit_cost": null,
+          "status": "SOURCE_MISSING",
+          "reason": "Referenced by a current BOM but no usable canonical unit cost is available for this recipe unit"
+        },
+        {
+          "sku": "FC-ING-002",
+          "name": "น้ำแข็งก้อนเล็ก",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": "ใช้มาตรฐานเดียวกับเมนูโซดาเดิม",
+          "line_cost": 0.4375,
+          "unit_cost": 0.00175,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-003",
+          "name": "แก้ว + ฝา",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 2.9,
+          "unit_cost": 2.9,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-023",
+          "name": "ถุงซิปล็อกใส่น้ำแข็ง 13 x 20 ซม.",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.45,
+          "unit_cost": 0.45,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-012",
+          "name": "หลอด 6 มม. มีซองพลาสติก",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-009",
+          "name": "กระดาษปิดปากแก้ว",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.15,
+          "unit_cost": 0.15,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        },
+        {
+          "sku": "FC-PKG-019",
+          "name": "ถุงคู่ใส่แก้วกาแฟ",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "variant_dependent": false,
+          "group": null,
+          "min_selections": null,
+          "max_selections": null,
+          "source_status": null,
+          "note": null,
+          "line_cost": 0.58,
+          "unit_cost": 0.58,
+          "status": "COSTING_COMPLETE",
+          "reason": null
+        }
+      ],
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17"
     }
   ],
   "stock_mapping": [
@@ -42562,6 +45213,92 @@
           "unit": "ml",
           "role": "ingredient",
           "line_cost": 3.783783783783784
+        },
+        {
+          "ingredient_sku": "FC-ING-023",
+          "quantity": 35,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 2.31
+        },
+        {
+          "ingredient_sku": "FC-ING-024",
+          "quantity": 15,
+          "unit": "g",
+          "role": "ingredient",
+          "line_cost": 4.2375
+        },
+        {
+          "ingredient_sku": "FC-ING-008",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 1.075
+        },
+        {
+          "ingredient_sku": "FC-ING-002",
+          "quantity": 375,
+          "unit": "g",
+          "role": "ingredient",
+          "line_cost": 0.65625
+        },
+        {
+          "ingredient_sku": "FC-PKG-003",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 2.9
+        },
+        {
+          "ingredient_sku": "FC-PKG-023",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.45
+        },
+        {
+          "ingredient_sku": "FC-PKG-012",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-009",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-019",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.58
+        }
+      ]
+    },
+    {
+      "menu_sku": "CAFE-SMOOTHIE-APPLE",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-ING-019-A",
+          "quantity": 55,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-016",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
         },
         {
           "ingredient_sku": "FC-ING-023",
@@ -47683,6 +50420,461 @@
           "line_cost": 0.825
         }
       ]
+    },
+    {
+      "menu_sku": "CAFE-CAKE-010",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-CAKE-010",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-PKG-021",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 6
+        },
+        {
+          "ingredient_sku": "FC-PKG-026",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 3
+        },
+        {
+          "ingredient_sku": "FC-PKG-028",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.52
+        },
+        {
+          "ingredient_sku": "FC-PKG-027",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.5
+        }
+      ]
+    },
+    {
+      "menu_sku": "CAFE-BAKERY-002",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-BAKERY-002",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "ingredient",
+          "line_cost": null
+        }
+      ]
+    },
+    {
+      "menu_sku": "CAFE-SODA-STRAWBERRY",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-ING-019-S",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 5.622222222222222
+        },
+        {
+          "ingredient_sku": "FC-ING-015",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 3.783783783783784
+        },
+        {
+          "ingredient_sku": "FC-ING-038",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 2.923076923076923
+        },
+        {
+          "ingredient_sku": "FC-ING-037",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-002",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "line_cost": 0.4375
+        },
+        {
+          "ingredient_sku": "FC-PKG-003",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 2.9
+        },
+        {
+          "ingredient_sku": "FC-PKG-023",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.45
+        },
+        {
+          "ingredient_sku": "FC-PKG-012",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-009",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-019",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.58
+        }
+      ]
+    },
+    {
+      "menu_sku": "CAFE-SODA-BLUEBERRY",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-ING-019-B",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 5.622222222222222
+        },
+        {
+          "ingredient_sku": "FC-ING-017",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 3.783783783783784
+        },
+        {
+          "ingredient_sku": "FC-ING-038",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 2.923076923076923
+        },
+        {
+          "ingredient_sku": "FC-ING-037",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-002",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "line_cost": 0.4375
+        },
+        {
+          "ingredient_sku": "FC-PKG-003",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 2.9
+        },
+        {
+          "ingredient_sku": "FC-PKG-023",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.45
+        },
+        {
+          "ingredient_sku": "FC-PKG-012",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-009",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-019",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.58
+        }
+      ]
+    },
+    {
+      "menu_sku": "CAFE-SODA-LYCHEE",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-ING-019-L",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-068",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-038",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 2.923076923076923
+        },
+        {
+          "ingredient_sku": "FC-ING-037",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-002",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "line_cost": 0.4375
+        },
+        {
+          "ingredient_sku": "FC-PKG-003",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 2.9
+        },
+        {
+          "ingredient_sku": "FC-PKG-023",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.45
+        },
+        {
+          "ingredient_sku": "FC-PKG-012",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-009",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-019",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.58
+        }
+      ]
+    },
+    {
+      "menu_sku": "CAFE-SODA-MANGO",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-ING-019-M",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-018",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-038",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 2.923076923076923
+        },
+        {
+          "ingredient_sku": "FC-ING-037",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-002",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "line_cost": 0.4375
+        },
+        {
+          "ingredient_sku": "FC-PKG-003",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 2.9
+        },
+        {
+          "ingredient_sku": "FC-PKG-023",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.45
+        },
+        {
+          "ingredient_sku": "FC-PKG-012",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-009",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-019",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.58
+        }
+      ]
+    },
+    {
+      "menu_sku": "CAFE-SODA-APPLE",
+      "business_unit": "filling_cafe",
+      "recipe_version": "2026-09-17",
+      "source": "Owner instruction 2026-09-17",
+      "status": "COSTING_INCOMPLETE",
+      "components": [
+        {
+          "ingredient_sku": "FC-ING-019-A",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-016",
+          "quantity": 20,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-038",
+          "quantity": 120,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": 2.923076923076923
+        },
+        {
+          "ingredient_sku": "FC-ING-037",
+          "quantity": 10,
+          "unit": "ml",
+          "role": "ingredient",
+          "line_cost": null
+        },
+        {
+          "ingredient_sku": "FC-ING-002",
+          "quantity": 250,
+          "unit": "g",
+          "role": "ingredient",
+          "line_cost": 0.4375
+        },
+        {
+          "ingredient_sku": "FC-PKG-003",
+          "quantity": 1,
+          "unit": "ชุด",
+          "role": "packaging",
+          "line_cost": 2.9
+        },
+        {
+          "ingredient_sku": "FC-PKG-023",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.45
+        },
+        {
+          "ingredient_sku": "FC-PKG-012",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-009",
+          "quantity": 1,
+          "unit": "ชิ้น",
+          "role": "packaging",
+          "line_cost": 0.15
+        },
+        {
+          "ingredient_sku": "FC-PKG-019",
+          "quantity": 1,
+          "unit": "ใบ",
+          "role": "packaging",
+          "line_cost": 0.58
+        }
+      ]
     }
   ],
   "conflicts": [],
@@ -47693,12 +50885,54 @@
     "default_steak_sauce": "PREP-GRV only when the source exposes it as an option; no side or coke is guessed.",
     "packaging": "Packaging components are part of cost per serving and remain traceable by SKU."
   },
+  "manual_updates": [
+    {
+      "update": "new resale products",
+      "menu_skus": [
+        "CAFE-CAKE-010",
+        "CAFE-BAKERY-002"
+      ],
+      "ingredient_skus": [
+        "FC-CAKE-010",
+        "FC-BAKERY-002"
+      ],
+      "source": "Owner instruction 2026-09-17",
+      "status": "INCOMPLETE_COST_SOURCE_MISSING"
+    },
+    {
+      "update": "new soda flavor BOMs",
+      "menu_skus": [
+        "CAFE-SODA-STRAWBERRY",
+        "CAFE-SODA-BLUEBERRY",
+        "CAFE-SODA-LYCHEE",
+        "CAFE-SODA-MANGO",
+        "CAFE-SODA-APPLE"
+      ],
+      "formula": {
+        "fruit_base_ml": 20,
+        "syrup_ml": 20,
+        "soda_ml": 120,
+        "lemon_ml": 10,
+        "ice_g": 250
+      },
+      "source": "Owner instruction 2026-09-17",
+      "status": "FORMULA_VERIFIED_COST_DEPENDS_ON_SKU_PRICES"
+    },
+    {
+      "update": "reactivate Apple Smoothie",
+      "menu_skus": [
+        "CAFE-SMOOTHIE-APPLE"
+      ],
+      "source": "Owner instruction 2026-09-17",
+      "status": "FORMULA_VERIFIED_WITHOUT_FROZEN_FRUIT"
+    }
+  ],
   "summary": {
-    "active_cafe_menus": 43,
+    "active_cafe_menus": 51,
     "active_steak_menus": 60,
     "costing_complete": 83,
-    "costing_incomplete": 20,
-    "source_missing_unit_cost_rows": 0,
+    "costing_incomplete": 28,
+    "source_missing_unit_cost_rows": 9,
     "source_conflicts": 0
   },
   "source": "Canonical Costing Master",
