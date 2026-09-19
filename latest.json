@@ -1,73 +1,74 @@
 {
   "schema_version": 1,
   "system_version": "0.1.0",
-  "generated_at": "2026-09-17T11:25:40.742Z",
-  "pipeline_run": "20260917112540-publish-brief-0ceb5d71",
-  "business_date": "2026-09-17",
+  "generated_at": "2026-09-19T10:52:34.785Z",
+  "pipeline_run": "20260919105234-publish-brief-f264e50e",
+  "business_date": "2026-09-19",
   "publication_status": "PROVISIONAL",
   "data_quality_score": 100,
   "data_quality": {
     "score": 100,
     "status": "VERIFIED",
     "blocking_issues": 0,
-    "checked_run": "20260917112540-publish-brief-0ceb5d71",
+    "checked_run": "20260919105234-publish-brief-f264e50e",
     "source": "Maple validation",
-    "business_date": "2026-09-17"
+    "business_date": "2026-09-19"
   },
   "freshness": {
     "status": "CURRENT",
     "age_days": 0,
     "max_age_days": 1,
-    "as_of_business_date": "2026-09-17"
+    "as_of_business_date": "2026-09-19"
   },
   "domain_freshness": {
     "expenses": {
       "status": "CURRENT",
       "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-17"
+      "as_of_business_date": "2026-09-19"
     },
     "inventory": {
       "status": "CURRENT",
       "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-17"
+      "as_of_business_date": "2026-09-19"
     },
     "marketing": {
       "status": "CURRENT",
       "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-17"
+      "as_of_business_date": "2026-09-19"
     }
   },
   "sales": {
-    "business_date": "2026-09-17",
-    "total_sales": 6680,
-    "order_count": 28,
-    "average_bill": 238.57,
+    "business_date": "2026-09-19",
+    "total_sales": 8436,
+    "order_count": 44,
+    "average_bill": 191.73,
     "by_business_unit": {
-      "filling_cafe": 2611.44,
-      "filling_steak": 3263.04,
-      "unknown": 805.52
+      "unknown": 115,
+      "filling_cafe": 3568.35,
+      "filling_steak": 4752.65
     },
     "by_channel": {
-      "DINEIN": 1829,
-      "TAKEOUT": 4851
+      "TAKEOUT": 6413,
+      "DINEIN": 2023
     },
     "by_hour": {
-      "10": 145,
-      "11": 245,
-      "12": 1249,
-      "13": 540,
-      "14": 75,
-      "15": 2827,
-      "16": 361,
-      "09": 435,
-      "08": 639,
-      "07": 164
+      "10": 203,
+      "11": 742,
+      "12": 660,
+      "13": 543,
+      "14": 1103,
+      "15": 825,
+      "16": 2751,
+      "17": 462,
+      "09": 637,
+      "08": 180,
+      "07": 330
     },
-    "vs_previous_day_pct": -40.1,
-    "vs_7_day_average_pct": -40.56,
+    "vs_previous_day_pct": 26.29,
+    "vs_7_day_average_pct": -20.32,
     "data_status": "INCOMPLETE",
     "source": "GPOS",
     "date_range": null,
@@ -76,11 +77,11 @@
       "status": "CURRENT",
       "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-17"
+      "as_of_business_date": "2026-09-19"
     }
   },
   "expenses": {
-    "business_date": "2026-09-17",
+    "business_date": "2026-09-19",
     "total_expenses": null,
     "by_category": {},
     "data_status": "INCOMPLETE",
@@ -91,11 +92,11 @@
       "status": "CURRENT",
       "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-17"
+      "as_of_business_date": "2026-09-19"
     }
   },
   "inventory": {
-    "business_date": "2026-09-17",
+    "business_date": "2026-09-19",
     "items": {},
     "event_count": null,
     "reconciliation_status": "INCOMPLETE",
@@ -108,13 +109,13 @@
       "status": "CURRENT",
       "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-17"
+      "as_of_business_date": "2026-09-19"
     }
   },
   "marketing": {
-    "business_date": "2026-09-17",
-    "reporting_start": "2026-09-17",
-    "reporting_end": "2026-09-17",
+    "business_date": "2026-09-19",
+    "reporting_start": "2026-09-19",
+    "reporting_end": "2026-09-19",
     "spend": null,
     "attributed_revenue": null,
     "roas": null,
@@ -123,15 +124,15 @@
     "data_status": "INCOMPLETE",
     "source": "Meta Ads",
     "date_range": {
-      "start": "2026-09-17",
-      "end": "2026-09-17"
+      "start": "2026-09-19",
+      "end": "2026-09-19"
     },
     "status": "INCOMPLETE",
     "freshness": {
       "status": "CURRENT",
       "age_days": 0,
       "max_age_days": 1,
-      "as_of_business_date": "2026-09-17"
+      "as_of_business_date": "2026-09-19"
     }
   },
   "costing": {
@@ -146,7 +147,7 @@
   },
   "calendar": {
     "source": "config/schedules.json",
-    "business_date": "2026-09-17",
+    "business_date": "2026-09-19",
     "store_status": "OPEN",
     "sales_expected": true,
     "gpos_required": true,
@@ -188,7 +189,7 @@
       "code": "MARKETING_ATTRIBUTION_MISSING",
       "severity": "INFO",
       "source": "Meta Ads",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "status": "INCOMPLETE",
       "missing_fields": [
         "attributed_revenue"
@@ -198,7 +199,7 @@
       "code": "SALES_DATA_INCOMPLETE",
       "severity": "WARNING",
       "source": "GPOS",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "status": "INCOMPLETE",
       "missing_fields": [
         "verified_store_mapping"
@@ -211,7 +212,7 @@
       "code": "CALENDAR_SOURCE_UNKNOWN",
       "severity": "INFO",
       "source": "Google Calendar",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "status": "UNKNOWN",
       "missing_fields": [
         "events"
@@ -234,7 +235,7 @@
   "missing_data": [
     {
       "source": "Meta Ads",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "fields": [
         "attributed_revenue"
       ],
@@ -242,7 +243,7 @@
     },
     {
       "source": "GPOS",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "fields": [
         "verified_store_mapping"
       ],
@@ -250,7 +251,7 @@
     },
     {
       "source": "Google Calendar",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "fields": [
         "events"
       ],
@@ -269,13 +270,13 @@
     {
       "action": "refresh_source",
       "source": "Meta Ads",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "blocking": false
     },
     {
       "action": "connect_source",
       "source": "Google Calendar",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "blocking": false
     },
     {

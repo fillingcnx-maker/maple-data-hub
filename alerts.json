@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-09-17T11:25:40.742Z",
-  "pipeline_run": "20260917112540-publish-brief-0ceb5d71",
-  "business_date": "2026-09-17",
+  "generated_at": "2026-09-19T10:52:34.785Z",
+  "pipeline_run": "20260919105234-publish-brief-f264e50e",
+  "business_date": "2026-09-19",
   "status": "INCOMPLETE",
   "alerts": [
     {
       "code": "MARKETING_ATTRIBUTION_MISSING",
       "severity": "INFO",
       "source": "Meta Ads",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "status": "INCOMPLETE",
       "missing_fields": [
         "attributed_revenue"
@@ -18,7 +18,7 @@
       "code": "SALES_DATA_INCOMPLETE",
       "severity": "WARNING",
       "source": "GPOS",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "status": "INCOMPLETE",
       "missing_fields": [
         "verified_store_mapping"
@@ -31,7 +31,7 @@
       "code": "CALENDAR_SOURCE_UNKNOWN",
       "severity": "INFO",
       "source": "Google Calendar",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "status": "UNKNOWN",
       "missing_fields": [
         "events"

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T11:25:40.742Z",
-  "pipeline_run": "20260917112540-publish-brief-0ceb5d71",
+  "generated_at": "2026-09-19T10:52:34.785Z",
+  "pipeline_run": "20260919105234-publish-brief-f264e50e",
   "sources": {
     "GPOS": {
       "source": "GPOS",
@@ -8,9 +8,9 @@
       "connection_mode": "LOCAL_FILE_EXPORT",
       "status": "HEALTHY",
       "data_status": "INCOMPLETE",
-      "business_date": "2026-09-17",
-      "last_sync": "2026-09-17T09:43:03.187Z",
-      "checked_at": "2026-09-17T09:43:03.187Z",
+      "business_date": "2026-09-19",
+      "last_sync": "2026-09-19T10:52:16.933Z",
+      "checked_at": "2026-09-19T10:52:16.933Z",
       "details": [
         {
           "source": "gpos",
@@ -25,10 +25,16 @@
       "connection_mode": "LOCAL_FILE_EXPORT",
       "status": "UNKNOWN",
       "data_status": "INCOMPLETE",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "last_sync": null,
-      "checked_at": null,
-      "details": []
+      "checked_at": "2026-09-19T10:30:31.041Z",
+      "details": [
+        {
+          "source": "expenses",
+          "status": "UNKNOWN",
+          "reason": "no input configured"
+        }
+      ]
     },
     "Stock": {
       "source": "Stock System",
@@ -39,9 +45,9 @@
       "connection_mode": "LOCAL_FILE_EXPORT_AND_GPOS_BRIDGE",
       "status": "UNKNOWN",
       "data_status": "INCOMPLETE",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "last_sync": null,
-      "checked_at": null,
+      "checked_at": "2026-09-19T10:30:31.032Z",
       "details": [
         {
           "source": "stock",
@@ -62,8 +68,14 @@
           "data_status": "UNKNOWN",
           "business_date": null,
           "last_sync": null,
-          "checked_at": null,
-          "details": []
+          "checked_at": "2026-09-19T10:30:31.032Z",
+          "details": [
+            {
+              "source": "stock_auto",
+              "status": "UNKNOWN",
+              "reason": "no input configured"
+            }
+          ]
         }
       ]
     },
@@ -73,10 +85,16 @@
       "connection_mode": "LOCAL_FILE_EXPORT",
       "status": "UNKNOWN",
       "data_status": "INCOMPLETE",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "last_sync": null,
-      "checked_at": null,
-      "details": []
+      "checked_at": "2026-09-19T10:30:31.049Z",
+      "details": [
+        {
+          "source": "meta",
+          "status": "UNKNOWN",
+          "reason": "no input configured"
+        }
+      ]
     },
     "Costing": {
       "source": "Canonical Costing Master",
@@ -90,7 +108,7 @@
       "adapter": "reports/maple/costing_master.json",
       "connection_mode": "CANONICAL_MASTER",
       "last_sync": "2026-09-17T11:25:15.714Z",
-      "checked_at": "2026-09-17T11:25:40.742Z",
+      "checked_at": "2026-09-19T10:52:34.785Z",
       "details": []
     },
     "Calendar": {
@@ -99,7 +117,7 @@
       "connection_mode": "NOT_CONFIGURED",
       "status": "UNKNOWN",
       "data_status": "UNKNOWN",
-      "business_date": "2026-09-17",
+      "business_date": "2026-09-19",
       "last_sync": null,
       "checked_at": null,
       "reason": "Google Calendar adapter is not configured; local schedules are not calendar events",
@@ -109,7 +127,7 @@
         "connection_mode": "LOCAL_FILE_EXPORT",
         "status": "UNKNOWN",
         "data_status": "UNKNOWN",
-        "business_date": "2026-09-17",
+        "business_date": "2026-09-19",
         "last_sync": null,
         "checked_at": null,
         "details": []
