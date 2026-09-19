@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T10:52:34.785Z",
-  "pipeline_run": "20260919105234-publish-brief-f264e50e",
+  "generated_at": "2026-09-19T14:35:09.541Z",
+  "pipeline_run": "20260919143509-publish-brief-69eaae41",
   "sources": {
     "GPOS": {
       "source": "GPOS",
@@ -9,8 +9,8 @@
       "status": "HEALTHY",
       "data_status": "INCOMPLETE",
       "business_date": "2026-09-19",
-      "last_sync": "2026-09-19T10:52:16.933Z",
-      "checked_at": "2026-09-19T10:52:16.933Z",
+      "last_sync": "2026-09-19T14:35:01.288Z",
+      "checked_at": "2026-09-19T14:35:01.288Z",
       "details": [
         {
           "source": "gpos",
@@ -108,7 +108,7 @@
       "adapter": "reports/maple/costing_master.json",
       "connection_mode": "CANONICAL_MASTER",
       "last_sync": "2026-09-17T11:25:15.714Z",
-      "checked_at": "2026-09-19T10:52:34.785Z",
+      "checked_at": "2026-09-19T14:35:09.541Z",
       "details": []
     },
     "Calendar": {

@@ -1,6 +1,6 @@
 # MAPLE EXECUTIVE BRIEF
 
-Generated: 2026-09-19T10:52:34.785Z
+Generated: 2026-09-19T14:35:09.541Z
 Publication Status: PROVISIONAL
 Data Quality: 100 — VERIFIED
 Overall Freshness: CURRENT (0 day(s) old; as of 2026-09-19)
@@ -9,8 +9,8 @@ Overall Freshness: CURRENT (0 day(s) old; as of 2026-09-19)
 Source: GPOS
 Business date: 2026-09-19
 Status: INCOMPLETE
-Total: ฿8436.00
-Orders: 44
+Total: ฿15883.00
+Orders: 63
 
 ## Expenses
 Source: Expense Control

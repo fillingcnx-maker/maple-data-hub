@@ -1,16 +1,16 @@
 {
   "business_date": "2026-09-19",
-  "total_sales": 8436,
-  "order_count": 44,
-  "average_bill": 191.73,
+  "total_sales": 15883,
+  "order_count": 63,
+  "average_bill": 252.11,
   "by_business_unit": {
     "unknown": 115,
     "filling_cafe": 3568.35,
-    "filling_steak": 4752.65
+    "filling_steak": 12199.65
   },
   "by_channel": {
-    "TAKEOUT": 6413,
-    "DINEIN": 2023
+    "TAKEOUT": 11479,
+    "DINEIN": 4404
   },
   "by_hour": {
     "10": 203,
@@ -20,13 +20,16 @@
     "14": 1103,
     "15": 825,
     "16": 2751,
-    "17": 462,
+    "17": 2675,
+    "18": 2212,
+    "19": 1849,
+    "20": 1173,
     "09": 637,
     "08": 180,
     "07": 330
   },
-  "vs_previous_day_pct": 26.29,
-  "vs_7_day_average_pct": -20.32,
+  "vs_previous_day_pct": 137.77,
+  "vs_7_day_average_pct": 50.02,
   "data_status": "INCOMPLETE",
   "source": "GPOS",
   "date_range": null,
@@ -37,6 +40,6 @@
     "max_age_days": 1,
     "as_of_business_date": "2026-09-19"
   },
-  "generated_at": "2026-09-19T10:52:34.785Z",
-  "pipeline_run": "20260919105234-publish-brief-f264e50e"
+  "generated_at": "2026-09-19T14:35:09.541Z",
+  "pipeline_run": "20260919143509-publish-brief-69eaae41"
 }
